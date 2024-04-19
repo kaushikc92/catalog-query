@@ -31,7 +31,6 @@ def build_index():
     
         client.index(
             index = "column_catalog",
-            #id = "document_" + str(i),
             id = table,
             document=body
         )
@@ -47,8 +46,10 @@ def search_index(query):
             }
         }
     })
+    res = []
     for item in result['hits']['hits']:
-        print(item['_id'])
+        res.append(item['_id'])
+    return res
 
 def delete_index():
     client.indices.delete(index=INDEX)

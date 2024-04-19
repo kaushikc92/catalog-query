@@ -1,4 +1,3 @@
-import os
 import torch
 from datasets import load_dataset
 from transformers import (
@@ -12,9 +11,9 @@ from transformers import (
 from peft import LoraConfig, PeftModel
 from trl import SFTTrainer
 
-DATASET_PATH = ''
-MODEL_PATH = 'NousResearch/Llama-2-7b-hf'
-OUTPUT_DIR = ''
+DATASET_PATH = 'kaushikchan/catalog-sql-small-train'
+MODEL_PATH = 'meta-llama/CodeLlama-7b-hf'
+OUTPUT_DIR = './results'
 
 dataset = load_dataset(DATASET_PATH, split='train')
 
