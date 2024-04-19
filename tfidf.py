@@ -12,7 +12,7 @@ INDEX = 'column_catalog'
 client = Elasticsearch(
     "https://localhost:9200", 
     ca_certs = "/Users/kaushik/dev/elasticsearch-8.13.2/config/certs/http_ca.crt", 
-    basic_auth=("elastic", "BdDJGF3eGab70KOZThpt")
+    basic_auth=("elastic", "")
 )
 
 def build_index():
