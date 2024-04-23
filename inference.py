@@ -33,6 +33,6 @@ pipe = pipeline(task='text-generation', model=model, tokenizer=tokenizer)
 
 answers = []
 
-for out in pipe(KeyDataset(dataset, "text"), max_new_tokens=50):
+for out in pipe(KeyDataset(dataset, "text"), max_new_tokens=100):
     answers.append(out[0]['generated_text'])
     json.dump(answers, open('answers.json', 'w'), indent=2)
