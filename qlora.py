@@ -11,7 +11,7 @@ from transformers import (
 from peft import LoraConfig, PeftModel
 from trl import SFTTrainer
 
-DATASET_PATH = 'kaushikchan/catalog-sql-small-train'
+DATASET_PATH = 'kaushikchan/catalog-sql-train'
 MODEL_PATH = 'meta-llama/CodeLlama-7b-hf'
 OUTPUT_DIR = './results'
 
