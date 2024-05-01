@@ -1,0 +1,25 @@
+[
+  {
+    "asset": [
+      "asset_directory",
+      "asset_file",
+      "asset_table",
+      "asset_column",
+      "asset_database",
+      "asset_label",
+      "asset_owner"
+    ]
+  },
+  {
+    "asset_database": [
+      "asset_rdbms",
+      "asset_nosql"
+    ]
+  },
+  {
+    "asset_label": [
+      "asset_business_term",
+      "asset_classification"
+    ]
+  }
+]

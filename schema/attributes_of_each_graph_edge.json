@@ -1,0 +1,61 @@
+[
+  {
+    "relation": [
+      "relation_id",
+      "relation_type_id",
+      "source_asset_id",
+      "target_asset_id",
+      "description",
+      "creation_date",
+      "modified_date"
+    ]
+  },
+  {
+    "relation_has": [
+    ]
+  },
+  {
+    "relation_has_dir_dir": [
+    ]
+  },
+  {
+    "relation_has_dir_file": [
+    ]
+  },
+  {
+    "relation_has_file_table": [
+    ]
+  },
+  {
+    "relation_has_table_col": [
+    ]
+  },
+  {
+    "relation_assoc": [
+    ]
+  },
+  {
+    "relation_assoc_term_col": [
+    ]
+  },
+  {
+    "relation_assoc_class_col": [
+    ]
+  },
+  {
+    "relation_derive_table_table": [
+    ]
+  },
+  {
+    "relation_joinable_table_table": [
+    ]
+  },
+  {
+    "relation_unionable_table_table": [
+    ]
+  },
+  {
+    "relation_own": [
+    ]
+  }
+]

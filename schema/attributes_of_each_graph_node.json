@@ -1,0 +1,66 @@
+[
+  {
+    "asset": [
+      "asset_id",
+      "asset_type_id",
+      "asset_short_name",
+      "asset_long_name",
+      "description",
+      "creation_date",
+      "modified_date"
+    ]
+  },
+  {
+    "asset_directory": [
+      "dsize"
+    ]
+  },
+  {
+    "asset_file": [
+      "extension",
+      "fsize"
+    ]
+  },
+  {
+    "asset_table": [
+      "num_cols",
+      "num_rows"
+    ]
+  },
+  {
+    "asset_column": [
+      "col_type",
+      "col_length"
+    ]
+  },
+  {
+    "asset_database": [
+      "database_type"
+    ]
+  },
+  {
+    "asset_rdbms": [
+      "num_tables"
+    ]
+  },
+  {
+    "asset_nosql": [
+    ]
+  },
+  {
+    "asset_label": [
+    ]
+  },
+  {
+    "asset_business_term": [
+    ]
+  },
+  {
+    "asset_classification": [
+    ]
+  },
+  {
+    "asset_owner": [
+    ]
+  }
+]
