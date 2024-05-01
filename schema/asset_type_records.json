@@ -1,74 +1,62 @@
-[
-  {
+{
+  "asset": {
     "id": 0,
-    "shortName": "asset",
     "longName": "Asset",
     "description": ""
   },
-  {
+  "asset_directory": {
     "id": 1,
-    "shortName": "asset_directory",
     "longName": "Directory",
     "description": ""
   },
-  {
+  "asset_file": {
     "id": 2,
-    "shortName": "asset_file",
     "longName": "File",
     "description": ""
   },
-  {
+  "asset_table": {
     "id": 3,
-    "shortName": "asset_table",
     "longName": "Table",
     "description": ""
   },
-  {
+  "asset_column": {
     "id": 4,
-    "shortName": "asset_column",
     "longName": "Column",
     "description": ""
   },
-  {
+  "asset_database": {
     "id": 5,
-    "shortName": "asset_database",
     "longName": "Database",
     "description": ""
   },
-  {
+  "asset_rdbms": {
     "id": 6,
-    "shortName": "asset_rdbms",
     "longName": "Relational Database",
     "description": ""
   },
-  {
+  "asset_nosql": {
     "id": 7,
-    "shortName": "asset_nosql",
     "longName": "Nosql Database",
     "description": ""
   },
-  {
+  "asset_label": {
     "id": 8,
-    "shortName": "asset_label",
     "longName": "Label",
     "description": ""
   },
-  {
+  "asset_business_term": {
     "id": 9,
-    "shortName": "asset_business_term",
     "longName": "Business Term",
     "description": ""
   },
-  {
+  "asset_classification": {
     "id": 10,
-    "shortName": "asset_classification",
     "longName": "Classification",
     "description": ""
   },
-  {
+  "asset_owner": {
     "id": 11,
-    "shortName": "asset_owner",
     "longName": "Asset Owner",
     "description": ""
   }
-]
+}

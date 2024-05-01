@@ -1,80 +1,67 @@
-[
-  {
+{
+  "relation": {
     "id": 0,
-    "shortName": "relation",
     "longName": "Relation",
     "description": ""
   },
-  {
+  "relation_has": {
     "id": 1,
-    "shortName": "relation_has",
     "longName": "Has",
     "description": ""
   },
-  {
+  "relation_has_dir_dir": {
     "id": 2,
-    "shortName": "relation_has_dir_dir",
     "longName": "Directory has directory",
     "description": ""
   },
-  {
+  "relation_has_dir_file": {
     "id": 3,
-    "shortName": "relation_has_dir_file",
     "longName": "Directory has file",
     "description": ""
   },
-  {
+  "relation_has_file_table": {
     "id": 4,
-    "shortName": "relation_has_file_table",
     "longName": "File has table",
     "description": ""
   },
-  {
+  "relation_has_table_col": {
     "id": 5,
-    "shortName": "relation_has_table_col",
     "longName": "Table has column",
     "description": ""
   },
-  {
+  "relation_assoc": {
     "id": 6,
-    "shortName": "relation_assoc",
     "longName": "Label association",
     "description": ""
   },
-  {
+  "relation_assoc_term_col": {
     "id": 7,
-    "shortName": "relation_assoc_term_col",
     "longName": "Business term associated with column",
     "description": ""
   },
-  {
+  "relation_assoc_class_col": {
     "id": 8,
-    "shortName": "relation_assoc_class_col",
     "longName": "Classification associated with column",
     "description": ""
   },
-  {
+  "relation_derive_table_table": {
     "id": 9,
-    "shortName": "relation_derive_table_table",
     "longName": "Table derived from table",
     "description": ""
   },
-  {
+  "relation_joinable_table_table": {
     "id": 10,
-    "shortName": "relation_joinable_table_table",
     "longName": "Table joinable with table",
     "description": ""
   },
-  {
+  "relation_unionable_table_table": {
     "id": 11,
-    "shortName": "relation_unionable_table_table",
     "longName": "Table unionable with table",
     "description": ""
   },
-  {
+  "relation_own": {
     "id": 12,
-    "shortName": "relation_own",
     "longName": "Own",
     "description": ""
   }
-]
+}
