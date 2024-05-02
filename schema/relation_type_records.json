@@ -1,66 +1,66 @@
 {
-  "relation": {
-    "id": 0,
+  "edge": {
+    "type_id": 0,
     "longName": "Relation",
     "description": ""
   },
-  "relation_has": {
-    "id": 1,
+  "edge_has": {
+    "type_id": 1,
     "longName": "Has",
     "description": ""
   },
-  "relation_has_dir_dir": {
-    "id": 2,
+  "edge_has_dir_dir": {
+    "type_id": 2,
     "longName": "Directory has directory",
     "description": ""
   },
-  "relation_has_dir_file": {
-    "id": 3,
+  "edge_has_dir_file": {
+    "type_id": 3,
     "longName": "Directory has file",
     "description": ""
   },
-  "relation_has_file_table": {
-    "id": 4,
+  "edge_has_file_table": {
+    "type_id": 4,
     "longName": "File has table",
     "description": ""
   },
-  "relation_has_table_col": {
-    "id": 5,
+  "edge_has_table_col": {
+    "type_id": 5,
     "longName": "Table has column",
     "description": ""
   },
-  "relation_assoc": {
-    "id": 6,
+  "edge_assoc": {
+    "type_id": 6,
     "longName": "Label association",
     "description": ""
   },
-  "relation_assoc_term_col": {
-    "id": 7,
+  "edge_assoc_term_col": {
+    "type_id": 7,
     "longName": "Business term associated with column",
     "description": ""
   },
-  "relation_assoc_class_col": {
-    "id": 8,
+  "edge_assoc_class_col": {
+    "type_id": 8,
     "longName": "Classification associated with column",
     "description": ""
   },
-  "relation_derive_table_table": {
-    "id": 9,
+  "edge_derive_table_table": {
+    "type_id": 9,
     "longName": "Table derived from table",
     "description": ""
   },
-  "relation_joinable_table_table": {
-    "id": 10,
+  "edge_joinable_table_table": {
+    "type_id": 10,
     "longName": "Table joinable with table",
     "description": ""
   },
-  "relation_unionable_table_table": {
-    "id": 11,
+  "edge_unionable_table_table": {
+    "type_id": 11,
     "longName": "Table unionable with table",
     "description": ""
   },
-  "relation_own": {
-    "id": 12,
+  "edge_own": {
+    "type_id": 12,
     "longName": "Own",
     "description": ""
   }

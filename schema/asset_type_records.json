@@ -1,61 +1,61 @@
 {
-  "asset": {
-    "id": 0,
-    "longName": "Asset",
+  "node": {
+    "type_id": 0,
+    "longName": "Node",
     "description": ""
   },
-  "asset_directory": {
-    "id": 1,
+  "node_directory": {
+    "type_id": 1,
     "longName": "Directory",
     "description": ""
   },
-  "asset_file": {
-    "id": 2,
+  "node_file": {
+    "type_id": 2,
     "longName": "File",
     "description": ""
   },
-  "asset_table": {
-    "id": 3,
+  "node_table": {
+    "type_id": 3,
     "longName": "Table",
     "description": ""
   },
-  "asset_column": {
-    "id": 4,
+  "node_column": {
+    "type_id": 4,
     "longName": "Column",
     "description": ""
   },
-  "asset_database": {
-    "id": 5,
+  "node_database": {
+    "type_id": 5,
     "longName": "Database",
     "description": ""
   },
-  "asset_rdbms": {
-    "id": 6,
+  "node_rdbms": {
+    "type_id": 6,
     "longName": "Relational Database",
     "description": ""
   },
-  "asset_nosql": {
-    "id": 7,
+  "node_nosql": {
+    "type_id": 7,
     "longName": "Nosql Database",
     "description": ""
   },
-  "asset_label": {
-    "id": 8,
+  "node_label": {
+    "type_id": 8,
     "longName": "Label",
     "description": ""
   },
-  "asset_business_term": {
-    "id": 9,
+  "node_business_term": {
+    "type_id": 9,
     "longName": "Business Term",
     "description": ""
   },
-  "asset_classification": {
-    "id": 10,
+  "node_classification": {
+    "type_id": 10,
     "longName": "Classification",
     "description": ""
   },
-  "asset_owner": {
-    "id": 11,
+  "node_owner": {
+    "type_id": 11,
     "longName": "Asset Owner",
     "description": ""
   }

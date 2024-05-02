@@ -1,19 +1,19 @@
 {
-  "asset": [
-    "asset_directory",
-    "asset_file",
-    "asset_table",
-    "asset_column",
-    "asset_database",
-    "asset_label",
-    "asset_owner"
+  "node": [
+    "node_directory",
+    "node_file",
+    "node_table",
+    "node_column",
+    "node_database",
+    "node_label",
+    "node_owner"
   ],
-  "asset_database": [
-    "asset_rdbms",
-    "asset_nosql"
+  "node_database": [
+    "node_rdbms",
+    "node_nosql"
   ],
-  "asset_label": [
-    "asset_business_term",
-    "asset_classification"
+  "node_label": [
+    "node_business_term",
+    "node_classification"
   ]
 }
