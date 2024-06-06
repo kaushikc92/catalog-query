@@ -1,6 +1,7 @@
 from sentence_transformers import SentenceTransformer
 from camelcase_tokenizer import CamelCaseTokenizer
 import json
+import numpy as np
 import pdb
 
 K = 5
@@ -32,8 +33,8 @@ model = SentenceTransformer(MODEL_PATH)
 query_embeddings = model.encode(raw_queries, normalize_embeddings=True)
 doc_embeddings = model.encode(documents, normalize_embeddings=True)
 similarity = query_embeddings @ doc_embeddings.T
-ranking = np.argpartition(similarity, -5)[:, -5:]
+ranking = np.argpartition(similarity, -K)[:, -K:]
 
-for i in range(len(queries):
-    queries['tables_from_embeddings'] = [schema_index[j] for j in ranking[i]]
+for i in range(len(queries)):
+    queries[i]['tables_from_embeddings'] = [schema_index[j] for j in ranking[i]]
 json.dump(queries, open(QUERY_PATH, 'w'), indent=2)

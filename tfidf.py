@@ -1,18 +1,21 @@
 from elasticsearch import Elasticsearch
 from settings import SETTINGS
 import json
+import pdb
 from camelcase_tokenizer import CamelCaseTokenizer
 
 
 K = 5
-SCHEMA_PATH = '/Users/kaushik/phd/cq-old/schema/schema.json'
+SCHEMA_PATH = 'schema/sql/schema.json'
+QUERY_PATH = 'queries/queries.json'
 INDEX = 'column_catalog'
 
+queries = json.load(open(QUERY_PATH))
 
 client = Elasticsearch(
     "https://localhost:9200", 
     ca_certs = "/Users/kaushik/dev/elasticsearch-8.13.2/config/certs/http_ca.crt", 
-    basic_auth=("elastic", "")
+    basic_auth=("elastic", "BdDJGF3eGab70KOZThpt")
 )
 
 def build_index():
@@ -53,3 +56,12 @@ def search_index(query):
 
 def delete_index():
     client.indices.delete(index=INDEX)
+
+build_index()
+    
+for query in queries:
+    query['tables_from_tfidf'] = search_index(query['naturalLanguageQuery'])
+
+json.dump(queries, open(QUERY_PATH, 'w'), indent=2)
+
+delete_index()
