@@ -1,0 +1,265 @@
+{
+  "node": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date"
+  ],
+  "node_directory": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "dsize"
+  ],
+  "node_file": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "extension",
+    "fsize"
+  ],
+  "node_table": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "num_cols",
+    "num_rows"
+  ],
+  "node_column": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "col_type",
+    "max_col_length"
+  ],
+  "node_database": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "database_type"
+  ],
+  "node_rdbms": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "database_type",
+    "num_tables"
+  ],
+  "node_nosql": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date",
+    "database_type",
+    "num_tables"
+  ],
+  "node_label": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date"
+  ],
+  "node_business_term": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date"
+  ],
+  "node_classification": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date"
+  ],
+  "node_owner": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_has": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_has_dir_dir": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_has_dir_file": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_has_file_table": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_has_table_col": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_assoc": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_assoc_term_col": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_assoc_class_col": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_derive_table_table": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_joinable_table_table": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_unionable_table_table": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ],
+  "edge_own": [
+    "edge_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "source_node_id",
+    "target_node_id",
+    "creation_date",
+    "modified_date"
+  ]
+}
