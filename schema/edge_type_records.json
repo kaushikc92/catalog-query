@@ -1,0 +1,67 @@
+{
+  "edge": {
+    "type_id": 0,
+    "longName": "Relation",
+    "description": ""
+  },
+  "edge_has": {
+    "type_id": 1,
+    "longName": "Has",
+    "description": ""
+  },
+  "edge_has_dir_dir": {
+    "type_id": 2,
+    "longName": "Directory has directory",
+    "description": ""
+  },
+  "edge_has_dir_file": {
+    "type_id": 3,
+    "longName": "Directory has file",
+    "description": ""
+  },
+  "edge_has_file_table": {
+    "type_id": 4,
+    "longName": "File has table",
+    "description": ""
+  },
+  "edge_has_table_col": {
+    "type_id": 5,
+    "longName": "Table has column",
+    "description": ""
+  },
+  "edge_assoc": {
+    "type_id": 6,
+    "longName": "Label association",
+    "description": ""
+  },
+  "edge_assoc_term_col": {
+    "type_id": 7,
+    "longName": "Business term associated with column",
+    "description": ""
+  },
+  "edge_assoc_class_col": {
+    "type_id": 8,
+    "longName": "Classification associated with column",
+    "description": ""
+  },
+  "edge_derive_table_table": {
+    "type_id": 9,
+    "longName": "Table derived from table",
+    "description": ""
+  },
+  "edge_joinable_table_table": {
+    "type_id": 10,
+    "longName": "Table joinable with table",
+    "description": ""
+  },
+  "edge_unionable_table_table": {
+    "type_id": 11,
+    "longName": "Table unionable with table",
+    "description": ""
+  },
+  "edge_own": {
+    "type_id": 12,
+    "longName": "Own",
+    "description": ""
+  }
+}

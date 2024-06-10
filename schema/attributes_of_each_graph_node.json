@@ -1,0 +1,42 @@
+{
+  "node": [
+    "node_id",
+    "type_id",
+    "short_name",
+    "long_name",
+    "description",
+    "creation_date",
+    "modified_date"
+  ],
+  "node_directory": [
+    "dsize"
+  ],
+  "node_file": [
+    "extension",
+    "fsize"
+  ],
+  "node_table": [
+    "num_cols",
+    "num_rows"
+  ],
+  "node_column": [
+    "col_type",
+    "max_col_length"
+  ],
+  "node_database": [
+    "database_type"
+  ],
+  "node_rdbms": [
+    "num_tables"
+  ],
+  "node_nosql": [
+  ],
+  "node_label": [
+  ],
+  "node_business_term": [
+  ],
+  "node_classification": [
+  ],
+  "node_owner": [
+  ]
+}

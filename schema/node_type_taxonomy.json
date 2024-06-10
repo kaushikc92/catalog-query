@@ -1,0 +1,19 @@
+{
+  "node": [
+    "node_directory",
+    "node_file",
+    "node_table",
+    "node_column",
+    "node_database",
+    "node_label",
+    "node_owner"
+  ],
+  "node_database": [
+    "node_rdbms",
+    "node_nosql"
+  ],
+  "node_label": [
+    "node_business_term",
+    "node_classification"
+  ]
+}

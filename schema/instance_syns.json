@@ -1,0 +1,255 @@
+{
+  "human_resources": [
+    "hr",
+    "human resources"
+  ],
+  "d_name": [
+    "department name"
+  ],
+  "dept_id": [
+    "department id"
+  ],
+  "grp_n": [
+    "group name",
+    "grp name"
+  ],
+  "m_date": [
+    "mod date",
+    "modification date",
+    "last modification"
+  ],
+  "employee_department_history": [
+    "edh",
+    "employee department history"
+  ],
+  "buss_entty_id": [
+    "business entity id"
+  ],
+  "shift_id": [
+    "shift id"
+  ],
+  "mod_date": [
+    "mod date",
+    "modification date",
+    "last modification"
+  ],
+  "job_cand_id": [
+    "job candidate id"
+  ],
+  "cv": [
+    "resume"
+  ],
+  "bus_ent_id": [
+    "business entity id"
+  ],
+  "org_level": [
+    "organization level",
+    "level"
+  ],
+  "job_ttl": [
+    "job title"
+  ],
+  "employee_pay_history": [
+    "eph",
+    "employee pay history"
+  ],
+  "s_time": [
+    "start time"
+  ],
+  "e_time": [
+    "end time"
+  ],
+  "c_type_id": [
+    "contact type id"
+  ],
+  "contact_type_m_date": [
+    "contact type modification date"
+  ],
+  "a_type_id": [
+    "address type id"
+  ],
+  "bid": [
+    "business entity id"
+  ],
+  "aid": [
+    "address id"
+  ],
+  "a_city": [
+    "city",
+    "address city"
+  ],
+  "zip_code": [
+    "zip",
+    "postal code"
+  ],
+  "c_date": [
+    "modification date",
+    "mod date",
+    "changed date"
+  ],
+  "al1": [
+    "address line 1"
+  ],
+  "al2": [
+    "address line 2"
+  ],
+  "passwd_hash": [
+    "password hash",
+    "password hash code",
+    "hash code"
+  ],
+  "passwd_salt": [
+    "password salt"
+  ],
+  "p_name": [
+    "phone type",
+    "number type"
+  ],
+  "bill_of_materials": [
+    "bom",
+    "bill of materials"
+  ],
+  "bom_lvl": [
+    "bill of materials level"
+  ],
+  "p_assembly_id": [
+    "product assembly id"
+  ],
+  "p_assembly_qt": [
+    "product assembly quantity",
+    "assembly quantity"
+  ],
+  "s_date": [
+    "start date"
+  ],
+  "e_date": [
+    "end date"
+  ],
+  "product_model_illustration": [
+    "model illustration"
+  ],
+  "p_model_id": [
+    "product model id"
+  ],
+  "cult_m_date": [
+    "culture modification date"
+  ],
+  "doc_lvl": [
+    "document level"
+  ],
+  "doc_owr": [
+    "document owner id"
+  ],
+  "th_file_name": [
+    "small photo file",
+    "small product photo file",
+    "small photo file name"
+  ],
+  "lrg_pht_file_name": [
+    "large photo file",
+    "large product photo file",
+    "large product photo file name"
+  ],
+  "prdct_review_id": [
+    "product review id"
+  ],
+  "r_name": [
+    "review name",
+    "product review name"
+  ],
+  "r_date": [
+    "review date",
+    "product review date"
+  ],
+  "pcid": [
+    "product category id"
+  ],
+  "pc_name": [
+    "product category name",
+    "product category"
+  ],
+  "product_subcat_id": [
+    "product subcategory id",
+    "subcategory id"
+  ],
+  "pchid": [
+    "product cost history id"
+  ],
+  "std_cost": [
+    "cost standard deviation",
+    "cost deviation"
+  ],
+  "srid": [
+    "scrap reason id"
+  ],
+  "t_id": [
+    "transaction id"
+  ],
+  "pdpid": [
+    "product document id"
+  ],
+  "u_m_code": [
+    "unit measure code"
+  ],
+  "unit_msr_name": [
+    "unit measure name"
+  ],
+  "pi_qty": [
+    "product inventory quantity"
+  ],
+  "woid": [
+    "work order id"
+  ],
+  "pmid": [
+    "product model id"
+  ],
+  "pm_name": [
+    "product model name"
+  ],
+  "ctlg_desc": [
+    "catalog description"
+  ],
+  "avg_lead_time": [
+    "average lead time",
+    "mean lead time",
+    "lead time"
+  ],
+  "min_ord_qty": [
+    "minimum order quantity",
+    "min order quantity"
+  ],
+  "mx_ord_qty": [
+    "maximum order quantity",
+    "max order quantity"
+  ],
+  "smid": [
+    "ship method id"
+  ],
+  "sm_name": [
+    "ship method name",
+    "shipping method"
+  ],
+  "s_rate": [
+    "shipping rate"
+  ],
+  "smm_date": [
+    "shipping date"
+  ],
+  "act_number": [
+    "account number",
+    "vendor number",
+    "vendor account number"
+  ],
+  "curr_c": [
+    "currency",
+    "currency abbreviation",
+    "current 3 digit code"
+  ],
+  "cr_code": [
+    "currency code",
+    "currency 2 digit code"
+  ],
+  "ccid": [
+    "credit card id"
+  ]
+}
