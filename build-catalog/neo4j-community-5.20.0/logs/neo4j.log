@@ -1,0 +1,17 @@
+2024-06-13 22:58:05.501+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-13 22:58:05.505+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-13 22:58:05.506+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-13 22:58:05.520+0000 INFO  Starting...
+2024-06-13 22:58:06.971+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-13 22:58:08.162+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-13 22:59:09.476+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-06-13 22:59:09.548+0000 INFO  Bolt enabled on localhost:7687.
+2024-06-13 22:59:10.348+0000 INFO  HTTP enabled on localhost:7474.
+2024-06-13 22:59:10.349+0000 INFO  Remote interface available at http://localhost:7474/
+2024-06-13 22:59:10.353+0000 INFO  id: C39CF434A6D515CF0F1C5E6527F98D2D39ECA5217718BFF5BFCB45D08396CF87
+2024-06-13 22:59:10.354+0000 INFO  name: system
+2024-06-13 22:59:10.354+0000 INFO  creationDate: 2024-06-13T22:58:09.273Z
+2024-06-13 22:59:10.354+0000 INFO  Started.
+2024-06-13 23:02:23.525+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-13 23:02:23.526+0000 INFO  Stopping...
+2024-06-13 23:02:29.513+0000 INFO  Stopped.
