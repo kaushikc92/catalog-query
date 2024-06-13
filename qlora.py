@@ -12,7 +12,8 @@ from peft import LoraConfig, PeftModel
 from trl import SFTTrainer
 
 DATASET_PATH = 'kaushikchan/catalog-sql-train'
-MODEL_PATH = 'meta-llama/CodeLlama-7b-hf'
+#MODEL_PATH = 'meta-llama/CodeLlama-7b-hf-Instruct'
+MODEL_PATH = 'meta-llama/Meta-Llama-3-8B-Instruct'
 OUTPUT_DIR = './results'
 
 dataset = load_dataset(DATASET_PATH, split='train')
