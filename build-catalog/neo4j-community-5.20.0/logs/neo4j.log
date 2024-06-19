@@ -66,3 +66,244 @@
 2024-06-13 23:39:49.443+0000 INFO  Neo4j Server shutdown initiated by request
 2024-06-13 23:39:49.444+0000 INFO  Stopping...
 2024-06-13 23:39:55.321+0000 INFO  Stopped.
+2024-06-19 15:05:13.022+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 15:05:13.051+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 15:05:13.051+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 15:05:13.067+0000 INFO  Starting...
+2024-06-19 15:05:14.937+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 15:05:16.712+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 15:05:20.166+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-06-19 15:05:20.228+0000 INFO  Bolt enabled on localhost:7687.
+2024-06-19 15:05:21.141+0000 INFO  HTTP enabled on localhost:7474.
+2024-06-19 15:05:21.141+0000 INFO  Remote interface available at http://localhost:7474/
+2024-06-19 15:05:21.144+0000 INFO  id: C39CF434A6D515CF0F1C5E6527F98D2D39ECA5217718BFF5BFCB45D08396CF87
+2024-06-19 15:05:21.145+0000 INFO  name: system
+2024-06-19 15:05:21.145+0000 INFO  creationDate: 2024-06-13T22:58:09.273Z
+2024-06-19 15:05:21.145+0000 INFO  Started.
+2024-06-19 15:57:38.255+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 15:57:38.300+0000 INFO  Stopping...
+2024-06-19 15:57:45.001+0000 INFO  Stopped.
+2024-06-19 15:59:05.026+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 15:59:05.030+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 15:59:05.031+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 15:59:05.049+0000 INFO  Starting...
+2024-06-19 15:59:06.335+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 15:59:07.323+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 15:59:40.798+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 15:59:40.804+0000 INFO  Stopped.
+2024-06-19 16:00:54.096+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:00:54.100+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:00:54.100+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:00:54.115+0000 INFO  Starting...
+2024-06-19 16:00:55.812+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:00:57.642+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:01:33.164+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-06-19 16:01:33.236+0000 INFO  Bolt enabled on localhost:7687.
+2024-06-19 16:01:34.369+0000 INFO  HTTP enabled on localhost:7474.
+2024-06-19 16:01:34.373+0000 INFO  Remote interface available at http://localhost:7474/
+2024-06-19 16:01:34.378+0000 INFO  id: A6415E6C448A67AE6DD151649CF206ACB29CAE07CF2ADE632FDCDF1EC888F46D
+2024-06-19 16:01:34.378+0000 INFO  name: system
+2024-06-19 16:01:34.379+0000 INFO  creationDate: 2024-06-19T15:59:08.424Z
+2024-06-19 16:01:34.379+0000 INFO  Started.
+2024-06-19 16:02:19.575+0000 WARN  [bolt-0] The client is unauthorized due to authentication failure.
+2024-06-19 16:03:06.927+0000 WARN  [bolt-1] The client is unauthorized due to authentication failure.
+2024-06-19 16:10:25.308+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:10:25.310+0000 INFO  Stopping...
+2024-06-19 16:10:35.885+0000 INFO  Stopped.
+2024-06-19 16:11:13.377+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:11:13.381+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:11:13.382+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:11:13.397+0000 INFO  Starting...
+2024-06-19 16:11:14.737+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:11:15.891+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:11:54.198+0000 ERROR Failed to start Neo4j on localhost:7474.
+java.lang.RuntimeException: Error starting Neo4j database server at /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/databases
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:278) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.build(DatabaseManagementServiceFactory.java:213) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.CommunityBootstrapper.createNeo(CommunityBootstrapper.java:38) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.NeoBootstrapper.start(NeoBootstrapper.java:184) [neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.NeoBootstrapper.start(NeoBootstrapper.java:99) [neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.CommunityEntryPoint.main(CommunityEntryPoint.java:30) [neo4j-5.20.0.jar:5.20.0]
+Caused by: org.neo4j.kernel.lifecycle.LifecycleException: Component 'org.neo4j.dbms.database.DefaultSystemGraphInitializer@674da77b' was successfully initialized, but failed to start. Please see the attached cause exception "Transaction logs are missing and recovery is not possible.".
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:364) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+Caused by: org.neo4j.graphdb.DatabaseShutdownException: This database is shutdown.
+	at org.neo4j.kernel.availability.DatabaseAvailabilityGuard.assertDatabaseAvailable(DatabaseAvailabilityGuard.java:154) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseFacade.beginKernelTransaction(GraphDatabaseFacade.java:148) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseFacade.beginTransactionInternal(GraphDatabaseFacade.java:117) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseFacade.beginTransaction(GraphDatabaseFacade.java:89) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTransaction(GraphDatabaseTransactions.java:113) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTransaction(GraphDatabaseTransactions.java:107) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTransaction(GraphDatabaseTransactions.java:102) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTx(GraphDatabaseTransactions.java:93) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.SystemGraphComponents.initializeSystemGraph(SystemGraphComponents.java:83) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DefaultSystemGraphInitializer.initializeSystemGraph(DefaultSystemGraphInitializer.java:38) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.SystemGraphInitializer.start(SystemGraphInitializer.java:27) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:347) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+Caused by: org.neo4j.kernel.lifecycle.LifecycleException: Component 'org.neo4j.kernel.recovery.Recovery$MissingTransactionLogsCheck@591e5fd4' failed to initialize. Please see the attached cause exception "Transaction logs are missing and recovery is not possible.".
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.init(LifeSupport.java:334) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.init(LifeSupport.java:56) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:85) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:739) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:445) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.Database.specificStart(Database.java:425) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.AbstractDatabase.start(AbstractDatabase.java:160) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles.startDatabase(DatabaseLifecycles.java:123) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles$SystemDatabaseStarter.start(DatabaseLifecycles.java:146) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:347) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+Caused by: java.lang.RuntimeException: Transaction logs are missing and recovery is not possible.
+	at org.neo4j.kernel.recovery.Recovery$MissingTransactionLogsCheck.checkForMissingLogFiles(Recovery.java:1003) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery$MissingTransactionLogsCheck.init(Recovery.java:989) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.init(LifeSupport.java:317) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.init(LifeSupport.java:56) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:85) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:739) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:445) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.Database.specificStart(Database.java:425) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.AbstractDatabase.start(AbstractDatabase.java:160) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles.startDatabase(DatabaseLifecycles.java:123) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles$SystemDatabaseStarter.start(DatabaseLifecycles.java:146) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:347) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+2024-06-19 16:11:54.202+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:11:54.205+0000 INFO  Stopped.
+2024-06-19 16:12:12.530+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:12:12.533+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:12:12.534+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:12:12.548+0000 INFO  Starting...
+2024-06-19 16:12:13.828+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:12:14.770+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:12:48.046+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:12:48.049+0000 INFO  Stopped.
+2024-06-19 16:12:55.359+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:12:55.363+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:12:55.364+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:12:55.378+0000 INFO  Starting...
+2024-06-19 16:12:56.664+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:12:57.777+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:13:35.504+0000 ERROR Failed to start Neo4j on localhost:7474.
+java.lang.RuntimeException: Error starting Neo4j database server at /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/databases
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:278) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.build(DatabaseManagementServiceFactory.java:213) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.CommunityBootstrapper.createNeo(CommunityBootstrapper.java:38) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.NeoBootstrapper.start(NeoBootstrapper.java:184) [neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.NeoBootstrapper.start(NeoBootstrapper.java:99) [neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.server.CommunityEntryPoint.main(CommunityEntryPoint.java:30) [neo4j-5.20.0.jar:5.20.0]
+Caused by: org.neo4j.kernel.lifecycle.LifecycleException: Component 'org.neo4j.dbms.database.DefaultSystemGraphInitializer@674da77b' was successfully initialized, but failed to start. Please see the attached cause exception "Transaction logs are missing and recovery is not possible.".
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:364) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+Caused by: org.neo4j.graphdb.DatabaseShutdownException: This database is shutdown.
+	at org.neo4j.kernel.availability.DatabaseAvailabilityGuard.assertDatabaseAvailable(DatabaseAvailabilityGuard.java:154) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseFacade.beginKernelTransaction(GraphDatabaseFacade.java:148) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseFacade.beginTransactionInternal(GraphDatabaseFacade.java:117) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseFacade.beginTransaction(GraphDatabaseFacade.java:89) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTransaction(GraphDatabaseTransactions.java:113) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTransaction(GraphDatabaseTransactions.java:107) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTransaction(GraphDatabaseTransactions.java:102) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.impl.factory.GraphDatabaseTransactions.beginTx(GraphDatabaseTransactions.java:93) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.SystemGraphComponents.initializeSystemGraph(SystemGraphComponents.java:83) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DefaultSystemGraphInitializer.initializeSystemGraph(DefaultSystemGraphInitializer.java:38) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.SystemGraphInitializer.start(SystemGraphInitializer.java:27) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:347) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+Caused by: org.neo4j.kernel.lifecycle.LifecycleException: Component 'org.neo4j.kernel.recovery.Recovery$MissingTransactionLogsCheck@59b98ad1' failed to initialize. Please see the attached cause exception "Transaction logs are missing and recovery is not possible.".
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.init(LifeSupport.java:334) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.init(LifeSupport.java:56) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:85) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:739) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:445) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.Database.specificStart(Database.java:425) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.AbstractDatabase.start(AbstractDatabase.java:160) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles.startDatabase(DatabaseLifecycles.java:123) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles$SystemDatabaseStarter.start(DatabaseLifecycles.java:146) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:347) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+Caused by: java.lang.RuntimeException: Transaction logs are missing and recovery is not possible.
+	at org.neo4j.kernel.recovery.Recovery$MissingTransactionLogsCheck.checkForMissingLogFiles(Recovery.java:1003) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery$MissingTransactionLogsCheck.init(Recovery.java:989) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.init(LifeSupport.java:317) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.init(LifeSupport.java:56) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:85) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:739) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.recovery.Recovery.performRecovery(Recovery.java:445) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.Database.specificStart(Database.java:425) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.database.AbstractDatabase.start(AbstractDatabase.java:160) ~[neo4j-kernel-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles.startDatabase(DatabaseLifecycles.java:123) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.dbms.database.DatabaseLifecycles$SystemDatabaseStarter.start(DatabaseLifecycles.java:146) ~[neo4j-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport$LifecycleInstance.start(LifeSupport.java:347) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.kernel.lifecycle.LifeSupport.start(LifeSupport.java:91) ~[neo4j-common-5.20.0.jar:5.20.0]
+	at org.neo4j.graphdb.facade.DatabaseManagementServiceFactory.startDatabaseServer(DatabaseManagementServiceFactory.java:269) ~[neo4j-5.20.0.jar:5.20.0]
+	... 5 more
+2024-06-19 16:13:35.507+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:13:35.508+0000 INFO  Stopped.
+2024-06-19 16:16:55.217+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:16:55.221+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:16:55.222+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:16:55.236+0000 INFO  Starting...
+2024-06-19 16:16:56.577+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:16:57.803+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:18:59.249+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-06-19 16:18:59.323+0000 INFO  Bolt enabled on localhost:7687.
+2024-06-19 16:19:00.084+0000 INFO  HTTP enabled on localhost:7474.
+2024-06-19 16:19:00.085+0000 INFO  Remote interface available at http://localhost:7474/
+2024-06-19 16:19:00.089+0000 INFO  id: FDD21C5F86C275DC6AEFDFA82136079C81C4D312A8311DDBE56F2009AC8F4B90
+2024-06-19 16:19:00.089+0000 INFO  name: system
+2024-06-19 16:19:00.089+0000 INFO  creationDate: 2024-06-19T16:16:58.998Z
+2024-06-19 16:19:00.090+0000 INFO  Started.
+2024-06-19 16:23:30.480+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:23:30.480+0000 INFO  Stopping...
+2024-06-19 16:23:37.512+0000 INFO  Stopped.
+2024-06-19 16:25:28.945+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:25:28.948+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:25:28.949+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:25:28.955+0000 WARN  Use of deprecated setting 'dbms.tx_log.rotation.size'. It is replaced by 'db.tx_log.rotation.size'.
+2024-06-19 16:25:28.965+0000 INFO  Starting...
+2024-06-19 16:25:30.184+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:25:31.160+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:25:34.943+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-06-19 16:25:35.003+0000 INFO  Bolt enabled on localhost:7687.
+2024-06-19 16:25:35.705+0000 INFO  HTTP enabled on localhost:7474.
+2024-06-19 16:25:35.706+0000 INFO  Remote interface available at http://localhost:7474/
+2024-06-19 16:25:35.709+0000 INFO  id: FDD21C5F86C275DC6AEFDFA82136079C81C4D312A8311DDBE56F2009AC8F4B90
+2024-06-19 16:25:35.709+0000 INFO  name: system
+2024-06-19 16:25:35.709+0000 INFO  creationDate: 2024-06-19T16:16:58.998Z
+2024-06-19 16:25:35.710+0000 INFO  Started.
+2024-06-19 16:25:49.020+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:25:49.020+0000 INFO  Stopping...
+2024-06-19 16:25:59.386+0000 INFO  Stopped.
+2024-06-19 16:26:28.109+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-06-19 16:26:28.113+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-06-19 16:26:28.114+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-06-19 16:26:28.122+0000 WARN  Use of deprecated setting 'dbms.tx_log.rotation.size'. It is replaced by 'db.tx_log.rotation.size'.
+2024-06-19 16:26:28.134+0000 INFO  Starting...
+2024-06-19 16:26:29.448+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-06-19 16:26:30.462+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-06-19 16:27:16.324+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-06-19 16:27:16.407+0000 INFO  Bolt enabled on localhost:7687.
+2024-06-19 16:27:17.104+0000 INFO  HTTP enabled on localhost:7474.
+2024-06-19 16:27:17.105+0000 INFO  Remote interface available at http://localhost:7474/
+2024-06-19 16:27:17.108+0000 INFO  id: 4B38F1E6384AE5E1E2F6E9A2EB0FB497B653E8F46523C04A94F59B9C5039E172
+2024-06-19 16:27:17.108+0000 INFO  name: system
+2024-06-19 16:27:17.108+0000 INFO  creationDate: 2024-06-19T16:26:31.604Z
+2024-06-19 16:27:17.109+0000 INFO  Started.
+2024-06-19 16:27:49.509+0000 WARN  [bolt-0] The client is unauthorized due to authentication failure.
+2024-06-19 16:38:39.455+0000 WARN  [bolt-10] The client is unauthorized due to authentication failure.
+2024-06-19 16:39:31.782+0000 INFO  Neo4j Server shutdown initiated by request
+2024-06-19 16:39:31.783+0000 INFO  Stopping...
+2024-06-19 16:39:37.907+0000 INFO  Stopped.
