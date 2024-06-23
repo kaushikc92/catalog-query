@@ -1,0 +1,14 @@
+prefix=/u/z/z/zzheng/Research/catalog-query/build-catalog/postgresql
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libpgtypes
+Description: PostgreSQL libpgtypes library
+URL: https://www.postgresql.org/
+Version: 16.3
+Requires: 
+Requires.private: 
+Cflags: -I${includedir}
+Libs: -L${libdir} -lpgtypes
+Libs.private:  -lpgcommon -lpgport -lm
