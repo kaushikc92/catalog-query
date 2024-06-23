@@ -1,0 +1,1 @@
+/afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/postgresql/bin/postgres "-D" "postgresql/data"
