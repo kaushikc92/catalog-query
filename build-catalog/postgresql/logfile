@@ -82,3 +82,20 @@
 2024-06-25 10:40:55.072 CDT [2004485] LOG:  checkpoint starting: shutdown immediate
 2024-06-25 10:40:55.184 CDT [2004485] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.005 s, total=0.114 s; sync files=4, longest=0.004 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1BA63E8, redo lsn=0/1BA63E8
 2024-06-25 10:40:55.208 CDT [2004476] LOG:  database system is shut down
+2024-06-25 10:56:27.740 CDT [2010635] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-25 10:56:27.743 CDT [2010635] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-25 10:56:27.744 CDT [2010635] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-06-25 10:56:27.751 CDT [2010648] LOG:  database system was shut down at 2024-06-25 10:40:55 CDT
+2024-06-25 10:56:27.762 CDT [2010635] LOG:  database system is ready to accept connections
+2024-06-25 10:57:11.413 CDT [2011021] ERROR:  function distict(integer) does not exist at character 8
+2024-06-25 10:57:11.413 CDT [2011021] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-06-25 10:57:11.413 CDT [2011021] STATEMENT:  select distict(type_id) from node_directory;
+2024-06-25 11:01:27.851 CDT [2010646] LOG:  checkpoint starting: time
+2024-06-25 11:01:27.966 CDT [2010646] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.001 s, total=0.116 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1BA64D0, redo lsn=0/1BA6498
+2024-06-25 11:01:55.396 CDT [2010635] LOG:  received fast shutdown request
+2024-06-25 11:01:55.397 CDT [2010635] LOG:  aborting any active transactions
+2024-06-25 11:01:55.398 CDT [2010635] LOG:  background worker "logical replication launcher" (PID 2010653) exited with exit code 1
+2024-06-25 11:01:55.399 CDT [2010646] LOG:  shutting down
+2024-06-25 11:01:55.402 CDT [2010646] LOG:  checkpoint starting: shutdown immediate
+2024-06-25 11:01:55.500 CDT [2010646] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.101 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1BA6580, redo lsn=0/1BA6580
+2024-06-25 11:01:55.525 CDT [2010635] LOG:  database system is shut down
