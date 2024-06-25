@@ -10,7 +10,7 @@ import json
 from camelcase_tokenizer import CamelCaseTokenizer
 import pwd
 
-class DirectoryGraph:
+class Neo4jManager:
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
         self.node_type_schema = json.load(open("../schema/node_type_records.json"))
@@ -548,7 +548,7 @@ uri = "neo4j://localhost:7687"
 user = "neo4j"
 password = "12345678"
 
-graph = DirectoryGraph(uri, user, password)
+graph = Neo4jManager(uri, user, password)
 graph.traverse_directory("./data/adventureworks/csv/")
 #graph.delete_all_nodes()
 graph.close()

@@ -14,7 +14,7 @@ cd ./postgresql
 initdb -D ./data
 pg_ctl start -l logfile -D ./data
 pg_ctl stop -D ./data
-psql -U zzheng -d postgres
+psql -U text2sql -d data_catalog
 # add users
 # CREATE ROLE text2sql WITH SUPERUSER LOGIN;
 # add database
