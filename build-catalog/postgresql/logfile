@@ -99,3 +99,27 @@
 2024-06-25 11:01:55.402 CDT [2010646] LOG:  checkpoint starting: shutdown immediate
 2024-06-25 11:01:55.500 CDT [2010646] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.101 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1BA6580, redo lsn=0/1BA6580
 2024-06-25 11:01:55.525 CDT [2010635] LOG:  database system is shut down
+2024-06-28 12:37:21.016 CDT [820837] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-28 12:37:21.019 CDT [820837] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-28 12:37:21.022 CDT [820837] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-06-28 12:37:21.141 CDT [820860] LOG:  database system was shut down at 2024-06-25 11:01:55 CDT
+2024-06-28 12:37:21.488 CDT [820837] LOG:  database system is ready to accept connections
+2024-06-28 12:37:22.501 CDT [820837] LOG:  received fast shutdown request
+2024-06-28 12:37:22.502 CDT [820837] LOG:  aborting any active transactions
+2024-06-28 12:37:22.504 CDT [820837] LOG:  background worker "logical replication launcher" (PID 820864) exited with exit code 1
+2024-06-28 12:37:22.504 CDT [820858] LOG:  shutting down
+2024-06-28 12:37:22.505 CDT [820858] LOG:  checkpoint starting: shutdown immediate
+2024-06-28 12:37:22.801 CDT [820858] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.001 s, total=0.298 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1BA65F8, redo lsn=0/1BA65F8
+2024-06-28 12:37:22.858 CDT [820837] LOG:  database system is shut down
+2024-06-28 12:37:45.588 CDT [821019] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-28 12:37:45.590 CDT [821019] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-28 12:37:45.592 CDT [821019] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-06-28 12:37:45.597 CDT [821023] LOG:  database system was shut down at 2024-06-28 12:37:22 CDT
+2024-06-28 12:37:45.604 CDT [821019] LOG:  database system is ready to accept connections
+2024-06-28 12:37:45.710 CDT [821019] LOG:  received fast shutdown request
+2024-06-28 12:37:45.710 CDT [821019] LOG:  aborting any active transactions
+2024-06-28 12:37:45.711 CDT [821019] LOG:  background worker "logical replication launcher" (PID 821027) exited with exit code 1
+2024-06-28 12:37:45.711 CDT [821021] LOG:  shutting down
+2024-06-28 12:37:45.713 CDT [821021] LOG:  checkpoint starting: shutdown immediate
+2024-06-28 12:37:45.817 CDT [821021] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.001 s, total=0.106 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1BA6670, redo lsn=0/1BA6670
+2024-06-28 12:37:45.841 CDT [821019] LOG:  database system is shut down
