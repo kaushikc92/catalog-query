@@ -7,8 +7,9 @@ Required directory:
 
 ## Intall necessary python module
 ```
-pip3 install -r requirements.txt
+pip3 install -r ../requirements.txt
 ```
+
 ## How to start neo4j database
 
 ```
