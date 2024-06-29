@@ -9,7 +9,7 @@ from sqlglot.expressions import Column, Table
 # https://github.com/tobymao/sqlglot
 class SQLValidator:
     def __init__(self, schema_match=True):
-        self.schema_file = "table_schema.json"
+        self.schema_file = "./schema/sql/schema.json"
         if schema_match == True:
             self.schema = self.load_or_fetch_schema()
         else:
@@ -49,7 +49,7 @@ class SQLValidator:
         if not os.path.exists(self.schema_file):
             schema = self.fetch_table_schema()
             with open(self.schema_file, 'w') as file:
-                json.dump(schema, file, indent=4)
+                json.dump(schema, file, indent=2)
             return schema
         else:
             with open(self.schema_file, 'r') as file:

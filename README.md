@@ -2,7 +2,7 @@ python3 -m pip install --no-deps "xformers<0.0.26" trl peft accelerate bitsandby
 
 ## Intall necessary python module
 ```
-pip3 install -r ../requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Post Processing
