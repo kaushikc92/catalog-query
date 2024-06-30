@@ -1,8 +1,25 @@
-python3 -m pip install --no-deps "xformers<0.0.26" trl peft accelerate bitsandbytes
-
 ## Intall necessary python module
 ```
-pip3 install -r requirements.txt
+pip3 install -r ../requirements.txt
+```
+## For Pytorch and Unsloth
+```
+# INSTALL PYTORCH
+pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cu121
+
+# INSTALL UNSLOTH
+## this include bitsandbytes, xformers, trl, peft, transformers, accelerate
+## For Pytorch 2.3.0: Use the "ampere" path for newer RTX 30xx GPUs or higher.
+## Used in CSL - 2080 Ti
+pip install "unsloth[cu121-torch230] @ git+https://github.com/unslothai/unsloth.git"
+
+# Other variants
+<!-- pip install "unsloth[cu118-torch230] @ git+https://github.com/unslothai/unsloth.git"
+pip install "unsloth[cu118-ampere-torch230] @ git+https://github.com/unslothai/unsloth.git"
+pip install "unsloth[cu121-ampere-torch230] @ git+https://github.com/unslothai/unsloth.git" -->
+
+# If not use unsloth:
+python3 -m pip install --no-deps "xformers<0.0.26" trl peft accelerate bitsandbytes
 ```
 
 ## Post Processing
