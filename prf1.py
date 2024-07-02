@@ -12,7 +12,6 @@ def jaccard_score(x, y):
     return jac.get_raw_score(qg3.tokenize(x), qg3.tokenize(y))
 
 n = len(results)
-print(f'Total Samples: {n}')
 p = 0
 r = 0
 validator = SQLValidator(schema_match=True)
@@ -21,5 +20,7 @@ for res in results:
         r += 1
         if jaccard_score(res['goldSqlQuery'], res['predictedQuery']) > THRESHOLD_SCORE:
             p += 1
-print(f'Precision: {p}')
-print(f'Recall: {r}')
+print(f'Total Samples: {n}')
+print(f'Precision: {p}/{n} = {p/n}')
+print(f'Recall: {p}/{r} = {p/r}')
+

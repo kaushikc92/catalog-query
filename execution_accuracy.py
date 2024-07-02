@@ -1,15 +1,17 @@
 import psycopg
 import subprocess
 from psycopg.rows import dict_row
+import json
+from post_processor import SQLValidator
 
 def start_postgresql(data_dir):
     try:
         # Check the status of PostgreSQL
-        status_result = subprocess.run(['./postgresql/bin/pg_ctl', 'status', '-D', data_dir], text=True, capture_output=True, check=False)
+        status_result = subprocess.run(['./build-catalog/postgresql/bin/pg_ctl', 'status', '-D', data_dir], text=True, capture_output=True, check=False)
         # If PostgreSQL is not running, the status command will not succeed
         if "is running" not in status_result.stdout:
             print("PostgreSQL is not running. Attempting to start...")
-            subprocess.run(['./postgresql/bin/pg_ctl', 'start', '-l', './postgresql/logfile', '-D', data_dir], check=True)
+            subprocess.run(['./build-catalog/postgresql/bin/pg_ctl', 'start', '-l', './build-catalog/postgresql/logfile', '-D', data_dir], check=True)
         else:
             print("PostgreSQL is already running.")     
     except subprocess.CalledProcessError as e:
@@ -18,22 +20,22 @@ def start_postgresql(data_dir):
 
 def stop_postgresql(data_dir):
     try:
-        subprocess.run(['./postgresql/bin/pg_ctl', 'stop', '-D', data_dir], check=True)
+        subprocess.run(['./build-catalog/postgresql/bin/pg_ctl', 'stop', '-D', data_dir], check=True)
     except subprocess.CalledProcessError as e:
         print("Failed to stop PostgreSQL server:", e)
 
-def normalize_results(rows, sort_keys):
+def normalize_results(rows):
     # column reorder
     # normalized_rows = [dict(sorted(row.items())) for row in rows]
 
-    # Rows reorder
-    if sort_keys:
-        normalized_rows = sorted(
-            rows,
-            key=lambda x: tuple(x[key] for key in sort_keys)
-        )
+    # row reorder
+    sort_keys = sorted(rows[0].keys())
+    # Sort the rows based on all keys
+    normalized_rows = sorted(
+        rows,
+        key=lambda x: tuple(x[key] for key in sort_keys)
+    )
     return normalized_rows
-
 
 def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
     """
@@ -61,12 +63,8 @@ def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
                 cursor.execute(gold_sql)
                 gold_results = cursor.fetchall()
                 print("Gold results:", gold_results)
-                if gold_results and "node_id" in gold_results[0].keys():
-                    sort_keys = ["node_id"]
-                else:
-                    sort_keys = ["edge_id"]
-                if ignore_row_order:
-                    normalized_gold = normalize_results(gold_results, sort_keys)
+                if gold_results and ignore_row_order:
+                    normalized_gold = normalize_results(gold_results)
                 else: 
                     normalized_gold = gold_results
 
@@ -80,12 +78,8 @@ def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
                 predicted_results = cursor.fetchall()
                 print("Predicted results:", predicted_results)
 
-                if predicted_results and "node_id" in predicted_results[0].keys():
-                    sort_keys = ["node_id"]
-                else:
-                    sort_keys = ["edge_id"]
-                if ignore_row_order:
-                    normalized_predicted = normalize_results(predicted_results, sort_keys)
+                if predicted_results and ignore_row_order:
+                    normalized_predicted = normalize_results(predicted_results)
                 else: 
                     normalized_predicted = predicted_results
             except psycopg.Error as e:
@@ -97,13 +91,31 @@ def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
 if __name__ == "__main__":
     
     # PostgreSQL data directory
-    data_dir = "./postgresql/data/"
+    data_dir = "./build-catalog/postgresql/data/"
     start_postgresql(data_dir)
 
-    # Compare SQL outputs
-    gold_sql = "SELECT short_name, node_id FROM node_directory ORDER BY short_name;"
-    predicted_sql = "SELECT node_id, short_name FROM node_directory;"
-    result = compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True)
-    print("Same output?", result)
-
+    RESULTS_PATH = 'results.json'
+    results = json.load(open(RESULTS_PATH))
+    n_previous = len(results)
+    n = n_previous
+    invalid_gold = []
+    p = 0
+    r = 0
+    validator = SQLValidator(schema_match=True)
+    for res in results:
+        print(validator.validate_query(res['predictedQuery']))
+        if validator.validate_query(res['predictedQuery']):
+            r += 1
+            execution_correct = compare_sql_outputs(res['goldSqlQuery'], res['predictedQuery'], ignore_row_order=True)
+            if execution_correct:
+                p += 1
+            if execution_correct is None:
+                n -= 1
+                invalid_gold.append(res['goldSqlQuery'])
+                
+    print(f'Total Samples: {n_previous}')  
+    print(f'Valid Samples: {n}')
+    print(f'Precision: {p}/{n} = {p/n}')
+    print(f'Recall: {p}/{r} = {p/r}')
+    json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
     stop_postgresql(data_dir)
