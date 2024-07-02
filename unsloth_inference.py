@@ -41,9 +41,19 @@ dataset = load_dataset("kaushikchan/catalog-sql-test-alpaca", split = "train")
 dataset = dataset.map(formatting_prompts_func, batched = True,)
 dataset = dataset['text']
 outputs = []
-for d in dataset:
-    inp = tokenizer([d], return_tensors = "pt").to("cuda")
+
+batch_size = 16
+for i in range(0, len(dataset), batch_size):
+    batch = dataset[i:i+batch_size]
+    inp = tokenizer(batch, return_tensors = "pt", padding = True).to("cuda")
     raw_output = model.generate(**inp, max_new_tokens = 64, use_cache = True)
-    output = tokenizer.batch_decode(raw_output)
-    outputs.append(output[0])
-json.dump(outputs, open('answers.json', 'w'), indent=2)
+    output = tokenizer.batch_decode(raw_output[:, inp["input_ids"].shape[1]:])
+    final_text = []
+    for original, generated in zip(batch, output):
+        final_text.append(original + generated) # Because the tokenizer is lossy, it's better to keep the same prompt.
+# for d in dataset:
+#     inp = tokenizer([d], return_tensors = "pt").to("cuda")
+#     raw_output = model.generate(**inp, max_new_tokens = 64, use_cache = True)
+#     output = tokenizer.batch_decode(raw_output)
+#     outputs.append(output[0])
+json.dump(final_text, open('answers.json', 'w'), indent=2)

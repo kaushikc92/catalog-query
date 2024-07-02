@@ -1,7 +1,8 @@
 ## Intall necessary python module
 ```
-pip3 install -r ../requirements.txt
+pip3 install -r requirements.txt
 ```
+
 ## For Pytorch and Unsloth
 ```
 # INSTALL PYTORCH
@@ -12,6 +13,11 @@ pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https
 ## For Pytorch 2.3.0: Use the "ampere" path for newer RTX 30xx GPUs or higher.
 ## Used in CSL - 2080 Ti
 pip install "unsloth[cu121-torch230] @ git+https://github.com/unslothai/unsloth.git"
+
+# Potential Errors:
+# If error Cache only has 0 layers, attempted to access layer with index 0 shows up, redownload the transformer to older version
+# https://github.com/unslothai/unsloth/issues/702
+pip install transformers==4.38.0
 
 # Other variants
 <!-- pip install "unsloth[cu118-torch230] @ git+https://github.com/unslothai/unsloth.git"
