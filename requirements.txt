@@ -3,3 +3,4 @@ pandas
 pyarrow
 psycopg[binary]
 sqlglot
+py_stringmatching
