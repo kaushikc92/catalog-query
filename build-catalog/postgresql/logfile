@@ -2315,3 +2315,44 @@
 2024-07-02 11:41:08.230 CDT [3780792] LOG:  checkpoint starting: shutdown immediate
 2024-07-02 11:41:08.505 CDT [3780792] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.070 s, sync=0.001 s, total=0.287 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1BA6CB0, redo lsn=0/1BA6CB0
 2024-07-02 11:41:08.564 CDT [3780786] LOG:  database system is shut down
+2024-07-02 11:49:09.286 CDT [3786170] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-02 11:49:09.288 CDT [3786170] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-02 11:49:09.290 CDT [3786170] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-07-02 11:49:09.296 CDT [3786177] LOG:  database system was shut down at 2024-07-02 11:41:08 CDT
+2024-07-02 11:49:09.307 CDT [3786170] LOG:  database system is ready to accept connections
+2024-07-02 11:49:14.880 CDT [3786202] ERROR:  syntax error at or near "where" at character 303
+2024-07-02 11:49:14.880 CDT [3786202] STATEMENT:  select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'address';
+2024-07-02 11:54:09.374 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-02 11:54:09.484 CDT [3786175] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.001 s, total=0.110 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1BA6D98, redo lsn=0/1BA6D60
+2024-07-03 00:14:23.156 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 00:14:35.590 CDT [3786175] LOG:  checkpoint complete: wrote 75 buffers (0.5%); 1 WAL file(s) added, 0 removed, 0 recycled; write=7.448 s, sync=0.376 s, total=12.434 s; sync files=20, longest=0.066 s, average=0.019 s; distance=716 kB, estimate=716 kB; lsn=0/1C59F38, redo lsn=0/1C59EC8
+2024-07-03 00:19:23.691 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 00:19:26.244 CDT [3786175] LOG:  checkpoint complete: wrote 19 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.815 s, sync=0.474 s, total=2.554 s; sync files=6, longest=0.388 s, average=0.079 s; distance=78 kB, estimate=652 kB; lsn=0/1C6DAB0, redo lsn=0/1C6DA78
+2024-07-03 00:34:23.545 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 00:34:45.725 CDT [3786175] LOG:  checkpoint complete: wrote 190 buffers (1.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=19.015 s, sync=2.838 s, total=22.181 s; sync files=175, longest=0.746 s, average=0.017 s; distance=1302 kB, estimate=1302 kB; lsn=0/1DBE948, redo lsn=0/1DB34B8
+2024-07-03 00:39:23.830 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 00:39:33.503 CDT [3786175] LOG:  checkpoint complete: wrote 83 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=8.255 s, sync=1.195 s, total=9.673 s; sync files=16, longest=0.966 s, average=0.075 s; distance=665 kB, estimate=1238 kB; lsn=0/1E629F8, redo lsn=0/1E59C08
+2024-07-03 00:44:23.604 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 00:44:30.951 CDT [3786175] LOG:  checkpoint complete: wrote 73 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=7.134 s, sync=0.115 s, total=7.347 s; sync files=25, longest=0.027 s, average=0.005 s; distance=568 kB, estimate=1171 kB; lsn=0/1EE7C70, redo lsn=0/1EE7C38
+2024-07-03 00:45:13.766 CDT [4137856] ERROR:  relation "nodes" does not exist at character 22
+2024-07-03 00:45:13.766 CDT [4137856] STATEMENT:  select count(*) from nodes;
+2024-07-03 00:45:46.332 CDT [4137856] ERROR:  column "dsize" does not exist at character 8
+2024-07-03 00:45:46.332 CDT [4137856] HINT:  Perhaps you meant to reference the column "node_file.fsize".
+2024-07-03 00:45:46.332 CDT [4137856] STATEMENT:  select dsize from node_file;
+2024-07-03 00:49:24.052 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 00:49:25.443 CDT [3786175] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.105 s, sync=0.099 s, total=1.391 s; sync files=5, longest=0.047 s, average=0.020 s; distance=22 kB, estimate=1056 kB; lsn=0/1EED760, redo lsn=0/1EED728
+2024-07-03 01:04:24.718 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 01:04:51.437 CDT [3786175] LOG:  checkpoint complete: wrote 218 buffers (1.3%); 0 WAL file(s) added, 0 removed, 1 recycled; write=22.632 s, sync=0.905 s, total=26.720 s; sync files=182, longest=0.083 s, average=0.005 s; distance=1701 kB, estimate=1701 kB; lsn=0/20A3B00, redo lsn=0/2096F10
+2024-07-03 01:09:24.543 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 01:09:35.234 CDT [3786175] LOG:  checkpoint complete: wrote 84 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=8.673 s, sync=1.643 s, total=10.691 s; sync files=19, longest=0.729 s, average=0.087 s; distance=777 kB, estimate=1609 kB; lsn=0/215FB88, redo lsn=0/21596A8
+2024-07-03 01:14:24.335 CDT [3786175] LOG:  checkpoint starting: time
+2024-07-03 01:14:32.075 CDT [3786175] LOG:  checkpoint complete: wrote 68 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.752 s, sync=0.820 s, total=7.741 s; sync files=25, longest=0.561 s, average=0.033 s; distance=474 kB, estimate=1496 kB; lsn=0/21D2568, redo lsn=0/21CFF98
+2024-07-03 01:17:39.329 CDT [4156937] ERROR:  relation "nodes" does not exist at character 22
+2024-07-03 01:17:39.329 CDT [4156937] STATEMENT:  select count(*) from nodes;
+2024-07-03 01:18:01.713 CDT [3786170] LOG:  received fast shutdown request
+2024-07-03 01:18:01.735 CDT [3786170] LOG:  aborting any active transactions
+2024-07-03 01:18:01.737 CDT [3786170] LOG:  background worker "logical replication launcher" (PID 3786182) exited with exit code 1
+2024-07-03 01:18:01.737 CDT [3786175] LOG:  shutting down
+2024-07-03 01:18:01.740 CDT [3786175] LOG:  checkpoint starting: shutdown immediate
+2024-07-03 01:18:02.877 CDT [3786175] LOG:  checkpoint complete: wrote 32 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.016 s, sync=0.157 s, total=1.140 s; sync files=15, longest=0.037 s, average=0.011 s; distance=148 kB, estimate=1361 kB; lsn=0/21F5078, redo lsn=0/21F5078
+2024-07-03 01:18:03.003 CDT [3786170] LOG:  database system is shut down

@@ -26,7 +26,6 @@ class Neo4jManager:
         with self.driver.session() as session:
             result =  session.execute_write(self._create_nodes, path, type, parameters)
             self.node_id += 1
-            print("Node created", self.node_id)
             return result
 
     def create_edges(self, source_node, target_node, edge_type):
@@ -53,10 +52,21 @@ class Neo4jManager:
             return str(e)
 
     ## only works on linux
+    # def get_directory_size(self, directory):
+    #     result = subprocess.run(['du', '-s', '-h', directory], stdout=subprocess.PIPE, text=True)
+    #     size, _ = result.stdout.split()
+    #     return size  
+
     def get_directory_size(self, directory):
-        result = subprocess.run(['du', '-s', '-h', directory], stdout=subprocess.PIPE, text=True)
-        size, _ = result.stdout.split()
-        return size  
+        total = 0
+        with os.scandir(directory) as it:
+            for entry in it:
+                if entry.is_file():
+                    total += entry.stat().st_size
+                elif entry.is_dir():
+                    total += self.get_directory_size(entry.path)
+        total = total / 1024 # in KB
+        return total
     
     def _create_nodes(self, tx, path, node_type, parameters):
         # node_id = str(uuid4())
@@ -91,13 +101,14 @@ class Neo4jManager:
             modified_date = time.strftime("%c", time.gmtime(os.path.getmtime(path)))
             extension = os.path.splitext(path)[1]
             size_bytes = os.path.getsize(path)  # in Bytes
-            suffixes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-            # Convert size to a more readable format
-            i = 0
-            while size_bytes >= 1024 and i < len(suffixes)-1:
-                size_bytes /= 1024.
-                i += 1
-            fsize = f"{size_bytes:.2f} {suffixes[i]}"
+            # suffixes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+            # # Convert size to a more readable format
+            # i = 0
+            # while size_bytes >= 1024 and i < len(suffixes)-1:
+            #     size_bytes /= 1024.
+            #     i += 1
+            # fsize = f"{size_bytes:.2f} {suffixes[i]}"
+            fsize = size_bytes / 1024 # in KB
             tx.run("""
                 MERGE (f:node_file {
                     node_id: $node_id,
@@ -550,5 +561,5 @@ password = "12345678"
 
 graph = Neo4jManager(uri, user, password)
 graph.traverse_directory("./data/adventureworks/csv/")
-#graph.delete_all_nodes()
+# graph.delete_all_nodes()
 graph.close()
