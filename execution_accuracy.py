@@ -3,6 +3,7 @@ import subprocess
 from psycopg.rows import dict_row
 import json
 from post_processor import SQLValidator
+import pandas as pd
 
 def start_postgresql(data_dir):
     try:
@@ -91,8 +92,8 @@ def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
 if __name__ == "__main__":
     
     # PostgreSQL data directory
-    data_dir = "./build-catalog/postgresql/data/"
-    start_postgresql(data_dir)
+    # data_dir = "./build-catalog/postgresql/data/"
+    # start_postgresql(data_dir)
 
     RESULTS_PATH = 'results.json'
     results = json.load(open(RESULTS_PATH))
@@ -106,16 +107,28 @@ if __name__ == "__main__":
     for res in results:
         print(validator.validate_query(res['predictedQuery']))
         if validator.validate_query(res['predictedQuery']):
+            res['predict?'] = 1
             r += 1
             execution_correct, normalized_gold, normalized_predicted = compare_sql_outputs(res['goldSqlQuery'], res['predictedQuery'], ignore_row_order=True)
             if execution_correct:
+                res['match?'] = 1
                 if not normalized_predicted: # check empty list
+                    res['empty?'] = 1
                     print("Predicted results are empty.")
                     empty_output += 1
+                else:
+                    res['empty?'] = 0
                 p += 1
+            else:
+                res['match?'] = 0
+                res['empty?'] = -1
             if execution_correct is None:
                 n -= 1
                 invalid_gold.append(res['goldSqlQuery'])
+        else:
+            res['predict?'] = 0
+            res['match?'] = -1
+            res['empty?'] = -1
                 
     print(f'Total Samples: {n_previous}')  
     print(f'Valid Samples: {n}')
@@ -123,4 +136,5 @@ if __name__ == "__main__":
     print(f'Empty Predicted Result in Precision: {empty_output}/{p} = {empty_output/p}')
     print(f'Recall: {p}/{n} = {p/n}')
     json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
-    stop_postgresql(data_dir)
+    pd.DataFrame(results).to_csv('results_final.csv', index=False)
+    # stop_postgresql(data_dir)
