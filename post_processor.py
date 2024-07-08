@@ -59,7 +59,7 @@ class SQLValidator:
         try:
             parsed_query = sqlglot.parse_one(query, dialect="postgres")
             return True, parsed_query
-        except sqlglot.errors.ParseError as e:
+        except sqlglot.errors.SqlglotError as e:
             # Parsing failed, SQL is invalid
             # print(f"Invalid SQL: {e}")
             return False, None

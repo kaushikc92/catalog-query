@@ -70,7 +70,7 @@ def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
 
             except psycopg.Error as e:
                 print("Gold query can not be runned.\nError:", e)
-                return None
+                return None, None, None
 
             # Process the predicted query
             try:
@@ -84,9 +84,9 @@ def compare_sql_outputs(gold_sql, predicted_sql, ignore_row_order=True):
                     normalized_predicted = predicted_results
             except psycopg.Error as e:
                 print("Predicted query can not be runned.\nError:", e)
-                return False
+                return False, normalized_gold, None
             # Compare normalized results
-            return normalized_gold == normalized_predicted
+            return normalized_gold == normalized_predicted, normalized_gold, normalized_predicted
 
 if __name__ == "__main__":
     
@@ -101,13 +101,17 @@ if __name__ == "__main__":
     invalid_gold = []
     p = 0
     r = 0
+    empty_output = 0
     validator = SQLValidator(schema_match=True)
     for res in results:
         print(validator.validate_query(res['predictedQuery']))
         if validator.validate_query(res['predictedQuery']):
             r += 1
-            execution_correct = compare_sql_outputs(res['goldSqlQuery'], res['predictedQuery'], ignore_row_order=True)
+            execution_correct, normalized_gold, normalized_predicted = compare_sql_outputs(res['goldSqlQuery'], res['predictedQuery'], ignore_row_order=True)
             if execution_correct:
+                if not normalized_predicted: # check empty list
+                    print("Predicted results are empty.")
+                    empty_output += 1
                 p += 1
             if execution_correct is None:
                 n -= 1
@@ -116,6 +120,7 @@ if __name__ == "__main__":
     print(f'Total Samples: {n_previous}')  
     print(f'Valid Samples: {n}')
     print(f'Precision: {p}/{n} = {p/n}')
+    print(f'Empty Predicted Result in Precision: {empty_output}/{p} = {empty_output/p}')
     print(f'Recall: {p}/{r} = {p/r}')
     json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
     stop_postgresql(data_dir)
