@@ -2095,7 +2095,7 @@
   },
   {
     "naturalLanguageQuery": "Give all column names association with the classification 'date'.",
-    "goldSqlQuery": "select t3.short_name from node_classification as t1 join edge_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_asset_id = t3.node_id where t1.short_name = 'date'",
+    "goldSqlQuery": "select t3.short_name from node_classification as t1 join edge_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'date'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -2169,7 +2169,7 @@
   },
   {
     "naturalLanguageQuery": "Find all columns associated with the business term 'model_id'.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_asset_id = t3.node_id where t1.short_name = 'model_id'",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'model_id'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3762,7 +3762,7 @@
   },
   {
     "naturalLanguageQuery": "Give all column names association with the classification 'date'.",
-    "goldSqlQuery": "select t3.short_name from node_classification as t1 join edge_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_asset_id = t3.node_id where t1.short_name = 'date'",
+    "goldSqlQuery": "select t3.short_name from node_classification as t1 join edge_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'date'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3836,7 +3836,7 @@
   },
   {
     "naturalLanguageQuery": "Find all columns associated with the business term 'model_id'.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_asset_id = t3.node_id where t1.short_name = 'model_id'",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'model_id'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -5129,7 +5129,7 @@
   },
   {
     "naturalLanguageQuery": "Give all column names association with the classification 'date'.",
-    "goldSqlQuery": "select t3.short_name from node_classification as t1 join edge_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_asset_id = t3.node_id where t1.short_name = 'date'",
+    "goldSqlQuery": "select t3.short_name from node_classification as t1 join edge_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'date'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -5203,7 +5203,7 @@
   },
   {
     "naturalLanguageQuery": "Find all columns associated with the business term 'model_id'.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_asset_id = t3.node_id where t1.short_name = 'model_id'",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'model_id'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
