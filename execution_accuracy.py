@@ -119,8 +119,8 @@ if __name__ == "__main__":
                 
     print(f'Total Samples: {n_previous}')  
     print(f'Valid Samples: {n}')
-    print(f'Precision: {p}/{n} = {p/n}')
+    print(f'Precision: {p}/{r} = {p/r}')
     print(f'Empty Predicted Result in Precision: {empty_output}/{p} = {empty_output/p}')
-    print(f'Recall: {p}/{r} = {p/r}')
+    print(f'Recall: {p}/{n} = {p/n}')
     json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
     stop_postgresql(data_dir)
