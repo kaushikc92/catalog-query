@@ -10,7 +10,7 @@ prompts = []
 instruction = 'Translate english queries to SQL.'
 query_path = 'queries/queries.json'
 query_dataset = load_dataset("json", data_files=query_path, split='train')
-query_dataset = query_dataset.train_test_split(train_size=500, test_size=700)
+query_dataset = query_dataset.train_test_split(train_size=500, test_size=700, seed=10086)
 
 for query in query_dataset['train']:
     context = 'Schema: '
