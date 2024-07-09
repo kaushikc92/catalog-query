@@ -31,7 +31,7 @@ def formatting_prompts_func(examples):
     texts = []
     for instruction, input in zip(instructions, inputs):
         
-        text = alpaca_prompt.format(instruction, input, "") + EOS_TOKEN
+        text = alpaca_prompt.format(instruction, input, "")
         texts.append(text)
     return { "text" : texts, }
 pass
@@ -47,7 +47,7 @@ final_text = []
 for i in range(0, len(dataset), batch_size):
     batch = dataset[i:i+batch_size]
     inp = tokenizer(batch, return_tensors = "pt", padding = True).to("cuda")
-    raw_output = model.generate(**inp, max_new_tokens = 64, use_cache = True)
+    raw_output = model.generate(**inp, max_new_tokens = 200, use_cache = True)
     output = tokenizer.batch_decode(raw_output[:, inp["input_ids"].shape[1]:], skip_special_tokens=True)
     for original, generated in zip(batch, output):
         final_text.append(original + generated) # Because the tokenizer is lossy, it's better to keep the same prompt.

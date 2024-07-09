@@ -18,7 +18,10 @@ for answer in answers:
     sql_e = ';'
     try:
         start_index = answer.index('### Response')
-        sqlq_start_index = answer.lower().index(sql_i, start_index + len('### Response'))
+        if sql_i in answer[start_index + len('### Response'):].lower():
+            sqlq_start_index = answer.lower().index(sql_i, start_index + len('### Response'))
+        else:
+            sqlq_start_index = start_index + len('### Response')
         sqlq = answer[sqlq_start_index:]
     except ValueError as e:
         print(f"sql query was not found.")
