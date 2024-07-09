@@ -135,6 +135,8 @@ if __name__ == "__main__":
     print(f'Precision: {p}/{r} = {p/r}')
     print(f'Empty Predicted Result in Precision: {empty_output}/{p} = {empty_output/p}')
     print(f'Recall: {p}/{n} = {p/n}')
-    json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
-    pd.DataFrame(results).to_csv('results_final.csv', index=False)
+    if invalid_gold:
+        json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
+    filename = 'results_final_precision_{:.2f}_recall_{:.2f}_empty_{}_reject_{}.csv'.format(p/r, p/n, empty_output, n-r)
+    pd.DataFrame(results).to_csv(filename, index=False)
     # stop_postgresql(data_dir)
