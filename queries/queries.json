@@ -1,7 +1,7 @@
 [
   {
     "naturalLanguageQuery": "For each folder, count the number of assets immediately inside it.",
-    "goldSqlQuery": "select t3.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.target_node_id join node as t3 on t2.source_node_id = t3.node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -26,12 +26,12 @@
   },
   {
     "naturalLanguageQuery": "For each folder, count the number of files immediately inside it.",
-    "goldSqlQuery": "select t3.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.target_node_id join node_file as t3 on t2.source_node_id = t3.node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
       "node_directory",
-      "edge_has",
+      "edge_has_dir_file",
       "node_file"
     ],
     "tables_from_tfidf": [
@@ -101,7 +101,7 @@
   },
   {
     "naturalLanguageQuery": "Count total files and folders directly under each folder.",
-    "goldSqlQuery": "select t3.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.target_node_id join node as t3 on t2.source_node_id = t3.node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -301,7 +301,7 @@
   },
   {
     "naturalLanguageQuery": "For each folder, count the number of assets immediately inside it.",
-    "goldSqlQuery": "select t3.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.target_node_id join node as t3 on t2.source_node_id = t3.node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -326,12 +326,12 @@
   },
   {
     "naturalLanguageQuery": "For each folder, count the number of files immediately inside it.",
-    "goldSqlQuery": "select t3.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.target_node_id join node_file as t3 on t2.source_node_id = t3.node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
       "node_directory",
-      "edge_has",
+      "edge_has_dir_file",
       "node_file"
     ],
     "tables_from_tfidf": [
@@ -401,7 +401,7 @@
   },
   {
     "naturalLanguageQuery": "Count total files and folders directly under each folder.",
-    "goldSqlQuery": "select t3.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.target_node_id join node as t3 on t2.source_node_id = t3.node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -1295,7 +1295,7 @@
   },
   {
     "naturalLanguageQuery": "What are the joinable table pairs found in the last 24 hours?",
-    "goldSqlQuery": "select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= datetime('now', '-24hours')",
+    "goldSqlQuery": "select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= now() - interval '24hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -1370,7 +1370,7 @@
   },
   {
     "naturalLanguageQuery": "Show all the people who created business terms in the last 10 days.",
-    "goldSqlQuery": "select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -1520,7 +1520,7 @@
   },
   {
     "naturalLanguageQuery": "List all tables owned by 'jdoe' that were created in the past one year.",
-    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -1620,7 +1620,7 @@
   },
   {
     "naturalLanguageQuery": "Find all classifications belonging to 'testuser' that were created in the past 30 days.",
-    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -1670,7 +1670,7 @@
   },
   {
     "naturalLanguageQuery": "Show all columns associated with business terms created in the last 10 days.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -1695,7 +1695,7 @@
   },
   {
     "naturalLanguageQuery": "Which are the columns related to business terms created in the past year.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -1720,7 +1720,7 @@
   },
   {
     "naturalLanguageQuery": "List all columns linked with business terms that were added in the past 20 days.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '20 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -2962,7 +2962,7 @@
   },
   {
     "naturalLanguageQuery": "What are the joinable table pairs found in the last 24 hours?",
-    "goldSqlQuery": "select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= datetime('now', '-24hours')",
+    "goldSqlQuery": "select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= now() - interval '24hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3037,7 +3037,7 @@
   },
   {
     "naturalLanguageQuery": "Show all the people who created business terms in the last 10 days.",
-    "goldSqlQuery": "select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3187,7 +3187,7 @@
   },
   {
     "naturalLanguageQuery": "List all tables owned by 'jdoe' that were created in the past one year.",
-    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3287,7 +3287,7 @@
   },
   {
     "naturalLanguageQuery": "Find all classifications belonging to 'testuser' that were created in the past 30 days.",
-    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3337,7 +3337,7 @@
   },
   {
     "naturalLanguageQuery": "Show all columns associated with business terms created in the last 10 days.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3362,7 +3362,7 @@
   },
   {
     "naturalLanguageQuery": "Which are the columns related to business terms created in the past year.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -3387,7 +3387,7 @@
   },
   {
     "naturalLanguageQuery": "List all columns linked with business terms that were added in the past 20 days.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '20 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4329,7 +4329,7 @@
   },
   {
     "naturalLanguageQuery": "What are the joinable table pairs found in the last 24 hours?",
-    "goldSqlQuery": "select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= datetime('now', '-24hours')",
+    "goldSqlQuery": "select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= now() - interval '24hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4404,7 +4404,7 @@
   },
   {
     "naturalLanguageQuery": "Show all the people who created business terms in the last 10 days.",
-    "goldSqlQuery": "select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4554,7 +4554,7 @@
   },
   {
     "naturalLanguageQuery": "List all tables owned by 'jdoe' that were created in the past one year.",
-    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4654,7 +4654,7 @@
   },
   {
     "naturalLanguageQuery": "Find all classifications belonging to 'testuser' that were created in the past 30 days.",
-    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4704,7 +4704,7 @@
   },
   {
     "naturalLanguageQuery": "Show all columns associated with business terms created in the last 10 days.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4729,7 +4729,7 @@
   },
   {
     "naturalLanguageQuery": "Which are the columns related to business terms created in the past year.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -4754,7 +4754,7 @@
   },
   {
     "naturalLanguageQuery": "List all columns linked with business terms that were added in the past 20 days.",
-    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '20 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -5351,7 +5351,7 @@
   },
   {
     "naturalLanguageQuery": "Which folders have more than 100 files?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id having count(*) > 100",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id having count(*) > 100",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5375,7 +5375,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by all users who have the term 'uwmadison' in their username.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like '%uwmadison%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%uwmadison%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5399,7 +5399,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets are owned by each user account created in the past week?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5423,7 +5423,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of assets owned by each owner account that contains the term 'nyc' in it's name or description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like '%nyc%' or t1.description like '%nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%nyc%' or t1.description like '%nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5471,7 +5471,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by each owner account created in the past year.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now()- interval '365 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5495,7 +5495,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets are owned by each account older than 2 years?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date <= datetime('now', '-2 years')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '2 years' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5519,7 +5519,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of assets owned by each account older than a week.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date <= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5639,7 +5639,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by all accounts that have a description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5663,7 +5663,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by all accounts that have been modified in the past 1 day.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.modified_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5687,7 +5687,7 @@
   },
   {
     "naturalLanguageQuery": "For each table, show the number of tables that have been derived from it in the past one week.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5711,7 +5711,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of tables derived from each table in the past year.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5735,7 +5735,7 @@
   },
   {
     "naturalLanguageQuery": "How many tables were derived from each table in the lake in the past 24 hours?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5759,7 +5759,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of unionable relationships found for each table in the past 24 hours.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5783,7 +5783,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of joinable relationships found for each table in the past 3 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '3 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5807,7 +5807,7 @@
   },
   {
     "naturalLanguageQuery": "List all asset owners who own more than 20 assets created in the past 30 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 20 where t2.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name having count(*) > 20",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -5831,7 +5831,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of assets owned by asset owners among assets created in the past 30 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6095,7 +6095,7 @@
   },
   {
     "naturalLanguageQuery": "For each business term, count the number of columns it has been assigned to in the past 1 year.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6119,7 +6119,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns has each business term been assigned to in the past 20 days?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '20 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6143,7 +6143,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns that each business term has been assigned to in the past 10 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6167,7 +6167,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns that each business term has been assigned to in the past 10 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6239,7 +6239,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns for all tables created in the last one week.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6263,7 +6263,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns for all tables that have been modified in the past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.modified_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6287,7 +6287,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns for all tables that were created in the past 10 days and have more than 20 columns",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 20 where t1.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name having count(*) > 20",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6335,7 +6335,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are present in each of the tables create in the past 7 days?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6359,7 +6359,7 @@
   },
   {
     "naturalLanguageQuery": "For each table in the data lake, count the number of columns that contain a description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6383,7 +6383,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns with descriptions are present in each of the tables?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6407,7 +6407,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns in all tables that contain the term 'nyc' in it's name.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like '%nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6431,7 +6431,7 @@
   },
   {
     "naturalLanguageQuery": "Show me the number of columns in each table whose name contains the prefix 'vehicle'.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like 'vehicle%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'vehicle%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6479,7 +6479,7 @@
   },
   {
     "naturalLanguageQuery": "Which folders have more than 100 files?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id having count(*) > 100",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id having count(*) > 100",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6503,7 +6503,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by all users who have the term 'uwmadison' in their username.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like '%uwmadison%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%uwmadison%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6527,7 +6527,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets are owned by each user account created in the past week?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6551,7 +6551,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of assets owned by each owner account that contains the term 'nyc' in it's name or description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like '%nyc%' or t1.description like '%nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%nyc%' or t1.description like '%nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6599,7 +6599,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by each owner account created in the past year.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6623,7 +6623,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets are owned by each account older than 2 years?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date <= datetime('now', '-2 years')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '2 years' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6647,7 +6647,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of assets owned by each account older than a week.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date <= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6767,7 +6767,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by all accounts that have a description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6791,7 +6791,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of assets owned by all accounts that have been modified in the past 1 day.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.modified_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6815,7 +6815,7 @@
   },
   {
     "naturalLanguageQuery": "For each table, show the number of tables that have been derived from it in the past one week.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6839,7 +6839,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of tables derived from each table in the past year.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6863,7 +6863,7 @@
   },
   {
     "naturalLanguageQuery": "How many tables were derived from each table in the lake in the past 24 hours?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6887,7 +6887,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of unionable relationships found for each table in the past 24 hours.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6911,7 +6911,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of joinable relationships found for each table in the past 3 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '3 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6935,7 +6935,7 @@
   },
   {
     "naturalLanguageQuery": "List all asset owners who own more than 20 assets created in the past 30 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 20 where t2.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name having count(*) > 20",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6959,7 +6959,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of assets owned by asset owners among assets created in the past 30 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -6983,7 +6983,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns associated with each classification that contains the word 'category' in it's name.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like '%category%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%category%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7007,7 +7007,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each classification label that has 'nyc' as a prefix.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7031,7 +7031,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns associated with all business terms that have the word 'customer' in their names.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like '%customer%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%customer%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7055,7 +7055,7 @@
   },
   {
     "naturalLanguageQuery": "Count the columns associated with each classification asset in the lake that has 'nyc' as a prefix.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7079,7 +7079,7 @@
   },
   {
     "naturalLanguageQuery": "Count the columns associated with each classification asset in the lake that has 'water' as a prefix.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'water%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'water%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7103,7 +7103,7 @@
   },
   {
     "naturalLanguageQuery": "For each classification that has 'water' as a prefix, how many columns are associated with it?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'water%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'water%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7127,7 +7127,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each classification that contains 'water' as a prefix?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'water%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'water%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7151,7 +7151,7 @@
   },
   {
     "naturalLanguageQuery": "Show the column counts for all business terms that have 'id' in their names.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like '%id%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%id%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7175,7 +7175,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each business term that contains the word 'id' in it's name?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like '%id%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%id%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7199,7 +7199,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each label that has 'nyc' as a prefix?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7223,7 +7223,7 @@
   },
   {
     "naturalLanguageQuery": "For each business term, count the number of columns it has been assigned to in the past 1 year.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7247,7 +7247,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns has each business term been assigned to in the past 20 days?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '20 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7271,7 +7271,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns that each business term has been assigned to in the past 10 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7295,7 +7295,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns that each business term has been assigned to in the past 10 days.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t2.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7367,7 +7367,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns for all tables created in the last one week.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7391,7 +7391,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns for all tables that have been modified in the past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.modified_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7415,7 +7415,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns for all tables that were created in the past 10 days and have more than 20 columns",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 20 where t1.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name having count(*) > 20",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7463,7 +7463,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are present in each of the tables create in the past 7 days?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7487,7 +7487,7 @@
   },
   {
     "naturalLanguageQuery": "For each table in the data lake, count the number of columns that contain a description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7511,7 +7511,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns with descriptions are present in each of the tables?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7535,7 +7535,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns in all tables that contain the term 'nyc' in it's name.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like '%nyc%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%nyc%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7559,7 +7559,7 @@
   },
   {
     "naturalLanguageQuery": "Show me the number of columns in each table whose name contains the prefix 'vehicle'.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name where t1.short_name like 'vehicle%'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'vehicle%' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7783,7 +7783,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner, find the average size of files containing a description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7808,7 +7808,7 @@
   },
   {
     "naturalLanguageQuery": "What is the average size of a folder created in the last 10 days for each asset owner.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.dsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.dsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7833,7 +7833,7 @@
   },
   {
     "naturalLanguageQuery": "What is the total size of all files created in the last 30 days for each user account?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7858,7 +7858,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner account, calculate the average size of a file added in the past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7883,7 +7883,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner account, display the mean size of a file added in past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7908,7 +7908,7 @@
   },
   {
     "naturalLanguageQuery": "Show the total size of all files added in the last 30 days for each owner account.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -7933,7 +7933,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner, display the sum of all file sizes created in the past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8008,7 +8008,7 @@
   },
   {
     "naturalLanguageQuery": "For each table, count the number of columns associated with the classification 'customer'.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'customer'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'customer' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8034,7 +8034,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns associated with the classification phrase 'customer' does each table contain?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'customer'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'customer' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8060,7 +8060,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns within each table associated with the classification 'zipcode'.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'zipcode'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'zipcode' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8086,7 +8086,7 @@
   },
   {
     "naturalLanguageQuery": "Count the columns linked with the classification label 'address' in each table.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'address'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'address' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8112,7 +8112,7 @@
   },
   {
     "naturalLanguageQuery": "Find the number of columns inside each table that have a classification label that contains the term 'phone' in it.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'phone'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'phone' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8138,7 +8138,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns of each type present in tables in that contain the word 'water' in their names.",
-    "goldSqlQuery": "select t3.col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id group by t3.col_type where t1.short_name like '%water%'",
+    "goldSqlQuery": "select t3.col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%water%' group by t3.col_type",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8413,7 +8413,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner, find the average size of files containing a description.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.description <> ''",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.description <> '' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8438,7 +8438,7 @@
   },
   {
     "naturalLanguageQuery": "What is the average size of a folder created in the last 10 days for each asset owner.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.dsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, avg(t3.dsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8463,7 +8463,7 @@
   },
   {
     "naturalLanguageQuery": "What is the total size of all files created in the last 30 days for each user account?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8488,7 +8488,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner account, calculate the average size of a file added in the past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8513,7 +8513,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner account, display the mean size of a file added in past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8538,7 +8538,7 @@
   },
   {
     "naturalLanguageQuery": "Show the total size of all files added in the last 30 days for each owner account.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8563,7 +8563,7 @@
   },
   {
     "naturalLanguageQuery": "For each owner, display the sum of all file sizes created in the past month.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name where t3.creation_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8638,7 +8638,7 @@
   },
   {
     "naturalLanguageQuery": "For each table, count the number of columns associated with the classification 'customer'.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'customer'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'customer' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8664,7 +8664,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns associated with the classification phrase 'customer' does each table contain?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'customer'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'customer' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8690,7 +8690,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns within each table associated with the classification 'zipcode'.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'zipcode'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'zipcode' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8716,7 +8716,7 @@
   },
   {
     "naturalLanguageQuery": "Count the columns linked with the classification label 'address' in each table.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'address'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'address' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8742,7 +8742,7 @@
   },
   {
     "naturalLanguageQuery": "Find the number of columns inside each table that have a classification label that contains the term 'phone' in it.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id group by t1.node_id, t1.short_name where t4.short_name = 'phone'",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'phone' group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -8768,7 +8768,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns of each type present in tables in that contain the word 'water' in their names.",
-    "goldSqlQuery": "select t3.col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id group by t3.col_type where t1.short_name like '%water%'",
+    "goldSqlQuery": "select t3.col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%water%' group by t3.col_type",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -10607,7 +10607,7 @@
   },
   {
     "naturalLanguageQuery": "What are the top 10 classifications which are associated with the most columns?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id desc limit 10",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 10",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10631,7 +10631,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns associated with each business term.",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10655,7 +10655,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each business terms in the data lake?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10679,7 +10679,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each label?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10751,7 +10751,7 @@
   },
   {
     "naturalLanguageQuery": "How many subfolders does each folder have?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by source_node_id",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10771,7 +10771,7 @@
   },
   {
     "naturalLanguageQuery": "Show the top 10 directories that contain the most subdirectories.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id order by count(*) desc",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10795,7 +10795,7 @@
   },
   {
     "naturalLanguageQuery": "List the top 10 user accounts with the most assets.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id order by count(*) desc",
+    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -10818,7 +10818,7 @@
   },
   {
     "naturalLanguageQuery": "Who are the top 10 people who own the most assets?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id order by count(*) desc",
+    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11106,7 +11106,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns do each of the 10 oldest tables in the lake have?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date asc limit 10",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date asc limit 10",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11130,7 +11130,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns do each of the 10 newest tables in the lake have?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date desc limit 10",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date desc limit 10",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11178,7 +11178,7 @@
   },
   {
     "naturalLanguageQuery": "What are the top 10 classifications which are associated with the most columns?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id desc limit 10",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 10",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11202,7 +11202,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns associated with each business term.",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11226,7 +11226,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each business terms in the data lake?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11250,7 +11250,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns are associated with each label?",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11322,7 +11322,7 @@
   },
   {
     "naturalLanguageQuery": "How many subfolders does each folder have?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by source_node_id",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11342,7 +11342,7 @@
   },
   {
     "naturalLanguageQuery": "Show the top 10 directories that contain the most subdirectories.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id order by count(*) desc",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11366,7 +11366,7 @@
   },
   {
     "naturalLanguageQuery": "List the top 10 user accounts with the most assets.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id order by count(*) desc",
+    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11389,7 +11389,7 @@
   },
   {
     "naturalLanguageQuery": "Who are the top 10 people who own the most assets?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t2.source_node_id order by count(*) desc",
+    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11677,7 +11677,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns do each of the 10 oldest tables in the lake have?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date asc limit 10",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date asc limit 10",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11701,7 +11701,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns do each of the 10 newest tables in the lake have?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date desc limit 10",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, t1.creation_date, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.creation_date order by t1.creation_date desc limit 10",
     "isAggregate": true,
     "isConditional": false,
     "tables": [
@@ -11797,7 +11797,7 @@
   },
   {
     "naturalLanguageQuery": "What are the columns associated with at least one classification term?",
-    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.ttarget_node_id",
+    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -11821,7 +11821,7 @@
   },
   {
     "naturalLanguageQuery": "What are the columns associated with at least one classification label?",
-    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.ttarget_node_id",
+    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12013,7 +12013,7 @@
   },
   {
     "naturalLanguageQuery": "Show the name, long name and description for all folders that contain at least one file directly inside them.",
-    "goldSqlQuery": "select short_name, long_name, description from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.short_name, t1.long_name, t1.description from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12037,7 +12037,7 @@
   },
   {
     "naturalLanguageQuery": "Show the names and creation date of the 5 oldest derived tables.",
-    "goldSqlQuery": "select short_name, creation_date from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.target_node_id order by t2.creation_date asc limit 5",
+    "goldSqlQuery": "select t1.short_name, t1.creation_date from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.target_node_id order by t2.creation_date asc limit 5",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12061,7 +12061,7 @@
   },
   {
     "naturalLanguageQuery": "List the source assets for the 20 oldest relations in the lake.",
-    "goldSqlQuery": "select short_name from node as t1 join edge as t2 on t1.node_id = t2.source_node_id order by creation_date asc limit 20",
+    "goldSqlQuery": "select t1.short_name from node as t1 join edge as t2 on t1.node_id = t2.source_node_id order by t1.creation_date asc limit 20",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12157,7 +12157,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of related assets for each asset.",
-    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge as t2 on t1.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge as t2 on t1.node_id = t2.source_node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12181,7 +12181,7 @@
   },
   {
     "naturalLanguageQuery": "List the number of tables derived from each table in the lake.",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12205,7 +12205,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns that each classification is associated with.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12229,7 +12229,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns is each classification associated with?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12253,7 +12253,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns that each business term is associated with.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12349,7 +12349,7 @@
   },
   {
     "naturalLanguageQuery": "What are the columns associated with at least one classification term?",
-    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.ttarget_node_id",
+    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12373,7 +12373,7 @@
   },
   {
     "naturalLanguageQuery": "What are the columns associated with at least one classification label?",
-    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.ttarget_node_id",
+    "goldSqlQuery": "select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12565,7 +12565,7 @@
   },
   {
     "naturalLanguageQuery": "Show the name, long name and description for all folders that contain at least one file directly inside them.",
-    "goldSqlQuery": "select short_name, long_name, description from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.short_name, t1.long_name, t1.description from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12589,7 +12589,7 @@
   },
   {
     "naturalLanguageQuery": "Show the names and creation date of the 5 oldest derived tables.",
-    "goldSqlQuery": "select short_name, creation_date from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.target_node_id order by t2.creation_date asc limit 5",
+    "goldSqlQuery": "select t1.short_name, t1.creation_date from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.target_node_id order by t1.creation_date asc limit 5",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12613,7 +12613,7 @@
   },
   {
     "naturalLanguageQuery": "List the source assets for the 20 oldest relations in the lake.",
-    "goldSqlQuery": "select short_name from node as t1 join edge as t2 on t1.node_id = t2.source_node_id order by creation_date asc limit 20",
+    "goldSqlQuery": "select t1.short_name from node as t1 join edge as t2 on t1.node_id = t2.source_node_id order by t1.creation_date asc limit 20",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12709,7 +12709,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of related assets for each asset.",
-    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge as t2 on t1.node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node as t1 join edge as t2 on t1.node_id = t2.source_node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12733,7 +12733,7 @@
   },
   {
     "naturalLanguageQuery": "List the number of tables derived from each table in the lake.",
-    "goldSqlQuery": "select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12757,7 +12757,7 @@
   },
   {
     "naturalLanguageQuery": "Show the number of columns that each classification is associated with.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12781,7 +12781,7 @@
   },
   {
     "naturalLanguageQuery": "How many columns is each classification associated with?",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12805,7 +12805,7 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns that each business term is associated with.",
-    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id ",
+    "goldSqlQuery": "select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -12829,7 +12829,7 @@
   },
   {
     "naturalLanguageQuery": "Show the column names and descriptions for all columns in the veteran services report table.",
-    "goldSqlQuery": "select t3.short_name, t3.description from node_table as t1 join edge_has_table_column as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'veteran_services_report'",
+    "goldSqlQuery": "select t3.short_name, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'veteran_services_report'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -12877,7 +12877,7 @@
   },
   {
     "naturalLanguageQuery": "What are all the assets that belong to the user with asset id 3?",
-    "goldSqlQuery": "select short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 3",
+    "goldSqlQuery": "select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 3",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -12901,7 +12901,7 @@
   },
   {
     "naturalLanguageQuery": "How many files were added to the directory 'part4' in the last one year?",
-    "goldSqlQuery": "select count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= datetime('now', '-1 year') and t1.short_name = 'part4'",
+    "goldSqlQuery": "select count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' and t1.short_name = 'part4'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -12949,7 +12949,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets does the account 'uwmadison' own that were created in the past one week?",
-    "goldSqlQuery": "select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name = 'uwmadison' and t2.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name = 'uwmadison' and t2.creation_date >= now() - interval '7 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -12997,7 +12997,7 @@
   },
   {
     "naturalLanguageQuery": "How many files were added to each directory in the past 1 year?",
-    "goldSqlQuery": "select short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id groupby t2.source_node_id having t2.creation_date <= datetime('now', '-1 year')",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' group by t1.short_name, t2.source_node_id",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13069,7 +13069,7 @@
   },
   {
     "naturalLanguageQuery": "Show the column names and descriptions for all columns in the veteran services report table.",
-    "goldSqlQuery": "select t3.short_name, t3.description from node_table as t1 join edge_has_table_column as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'veteran_services_report'",
+    "goldSqlQuery": "select t3.short_name, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'veteran_services_report'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13117,7 +13117,7 @@
   },
   {
     "naturalLanguageQuery": "What are all the assets that belong to the user with asset id 3?",
-    "goldSqlQuery": "select short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 3",
+    "goldSqlQuery": "select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 3",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13141,7 +13141,7 @@
   },
   {
     "naturalLanguageQuery": "How many files were added to the directory 'part4' in the last one year?",
-    "goldSqlQuery": "select count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= datetime('now', '-1 year') and t1.short_name = 'part4'",
+    "goldSqlQuery": "select count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' and t1.short_name = 'part4'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13189,7 +13189,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets does the account 'uwmadison' own that were created in the past one week?",
-    "goldSqlQuery": "select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name = 'uwmadison' and t2.creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name = 'uwmadison' and t2.creation_date >= now() - interval '7 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13237,7 +13237,7 @@
   },
   {
     "naturalLanguageQuery": "How many files were added to each directory in the past 1 year?",
-    "goldSqlQuery": "select short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id groupby t2.source_node_id having t2.creation_date <= datetime('now', '-1 year')",
+    "goldSqlQuery": "select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' group by t1.short_name, t2.source_node_id",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13815,7 +13815,7 @@
   },
   {
     "naturalLanguageQuery": "Display all the joinable relation records found in the last 24 hours.",
-    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= datetime('now','-24 hours')",
+    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -13838,7 +13838,7 @@
   },
   {
     "naturalLanguageQuery": "Show all tables created in the last 24 hours.",
-    "goldSqlQuery": "select short_name from node_table where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name from node_table where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14045,7 +14045,7 @@
   },
   {
     "naturalLanguageQuery": "Show all directories created in the last 24 hours.",
-    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14068,7 +14068,7 @@
   },
   {
     "naturalLanguageQuery": "Print names for all directories that were created in the past day.",
-    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14091,7 +14091,7 @@
   },
   {
     "naturalLanguageQuery": "Which are the directories in the data lake that were created in the past 24 hours?",
-    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14274,12 +14274,12 @@
     ]
   },
   {
-    "naturalLanguageQuery": "Show all columns that have 10 or more rows, 10 or more columns and were created in the last 10 days.",
-    "goldSqlQuery": "select short_name, num_rows, num_cols, creation_date from node_column where num_rows >= 10 and num_cols >= 10 and creation_date >= datetime('now', '-10 days')",
+    "naturalLanguageQuery": "Show all tables that have 10 or more rows, 10 or more columns and were created in the last 10 days.",
+    "goldSqlQuery": "select short_name, num_rows, num_cols, creation_date from node_table where num_rows >= 10 and num_cols >= 10 and creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
-      "node_column"
+      "node_table"
     ],
     "tables_from_tfidf": [
       "edge_assoc_class_col",
@@ -14298,7 +14298,7 @@
   },
   {
     "naturalLanguageQuery": "List all relational databases that contain more than 10 tables and were created in the past year.",
-    "goldSqlQuery": "select short_name, num_tables, creation_date from node_rdbms where num_tables > 10 and created_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select short_name, num_tables, creation_date from node_rdbms where num_tables > 10 and creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14344,7 +14344,7 @@
   },
   {
     "naturalLanguageQuery": "Find all columns that were created in the past one year and contains the term 'id' in it's name.",
-    "goldSqlQuery": "select short_name, creation_date from node_column where short_name like '%id%' and creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select short_name, creation_date from node_column where short_name like '%id%' and creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14390,7 +14390,7 @@
   },
   {
     "naturalLanguageQuery": "List all string columns created in the past 3 days.",
-    "goldSqlQuery": "select short_name, creation_date from node_column where col_type = 'string' and creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select short_name, creation_date from node_column where col_type = 'string' and creation_date >= now() - interval '3 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14413,7 +14413,7 @@
   },
   {
     "naturalLanguageQuery": "How many boolean columns were added in the last 10 days?",
-    "goldSqlQuery": "select count(*) from node_column where col_type = 'bool' and creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select count(*) from node_column where col_type = 'bool' and creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14620,8 +14620,8 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns of each type in the 'nyss' table.",
-    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nyss'",
-    "isAggregate": false,
+    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nyss' group by col_type",
+    "isAggregate": true,
     "isConditional": true,
     "tables": [
       "node_column"
@@ -14758,7 +14758,7 @@
   },
   {
     "naturalLanguageQuery": "Find all classification labels created in the past 2 years.",
-    "goldSqlQuery": "select short_name, creation_date from node_classification where creation_date >= datetime('now', '-2 years')",
+    "goldSqlQuery": "select short_name, creation_date from node_classification where creation_date >= now() - interval '2 years'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14942,7 +14942,7 @@
   },
   {
     "naturalLanguageQuery": "Name any 5 directories that were modified in the past 10 days.",
-    "goldSqlQuery": "select short_name, modified_date from node_directory where modified_date >= datetime('now', '-10 days') limit 5",
+    "goldSqlQuery": "select short_name, modified_date from node_directory where modified_date >= now() - interval '10 days' limit 5",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -14988,7 +14988,7 @@
   },
   {
     "naturalLanguageQuery": "Sort all business terms created in the past 5 days by it's creation timestamp.",
-    "goldSqlQuery": "select short_name, creation_date from node_label where creation_data >= datetime('now', '-5 days') order by creation_date asc",
+    "goldSqlQuery": "select short_name, creation_date from node_label where creation_date >= now() - interval '5 days' order by creation_date asc",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15034,7 +15034,7 @@
   },
   {
     "naturalLanguageQuery": "How many directory in directory relations are there in the lake that were created in the past 5 days?",
-    "goldSqlQuery": "select count(*) from edge_has_dir_dir where creation_date >= datetime('now', '-5 days')",
+    "goldSqlQuery": "select count(*) from edge_has_dir_dir where creation_date >= now() - interval '5 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15149,7 +15149,7 @@
   },
   {
     "naturalLanguageQuery": "Print all records created in the past 3 days for relations outlining a column within a table.",
-    "goldSqlQuery": "select * from edge_has_table_col where creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select * from edge_has_table_col where creation_date >= now() - interval '3 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15172,7 +15172,7 @@
   },
   {
     "naturalLanguageQuery": "List all asset nodes in the lake created in the past 2 days.",
-    "goldSqlQuery": "select short_name, creation_date from node where creation_date >= datetime('now', '-2 days')",
+    "goldSqlQuery": "select short_name, creation_date from node where creation_date >= now() - interval '2 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15195,8 +15195,8 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns of each type in the 'nycc' table.",
-    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nycc'",
-    "isAggregate": false,
+    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nycc' group by col_type",
+    "isAggregate": true,
     "isConditional": true,
     "tables": [
       "node_column"
@@ -15218,7 +15218,7 @@
   },
   {
     "naturalLanguageQuery": "Sort all relational databases created in the past week from oldest to newest.",
-    "goldSqlQuery": "select short_name, creation_date from node_rdbms where creation_date >= datetime('now', '-7 days') order by creation_date asc",
+    "goldSqlQuery": "select short_name, creation_date from node_rdbms where creation_date >= now() - interval '7 days' order by creation_date asc",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15287,7 +15287,7 @@
   },
   {
     "naturalLanguageQuery": "Show the descriptions for labels created in the past 20 days.",
-    "goldSqlQuery": "select short_name, description from node_label where creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select short_name, description from node_label where creation_date >= now() - interval '20 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15310,7 +15310,7 @@
   },
   {
     "naturalLanguageQuery": "Show all metadata for label association relationships created in the past week.",
-    "goldSqlQuery": "select * from edge_assoc where creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select * from edge_assoc where creation_date >= now() - interval '7 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15402,7 +15402,7 @@
   },
   {
     "naturalLanguageQuery": "Show the database type and last modified date for all databases that were last modified in the past 30 days.",
-    "goldSqlQuery": "select short_name, database_type, modified_date from node_database where modified_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select short_name, database_type, modified_date from node_database where modified_date >= now() - interval '30 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15425,7 +15425,7 @@
   },
   {
     "naturalLanguageQuery": "Print all metadata for joinable table relationships created in the past 3 days.",
-    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= now() - interval '3 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15517,7 +15517,7 @@
   },
   {
     "naturalLanguageQuery": "List the creation data of nosql databases created in the past week.",
-    "goldSqlQuery": "select short_name, creation_date from node_nosql where creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select short_name, creation_date from node_nosql where creation_date >= now() - interval '7 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -15563,7 +15563,7 @@
   },
   {
     "naturalLanguageQuery": "Give the long name and description for the DDG table.",
-    "goldSqlQuery": "select long_name, description form node_table where short_name = dim_department_group",
+    "goldSqlQuery": "select long_name, description from node_table where short_name = 'dim_department_group'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -16390,8 +16390,8 @@
     ]
   },
   {
-    "naturalLanguageQuery": "List the description of the 'datetime' classification label.",
-    "goldSqlQuery": "select description from node_classification where short_name = 'datetime'",
+    "naturalLanguageQuery": "List the description of the 'date' classification label.",
+    "goldSqlQuery": "select description from node_classification where short_name = 'date'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17265,7 +17265,7 @@
   },
   {
     "naturalLanguageQuery": "Show all the joinable relation records found in the last 24 hours.",
-    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= datetime('now','-24 hours')",
+    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17288,7 +17288,7 @@
   },
   {
     "naturalLanguageQuery": "Show all tables created in the last 24 hours.",
-    "goldSqlQuery": "select short_name from node_table where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name from node_table where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17518,7 +17518,7 @@
   },
   {
     "naturalLanguageQuery": "Show all directories created in the last 24 hours.",
-    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17541,7 +17541,7 @@
   },
   {
     "naturalLanguageQuery": "Print names for all directories that were created in the past day.",
-    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17564,7 +17564,7 @@
   },
   {
     "naturalLanguageQuery": "Which are the directories in the data lake that were created in the past 24 hours?",
-    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= datetime('now', '-24 hours')",
+    "goldSqlQuery": "select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17747,8 +17747,8 @@
     ]
   },
   {
-    "naturalLanguageQuery": "Show all columns that have 10 or more rows, 10 or more columns and were created in the last 10 days.",
-    "goldSqlQuery": "select short_name, num_rows, num_cols, creation_date from node_column where num_rows >= 10 and num_cols >= 10 and creation_date >= datetime('now', '-10 days')",
+    "naturalLanguageQuery": "Show all tables that have 10 or more rows, 10 or more columns and were created in the last 10 days.",
+    "goldSqlQuery": "select short_name, num_rows, num_cols, creation_date from node_table where num_rows >= 10 and num_cols >= 10 and creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17771,7 +17771,7 @@
   },
   {
     "naturalLanguageQuery": "List all relational databases that contain more than 10 tables and were created in the past year.",
-    "goldSqlQuery": "select short_name, num_tables, creation_date from node_rdbms where num_tables > 10 and created_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select short_name, num_tables, creation_date from node_rdbms where num_tables > 10 and creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17817,7 +17817,7 @@
   },
   {
     "naturalLanguageQuery": "Find all columns that were created in the past one year and contains the term 'id' in it's name.",
-    "goldSqlQuery": "select short_name, creation_date from node_column where short_name like '%id%' and creation_date >= datetime('now', '-365 days')",
+    "goldSqlQuery": "select short_name, creation_date from node_column where short_name like '%id%' and creation_date >= now() - interval '365 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17863,7 +17863,7 @@
   },
   {
     "naturalLanguageQuery": "List all string columns created in the past 3 days.",
-    "goldSqlQuery": "select short_name, creation_date from node_column where col_type = 'string' and creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select short_name, creation_date from node_column where col_type = 'string' and creation_date >= now() - interval '3 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -17886,7 +17886,7 @@
   },
   {
     "naturalLanguageQuery": "How many boolean columns were added in the last 10 days?",
-    "goldSqlQuery": "select count(*) from node_column where col_type = 'bool' and creation_date >= datetime('now', '-10 days')",
+    "goldSqlQuery": "select count(*) from node_column where col_type = 'bool' and creation_date >= now() - interval '10 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18093,8 +18093,8 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns of each type in the 'nyss' table.",
-    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nyss'",
-    "isAggregate": false,
+    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nyss' group by col_type",
+    "isAggregate": true,
     "isConditional": true,
     "tables": [
       "node_column"
@@ -18231,7 +18231,7 @@
   },
   {
     "naturalLanguageQuery": "Find all classification labels created in the past 2 years.",
-    "goldSqlQuery": "select short_name, creation_date from node_classification where creation_date >= datetime('now', '-2 years')",
+    "goldSqlQuery": "select short_name, creation_date from node_classification where creation_date >= now() - interval '2 years'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18415,7 +18415,7 @@
   },
   {
     "naturalLanguageQuery": "Name any 5 directories that were modified in the past 10 days.",
-    "goldSqlQuery": "select short_name, modified_date from node_directory where modified_date >= datetime('now', '-10 days') limit 5",
+    "goldSqlQuery": "select short_name, modified_date from node_directory where modified_date >= now() - interval '10 days' limit 5",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18461,7 +18461,7 @@
   },
   {
     "naturalLanguageQuery": "Sort all business terms created in the past 5 days by it's creation timestamp.",
-    "goldSqlQuery": "select short_name, creation_date from node_label where creation_data >= datetime('now', '-5 days') order by creation_date asc",
+    "goldSqlQuery": "select short_name, creation_date from node_label where creation_date >= now() - interval '5 days' order by creation_date asc",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18507,7 +18507,7 @@
   },
   {
     "naturalLanguageQuery": "How many directory in directory relations are there in the lake that were created in the past 5 days?",
-    "goldSqlQuery": "select count(*) from edge_has_dir_dir where creation_date >= datetime('now', '-5 days')",
+    "goldSqlQuery": "select count(*) from edge_has_dir_dir where creation_date >= now() - interval '5 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18622,7 +18622,7 @@
   },
   {
     "naturalLanguageQuery": "Print all records created in the past 3 days for relations outlining a column within a table.",
-    "goldSqlQuery": "select * from edge_has_table_col where creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select * from edge_has_table_col where creation_date >= now() - interval '3 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18645,7 +18645,7 @@
   },
   {
     "naturalLanguageQuery": "List all asset nodes in the lake created in the past 2 days.",
-    "goldSqlQuery": "select short_name, creation_date from node where creation_date >= datetime('now', '-2 days')",
+    "goldSqlQuery": "select short_name, creation_date from node where creation_date >= now() - interval '2 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18668,8 +18668,8 @@
   },
   {
     "naturalLanguageQuery": "Count the number of columns of each type in the 'nycc' table.",
-    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nycc'",
-    "isAggregate": false,
+    "goldSqlQuery": "select col_type, count(*) from node_column where short_name = 'nycc' group by col_type",
+    "isAggregate": true,
     "isConditional": true,
     "tables": [
       "node_column"
@@ -18691,7 +18691,7 @@
   },
   {
     "naturalLanguageQuery": "Sort all relational databases created in the past week from oldest to newest.",
-    "goldSqlQuery": "select short_name, creation_date from node_rdbms where creation_date >= datetime('now', '-7 days') order by creation_date asc",
+    "goldSqlQuery": "select short_name, creation_date from node_rdbms where creation_date >= now() - interval '7 days' order by creation_date asc",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18760,7 +18760,7 @@
   },
   {
     "naturalLanguageQuery": "Show the descriptions for labels created in the past 20 days.",
-    "goldSqlQuery": "select short_name, description from node_label where creation_date >= datetime('now', '-20 days')",
+    "goldSqlQuery": "select short_name, description from node_label where creation_date >= now() - interval '20 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18783,7 +18783,7 @@
   },
   {
     "naturalLanguageQuery": "Show all metadata for label association relationships created in the past week.",
-    "goldSqlQuery": "select * from edge_assoc where creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select * from edge_assoc where creation_date >= now() - interval '7 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18875,7 +18875,7 @@
   },
   {
     "naturalLanguageQuery": "Show the database type and last modified date for all databases that were last modified in the past 30 days.",
-    "goldSqlQuery": "select short_name, database_type, modified_date from node_database where modified_date >= datetime('now', '-30 days')",
+    "goldSqlQuery": "select short_name, database_type, modified_date from node_database where modified_date >= now() - interval '30 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18898,7 +18898,7 @@
   },
   {
     "naturalLanguageQuery": "Print all metadata for joinable table relationships created in the past 3 days.",
-    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= datetime('now', '-3 days')",
+    "goldSqlQuery": "select * from edge_joinable_table_table where creation_date >= now() - interval '3 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -18990,7 +18990,7 @@
   },
   {
     "naturalLanguageQuery": "List the creation data of nosql databases created in the past week.",
-    "goldSqlQuery": "select short_name, creation_date from node_nosql where creation_date >= datetime('now', '-7 days')",
+    "goldSqlQuery": "select short_name, creation_date from node_nosql where creation_date >= now() - interval '7 days'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -19036,7 +19036,7 @@
   },
   {
     "naturalLanguageQuery": "Give the long name and description for the DDG table.",
-    "goldSqlQuery": "select long_name, description form node_table where short_name = dim_department_group",
+    "goldSqlQuery": "select long_name, description from node_table where short_name = 'dim_department_group'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -19863,8 +19863,8 @@
     ]
   },
   {
-    "naturalLanguageQuery": "List the description of the 'datetime' classification label.",
-    "goldSqlQuery": "select description from node_classification where short_name = 'datetime'",
+    "naturalLanguageQuery": "List the description of the 'date' classification label.",
+    "goldSqlQuery": "select description from node_classification where short_name = 'date'",
     "isAggregate": false,
     "isConditional": true,
     "tables": [
@@ -21052,7 +21052,7 @@
   },
   {
     "naturalLanguageQuery": "What are the 3 biggest directories in the lake?",
-    "goldSqlQuery": "select short_name from node_directory order_by dsize limit 3",
+    "goldSqlQuery": "select short_name from node_directory order by dsize desc limit 3",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -21878,7 +21878,7 @@
   },
   {
     "naturalLanguageQuery": "Show the last modified timestamp for all the tables.",
-    "goldSqlQuery": "select short_name, last_modified from node_table",
+    "goldSqlQuery": "select short_name, modified_date from node_table",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -22614,7 +22614,7 @@
   },
   {
     "naturalLanguageQuery": "Show the database type and last modified date for all databases.",
-    "goldSqlQuery": "select short_name, database_type, modified_data from node_database",
+    "goldSqlQuery": "select short_name, database_type, modified_date from node_database",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -22706,7 +22706,7 @@
   },
   {
     "naturalLanguageQuery": "Print out the description for each relational database in the lake.",
-    "goldSqlQuery": "select short_name, description form node_rdbms",
+    "goldSqlQuery": "select short_name, description from node_rdbms",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -24793,7 +24793,7 @@
   },
   {
     "naturalLanguageQuery": "Sort all files in the lake by extension and creation date.",
-    "goldSqlQuery": "select short_name, extension, creation_date from node_file order by extension asc creation_date asc",
+    "goldSqlQuery": "select short_name, extension, creation_date from node_file order by extension asc, creation_date asc",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -24816,7 +24816,7 @@
   },
   {
     "naturalLanguageQuery": "Order files by extension and from oldest to newest.",
-    "goldSqlQuery": "select short_name, extension, creation_date from node_file order by extension asc creation_date asc",
+    "goldSqlQuery": "select short_name, extension, creation_date from node_file order by extension asc, creation_date asc",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -24931,7 +24931,7 @@
   },
   {
     "naturalLanguageQuery": "List the extension, creation date and last modified date for all files in the lake.",
-    "goldSqlQuery": "select short_name, creation_date, modified date from node_file",
+    "goldSqlQuery": "select short_name, creation_date, modified_date from node_file",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -26699,7 +26699,7 @@
   },
   {
     "naturalLanguageQuery": "What are the 5 biggest folders in the lake?",
-    "goldSqlQuery": "select short_name from node_directory order_by dsize limit 5",
+    "goldSqlQuery": "select short_name from node_directory order by dsize limit 5",
     "isAggregate": false,
     "isConditional": false,
     "tables": [
@@ -28069,7 +28069,7 @@
   },
   {
     "naturalLanguageQuery": "Among assets created in the past one day, show the number of assets owned by each user account id.",
-    "goldSqlQuery": "select source_node_id, count(*) from edge_own where creation_date >= datetime('now', '-24 hours') group by source_node_id ",
+    "goldSqlQuery": "select source_node_id, count(*) from edge_own where creation_date >= now() - interval '24 hours' group by source_node_id ",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -28092,7 +28092,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets of each type id were created in the last 3 days?",
-    "goldSqlQuery": "select type_id, count(*) from node where creation_date >= datetime('now', '-3 days') group by type_id",
+    "goldSqlQuery": "select type_id, count(*) from node where creation_date >= now() - interval '3 days' group by type_id",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -28115,7 +28115,7 @@
   },
   {
     "naturalLanguageQuery": "Show the ids for all folders that contain more than 10 files and were created in the past one week.",
-    "goldSqlQuery": "select source_node_id, count(*) from edge_has_dir_file where creation_date >= datetime('now', '-7 days') group by source_node_id having count(*) > 10",
+    "goldSqlQuery": "select source_node_id, count(*) from edge_has_dir_file where creation_date >= now() - interval '7 days' group by source_node_id having count(*) > 10",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -28299,7 +28299,7 @@
   },
   {
     "naturalLanguageQuery": "Among assets created in the past one day, show the number of assets owned by each user account id.",
-    "goldSqlQuery": "select source_node_id, count(*) from edge_own where creation_date >= datetime('now', '-24 hours') group by source_node_id ",
+    "goldSqlQuery": "select source_node_id, count(*) from edge_own where creation_date >= now() - interval '24 hours' group by source_node_id ",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -28322,7 +28322,7 @@
   },
   {
     "naturalLanguageQuery": "How many assets of each type id were created in the last 3 days?",
-    "goldSqlQuery": "select type_id, count(*) from node where creation_date >= datetime('now', '-3 days') group by type_id",
+    "goldSqlQuery": "select type_id, count(*) from node where creation_date >= now() - interval '3 days' group by type_id",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
@@ -28345,7 +28345,7 @@
   },
   {
     "naturalLanguageQuery": "Show the ids for all folders that contain more than 10 files and were created in the past one week.",
-    "goldSqlQuery": "select source_node_id, count(*) from edge_has_dir_file where creation_date >= datetime('now', '-7 days') group by source_node_id having count(*) > 10",
+    "goldSqlQuery": "select source_node_id, count(*) from edge_has_dir_file where creation_date >= now() - interval '7 days' group by source_node_id having count(*) > 10",
     "isAggregate": true,
     "isConditional": true,
     "tables": [
