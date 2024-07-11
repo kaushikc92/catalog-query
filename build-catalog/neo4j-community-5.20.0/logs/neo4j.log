@@ -344,3 +344,22 @@ Caused by: java.lang.RuntimeException: Transaction logs are missing and recovery
 2024-07-03 06:17:56.221+0000 INFO  Neo4j Server shutdown initiated by request
 2024-07-03 06:17:56.221+0000 INFO  Stopping...
 2024-07-03 06:18:04.499+0000 INFO  Stopped.
+2024-07-11 16:40:44.771+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-07-11 16:40:44.776+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-07-11 16:40:44.777+0000 INFO  Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/user-logs.xml'
+2024-07-11 16:40:44.784+0000 WARN  Use of deprecated setting 'dbms.tx_log.rotation.size'. It is replaced by 'db.tx_log.rotation.size'.
+2024-07-11 16:40:44.796+0000 INFO  Starting...
+2024-07-11 16:40:46.250+0000 INFO  This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-07-11 16:40:47.384+0000 INFO  ======== Neo4j 5.20.0 ========
+2024-07-11 16:40:49.944+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-07-11 16:40:50.008+0000 INFO  Bolt enabled on localhost:7687.
+2024-07-11 16:40:50.779+0000 INFO  HTTP enabled on localhost:7474.
+2024-07-11 16:40:50.780+0000 INFO  Remote interface available at http://localhost:7474/
+2024-07-11 16:40:50.783+0000 INFO  id: 4B38F1E6384AE5E1E2F6E9A2EB0FB497B653E8F46523C04A94F59B9C5039E172
+2024-07-11 16:40:50.783+0000 INFO  name: system
+2024-07-11 16:40:50.784+0000 INFO  creationDate: 2024-06-19T16:26:31.604Z
+2024-07-11 16:40:50.784+0000 INFO  Started.
+2024-07-11 16:45:11.596+0000 WARN  [bolt-8] The client is unauthorized due to authentication failure.
+2024-07-11 17:24:43.167+0000 INFO  Neo4j Server shutdown initiated by request
+2024-07-11 17:24:43.168+0000 INFO  Stopping...
+2024-07-11 17:24:55.307+0000 INFO  Stopped.

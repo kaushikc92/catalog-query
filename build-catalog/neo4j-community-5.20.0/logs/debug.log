@@ -10267,3 +10267,751 @@ Caused by: java.lang.RuntimeException: Transaction logs are missing and recovery
 2024-07-03 06:17:58.625+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping 0 connections for connector bolt
 2024-07-03 06:17:58.625+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped all remaining connections for connector bolt
 2024-07-03 06:18:03.678+0000 INFO  [o.n.b.BoltServer] Bolt server has been shut down
+2024-07-11 16:40:45.458+0000 INFO  [o.n.g.f.m.GlobalModule] Logging config in use: File '/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/server-logs.xml'
+2024-07-11 16:40:45.653+0000 WARN  [o.n.k.i.JvmChecker] The max heap memory has not been configured. It is recommended that it is always explicitly configured, to ensure the system has a balanced configuration. Until then, a JVM computed heuristic of 32178700288 bytes is used instead. If you are running neo4j server, you need to configure server.memory.heap.max_size in neo4j.conf. If you are running neo4j embedded, you have to launch the JVM with -Xmx set to a value. You can run neo4j-admin server memory-recommendation for memory configuration suggestions.
+2024-07-11 16:40:45.654+0000 WARN  [o.n.k.i.JvmChecker] The initial heap memory has not been configured. It is recommended that it is always explicitly configured, to ensure the system has a balanced configuration. Until then, a JVM computed heuristic of 2147483648 bytes is used instead. If you are running neo4j server, you need to configure server.memory.heap.initial_size in neo4j.conf. If you are running neo4j embedded, you have to launch the JVM with -Xms set to a value. You can run neo4j-admin server memory-recommendation for memory configuration suggestions.
+2024-07-11 16:40:45.742+0000 WARN  [o.n.i.p.PageCache] The server.memory.pagecache.size setting has not been configured. It is recommended that this setting is always explicitly configured, to ensure the system has a balanced configuration. Until then, a computed heuristic value of 21474836480 bytes will be used instead. Run `neo4j-admin memory-recommendation` for memory configuration suggestions.
+2024-07-11 16:40:46.209+0000 INFO  [o.n.i.d.DiagnosticsManager] 
+                                                                ********************************************************************************
+                                                                                             [ System diagnostics ]                             
+                                                                ********************************************************************************
+                                                                --------------------------------------------------------------------------------
+                                                                                         [ System memory information ]                          
+                                                                --------------------------------------------------------------------------------
+                                                                Total Physical memory: 502.5GiB
+                                                                Free Physical memory: 435.0GiB
+                                                                Committed virtual memory: 37.89GiB
+                                                                Total swap space: 8.000GiB
+                                                                Free swap space: 8.000GiB
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                           [ JVM memory information ]                           
+                                                                --------------------------------------------------------------------------------
+                                                                Free  memory: 275.1MiB
+                                                                Total memory: 320.0MiB
+                                                                Max   memory: 29.97GiB
+                                                                Garbage Collector: G1 Young Generation: [G1 Eden Space, G1 Survivor Space, G1 Old Gen]
+                                                                Garbage Collector: G1 Old Generation: [G1 Eden Space, G1 Survivor Space, G1 Old Gen]
+                                                                Memory Pool: CodeHeap 'non-nmethods' (Non-heap memory): committed=4.063MiB, used=3.984MiB, max=8.379MiB, threshold=0B
+                                                                Memory Pool: Metaspace (Non-heap memory): committed=21.94MiB, used=21.62MiB, max=-1B, threshold=0B
+                                                                Memory Pool: CodeHeap 'profiled nmethods' (Non-heap memory): committed=6.563MiB, used=6.524MiB, max=115.8MiB, threshold=0B
+                                                                Memory Pool: Compressed Class Space (Non-heap memory): committed=2.438MiB, used=2.315MiB, max=1.000GiB, threshold=0B
+                                                                Memory Pool: G1 Eden Space (Heap memory): committed=176.0MiB, used=0B, max=-1B, threshold=?
+                                                                Memory Pool: G1 Old Gen (Heap memory): committed=128.0MiB, used=36.10MiB, max=29.97GiB, threshold=0B
+                                                                Memory Pool: G1 Survivor Space (Heap memory): committed=16.00MiB, used=1.954MiB, max=-1B, threshold=?
+                                                                Memory Pool: CodeHeap 'non-profiled nmethods' (Non-heap memory): committed=2.438MiB, used=1.815MiB, max=115.8MiB, threshold=0B
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                        [ Operating system information ]                        
+                                                                --------------------------------------------------------------------------------
+                                                                Operating System: Linux; version: 5.15.0-113-generic; arch: amd64; cpus: 64
+                                                                Max number of file descriptors: 1048576
+                                                                Number of open file descriptors: 240
+                                                                Process id: 857202
+                                                                Byte order: LITTLE_ENDIAN
+                                                                Local timezone: America/Chicago
+                                                                Memory page size: 4096
+                                                                Unaligned memory access allowed: true
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                              [ JVM information ]                               
+                                                                --------------------------------------------------------------------------------
+                                                                VM Name: OpenJDK 64-Bit Server VM
+                                                                VM Vendor: Eclipse Adoptium
+                                                                VM Version: 17.0.11+9
+                                                                JIT compiler: HotSpot 64-Bit Tiered Compilers
+                                                                VM Arguments: [-XX:+UseG1GC, -XX:-OmitStackTraceInFastThrow, -XX:+AlwaysPreTouch, -XX:+UnlockExperimentalVMOptions, -XX:+TrustFinalNonStaticFields, -XX:+DisableExplicitGC, -Djdk.nio.maxCachedBufferSize=1024, -Dio.netty.tryReflectionSetAccessible=true, -Djdk.tls.ephemeralDHKeySize=2048, -Djdk.tls.rejectClientInitiatedRenegotiation=true, -XX:FlightRecorderOptions=stackdepth=256, -XX:+UnlockDiagnosticVMOptions, -XX:+DebugNonSafepoints, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.base/java.io=ALL-UNNAMED, --add-opens=java.base/sun.nio.ch=ALL-UNNAMED, -Dlog4j2.disable.jmx=true, -Dfile.encoding=UTF-8]
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                               [ Java classpath ]                               
+                                                                --------------------------------------------------------------------------------
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-lucene-index-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jersey-common-2.34.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/proto-google-common-protos-2.29.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-slotted-runtime-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-crypto-core-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jakarta.inject-2.6.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-logical-plans-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jline-reader-3.21.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-ast-factory-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jakarta.annotation-api-1.3.5.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jettison-1.5.4.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-wal-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-logging-1.3.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-bolt-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-query-router-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jakarta.xml.bind-api-2.3.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-data-collector-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-annotations-2.17.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-handler-proxy-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cloud-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jakarta.validation-api-2.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-rewriting-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-native-epoll-4.1.109.Final-linux-x86_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/gson-2.10.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-values-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/flight-core-15.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-api-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-native-kqueue-4.1.109.Final-osx-aarch_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-crypto-cipher-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/failureaccess-1.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/WMI4Java-1.6.3.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-import-tool-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jakarta.activation-api-1.2.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-codec-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/ipaddress-5.5.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-databind-2.17.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/lucene-backward-codecs-9.10.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-common-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-spatial-index-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jline-terminal-3.21.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-push-to-cloud-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-macros-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-servlet-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-cst-factory-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-native-epoll-4.1.109.Final-linux-aarch_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-crypto-hash-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-rendering-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-text-1.11.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-boringssl-static-2.0.65.Final-osx-aarch_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jersey-hk2-2.34.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/hk2-api-2.6.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-fabric-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-javacc-parser-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/arrow-vector-15.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-config-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-compress-1.26.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/hk2-utils-2.6.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-codec-http2-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-collections-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-csv-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-boringssl-static-2.0.65.Final-linux-x86_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-java-driver-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jna-5.14.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/slf4j-api-2.0.9.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-server-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/caffeine-3.1.8.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-physical-planning-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-util-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-netty-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-native-unix-common-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/magnolia_2.13-1.1.8.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-graph-algo-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-fulltext-index-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-interpreted-runtime-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/annotations-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/cypher-literal-interpreter-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-security-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/istack-commons-runtime-3.0.8.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-common-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/http2-server-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-procedure-api-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/http2-hpack-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/FastInfoset-1.2.16.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/eclipse-collections-11.1.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-boringssl-static-2.0.65.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-command-line-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-protobuf-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/http2-common-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-resource-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-context-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-native-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-configuration-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/reactor-core-3.6.5.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-util-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/arrow-memory-netty-15.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/cypher-shell-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf/*
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-kernel-api-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-core-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-config-core-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/antlr4-runtime-4.13.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-webapp-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-hashes-argon2-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-xml-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/scala-library-2.13.11.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-runtime-util-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jersey-server-2.34.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-codec-1.16.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-dsl-2023.9.5.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-io-2.16.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/kiama_2.13-2.5.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/txw2-2.3.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/server-api-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jline-terminal-jansi-3.21.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/zstd-proxy-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/cypher-ast-factory-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-procedure-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-alpn-server-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-record-storage-engine-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/guava-33.1.0-jre.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-browser-5.15.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-planner-spi-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/eclipse-collections-api-11.1.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/protobuf-java-3.25.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-index-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/lucene-core-9.10.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-antlr-parser-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/log4j-layout-template-json-2.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-io-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/hk2-locator-2.6.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-event-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/log4j-api-2.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-lock-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/byte-buddy-1.14.12.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-native-kqueue-4.1.109.Final-osx-x86_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-alpn-java-server-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-resolver-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-slf4j-provider-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-id-generator-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-ir-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-boringssl-static-2.0.65.Final-linux-aarch_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-lang3-3.14.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-consistency-check-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-notifications-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-protobuf-lite-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/scala-collection-contrib_2.13-0.3.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jersey-container-servlet-2.34.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jakarta.ws.rs-api-2.1.6.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-logging-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-boringssl-static-2.0.65.Final-osx-x86_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-handler-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-classes-2.0.65.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-expressions-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-classes-epoll-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jersey-client-2.34.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/arrow-format-15.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-lang-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-module-jaxb-annotations-2.17.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-codegen-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/javassist-3.25.0-GA.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-codec-http-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-server-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-transport-classes-kqueue-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-io-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-antlr-parser-listener-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-schema-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-security-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-ast-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/lucene-queryparser-9.10.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/zstd-jni-1.5.6-2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-storage-engine-util-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-http-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-bootcheck-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-concurrent-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/log4j-core-2.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-expression-evaluator-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jsr305-3.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/perfmark-api-0.26.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-hashes-bcrypt-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-front-end-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/stax-ex-1.8.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-cache-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-core-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/picocli-4.7.5.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jersey-container-servlet-core-2.34.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-token-api-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/reactive-streams-1.0.4.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-diagnostics-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-buffer-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jProcesses-1.6.5.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-unsafe-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/argparse4j-0.9.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-layout-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-tcnative-boringssl-static-2.0.65.Final-windows-x86_64.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/commons-configuration2-2.10.1.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-ssl-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/shiro-cache-2.0.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jansi-2.4.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-datatype-jsr310-2.16.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-servlet-api-4.0.6.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/plugins/*
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jetty-util-10.0.20.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-capabilities-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/flatbuffers-java-23.5.26.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/scala-reflect-2.13.11.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-graphdb-api-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jaxb-runtime-2.3.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/animal-sniffer-annotations-1.23.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-import-util-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-dbms-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-jaxrs-base-2.17.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-exceptions-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-cypher-planner-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-udc-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-core-2.17.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/lucene-analysis-common-9.10.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/netty-codec-socks-4.1.109.Final.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-monitoring-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jPowerShell-3.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/grpc-stub-1.62.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-gql-status-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/arrow-memory-core-15.0.2.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jctools-core-4.0.3.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/neo4j-kernel-5.20.0.jar
+                                                                 [classpath] /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib/jackson-jaxrs-json-provider-2.17.0.jar
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                                [ Library path ]                                
+                                                                --------------------------------------------------------------------------------
+                                                                /usr/java/packages/lib
+                                                                /usr/lib64
+                                                                /usr/lib64
+                                                                /usr/lib
+                                                                /usr/lib
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                             [ System properties ]                              
+                                                                --------------------------------------------------------------------------------
+                                                                jdk.tls.rejectClientInitiatedRenegotiation = true
+                                                                sun.jnu.encoding = UTF-8
+                                                                sun.arch.data.model = 64
+                                                                user.timezone = America/Chicago
+                                                                sun.java.launcher = SUN_STANDARD
+                                                                user.country = US
+                                                                sun.boot.library.path = /usr/lib/jvm/temurin-17-jdk-amd64/lib
+                                                                sun.java.command = org.neo4j.server.CommunityEntryPoint --home-dir=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0 --config-dir=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/conf
+                                                                jdk.debug = release
+                                                                io.netty.tryReflectionSetAccessible = true
+                                                                sun.cpu.endian = little
+                                                                user.home = /u/z/z/zzheng
+                                                                user.language = en
+                                                                file.separator = /
+                                                                sun.stdout.encoding = UTF-8
+                                                                jdk.tls.ephemeralDHKeySize = 2048
+                                                                sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+                                                                user.name = zzheng
+                                                                jdk.nio.maxCachedBufferSize = 1024
+                                                                path.separator = :
+                                                                file.encoding = UTF-8
+                                                                jnidispatch.path = /u/z/z/zzheng/.cache/JNA/temp/jna10081290543976937792.tmp
+                                                                jna.loaded = true
+                                                                user.dir = /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/bin
+                                                                native.encoding = UTF-8
+                                                                sun.io.unicode.encoding = UnicodeLittle
+                                                                log4j2.disable.jmx = true
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                      [ (IANA) TimeZone database version ]                      
+                                                                --------------------------------------------------------------------------------
+                                                                  TimeZone version: 2024a (available for 603 zone identifiers)
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                            [ Network information ]                             
+                                                                --------------------------------------------------------------------------------
+                                                                Interface docker0:
+                                                                    address: 172.17.0.1
+                                                                Interface eno1:
+                                                                    address: 2607:f388:1080:2580:ae1f:6bff:fef5:abc4%eno1
+                                                                    address: fe80:0:0:0:ae1f:6bff:fef5:abc4%eno1
+                                                                    address: 128.105.37.183
+                                                                Interface lo:
+                                                                    address: 0:0:0:0:0:0:0:1%lo
+                                                                    address: 127.0.0.1
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                         [ Native access information ]                          
+                                                                --------------------------------------------------------------------------------
+                                                                Native access details: Linux native access is available.
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                                [ DBMS config ]                                 
+                                                                --------------------------------------------------------------------------------
+                                                                DBMS provided settings:
+                                                                db.tx_log.rotation.retention_policy=2 days 2G
+                                                                db.tx_log.rotation.size=90.00MiB
+                                                                server.bolt.enabled=true
+                                                                server.directories.import=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/import
+                                                                server.directories.neo4j_home=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0
+                                                                server.http.enabled=true
+                                                                server.https.enabled=false
+                                                                server.jvm.additional=-XX:+UseG1GC
+-XX:-OmitStackTraceInFastThrow
+-XX:+AlwaysPreTouch
+-XX:+UnlockExperimentalVMOptions
+-XX:+TrustFinalNonStaticFields
+-XX:+DisableExplicitGC
+-Djdk.nio.maxCachedBufferSize=1024
+-Dio.netty.tryReflectionSetAccessible=true
+-Djdk.tls.ephemeralDHKeySize=2048
+-Djdk.tls.rejectClientInitiatedRenegotiation=true
+-XX:FlightRecorderOptions=stackdepth=256
+-XX:+UnlockDiagnosticVMOptions
+-XX:+DebugNonSafepoints
+--add-opens=java.base/java.nio=ALL-UNNAMED
+--add-opens=java.base/java.io=ALL-UNNAMED
+--add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+-Dlog4j2.disable.jmx=true
+                                                                server.windows_service_name=neo4j
+                                                                Directories in use:
+                                                                server.directories.data=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data
+                                                                server.directories.dumps.root=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/dumps
+                                                                server.directories.import=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/import
+                                                                server.directories.lib=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/lib
+                                                                server.directories.licenses=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/licenses
+                                                                server.directories.logs=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/logs
+                                                                server.directories.plugins=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/plugins
+                                                                server.directories.run=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/run
+                                                                server.directories.script.root=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/scripts
+                                                                server.directories.transaction.logs.root=/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/transactions
+                                                                
+                                                                --------------------------------------------------------------------------------
+                                                                                                 [ Packaging ]                                  
+                                                                --------------------------------------------------------------------------------
+                                                                Edition: Community
+                                                                Package Type: tar
+                                                                
+2024-07-11 16:40:46.249+0000 INFO  [o.n.d.i.DefaultIdentityModule] Found ServerId on disk: ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-07-11 16:40:46.250+0000 INFO  [o.n.d.i.DefaultIdentityModule] This instance is ServerId{f88768bd} (f88768bd-6d93-406f-9a36-21d926f91c9e)
+2024-07-11 16:40:47.385+0000 INFO  [o.n.s.CommunityNeoWebServer] ======== Neo4j 5.20.0 ========
+2024-07-11 16:40:47.409+0000 INFO  [o.n.d.d.DatabaseLifecycles] Creating 'DatabaseId{00000000[system]}'.
+2024-07-11 16:40:47.651+0000 INFO  [o.n.b.BoltServer] Using connector transport epoll
+2024-07-11 16:40:47.857+0000 INFO  [o.n.b.BoltServer] Configured external Bolt connector with listener address localhost/127.0.0.1:7687
+2024-07-11 16:40:47.858+0000 INFO  [o.n.b.BoltServer] Bolt server loaded
+2024-07-11 16:40:47.899+0000 INFO  [o.n.d.d.DatabaseLifecycles] Starting 'DatabaseId{00000000[system]}'.
+2024-07-11 16:40:48.449+0000 INFO  [o.n.k.i.t.l.f.c.CheckpointLogFile] [system/00000000] Scanning log file with version 0 for checkpoint entries
+2024-07-11 16:40:48.502+0000 INFO  [o.n.k.i.s.f.RecordFormatSelector] [system/00000000] Selected RecordFormat:PageAlignedV5_0[aligned-1.1] record format from store /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/databases/system
+2024-07-11 16:40:48.503+0000 INFO  [o.n.k.i.s.f.RecordFormatSelector] [system/00000000] Selected format from the store files: RecordFormat:PageAlignedV5_0[aligned-1.1]
+2024-07-11 16:40:49.116+0000 INFO  [o.n.i.d.DiagnosticsManager] [system/00000000] 
+                                                                [system/00000000] ********************************************************************************
+                                                                [system/00000000]                               [ Database: system ]                              
+                                                                [system/00000000] ********************************************************************************
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000]                                   [ Version ]                                   
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000] DBMS: community record-aligned-1.1
+                                                                [system/00000000] Kernel version: 5.20.0
+                                                                [system/00000000] 
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000]                                 [ Store files ]                                 
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000] Disk space on partition (Total / Free / Free %): 2199023254528 / 2199023254528 / 100
+                                                                [system/00000000] Storage files stored on file store: afs
+                                                                [system/00000000] Storage files: (filename : modification date - size)
+                                                                [system/00000000]   database_lock: 2024-06-19 16:26:31.000+0000 - 0B
+                                                                [system/00000000]   neostore: 2024-06-19 16:26:31.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.counts.db: 2024-07-11 16:40:48.000+0000 - 48.00KiB
+                                                                [system/00000000]   neostore.indexstats.db: 2024-07-11 16:40:48.000+0000 - 48.00KiB
+                                                                [system/00000000]   neostore.labeltokenstore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.labeltokenstore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.labeltokenstore.db.names: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.labeltokenstore.db.names.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.nodestore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.nodestore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.nodestore.db.labels: 2024-06-19 16:26:31.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.nodestore.db.labels.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.propertystore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.propertystore.db.arrays: 2024-06-19 16:26:31.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.propertystore.db.arrays.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.propertystore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.propertystore.db.index: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.propertystore.db.index.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.propertystore.db.index.keys: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.propertystore.db.index.keys.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.propertystore.db.strings: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.propertystore.db.strings.id: 2024-07-11 16:40:48.000+0000 - 48.00KiB
+                                                                [system/00000000]   neostore.relationshipgroupstore.db: 2024-06-19 16:26:31.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.relationshipgroupstore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.relationshipgroupstore.degrees.db: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.relationshipstore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.relationshipstore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.relationshiptypestore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.relationshiptypestore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.relationshiptypestore.db.names: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.relationshiptypestore.db.names.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   neostore.schemastore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [system/00000000]   neostore.schemastore.db.id: 2024-07-11 16:40:48.000+0000 - 40.00KiB
+                                                                [system/00000000]   schema:
+                                                                [system/00000000]     index:
+                                                                [system/00000000]       range-1.0:
+                                                                [system/00000000]         3:
+                                                                [system/00000000]           index-3: 2024-07-03 06:17:58.000+0000 - 48.00KiB
+                                                                [system/00000000]         - Total: 2024-06-19 16:26:52.000+0000 - 48.00KiB
+                                                                [system/00000000]         4:
+                                                                [system/00000000]           index-4: 2024-07-03 06:17:58.000+0000 - 48.00KiB
+                                                                [system/00000000]         - Total: 2024-06-19 16:26:52.000+0000 - 48.00KiB
+                                                                [system/00000000]         7:
+                                                                [system/00000000]           index-7: 2024-07-03 06:17:58.000+0000 - 48.00KiB
+                                                                [system/00000000]         - Total: 2024-06-19 16:26:55.000+0000 - 48.00KiB
+                                                                [system/00000000]         8:
+                                                                [system/00000000]           index-8: 2024-07-03 06:17:58.000+0000 - 48.00KiB
+                                                                [system/00000000]         - Total: 2024-06-19 16:26:55.000+0000 - 48.00KiB
+                                                                [system/00000000]       - Total: 2024-06-19 16:26:55.000+0000 - 192.0KiB
+                                                                [system/00000000]       token-lookup-1.0:
+                                                                [system/00000000]         1:
+                                                                [system/00000000]           index-1: 2024-07-03 06:17:58.000+0000 - 48.00KiB
+                                                                [system/00000000]         - Total: 2024-06-19 16:26:50.000+0000 - 48.00KiB
+                                                                [system/00000000]         2:
+                                                                [system/00000000]           index-2: 2024-07-03 06:17:58.000+0000 - 48.00KiB
+                                                                [system/00000000]         - Total: 2024-06-19 16:26:50.000+0000 - 48.00KiB
+                                                                [system/00000000]       - Total: 2024-06-19 16:26:50.000+0000 - 96.00KiB
+                                                                [system/00000000]     - Total: 2024-06-19 16:26:52.000+0000 - 288.0KiB
+                                                                [system/00000000]   - Total: 2024-06-19 16:26:50.000+0000 - 288.0KiB
+                                                                [system/00000000] Storage summary: 
+                                                                [system/00000000]   Total size of store: 1.086MiB
+                                                                [system/00000000]   Total size of mapped files: 408.0KiB
+                                                                [system/00000000] 
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000]                               [ Transaction log ]                               
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000] Transaction log files stored on file store: afs
+                                                                [system/00000000] Transaction log metadata:
+                                                                [system/00000000]  - current kernel version used in transactions: V5_20
+                                                                [system/00000000]  - last committed transaction id: 38
+                                                                [system/00000000] Transaction log files:
+                                                                [system/00000000]  - existing transaction log versions: 0-0
+                                                                [system/00000000]  - oldest transaction 2 found in log with version 0
+                                                                [system/00000000]  - files: (filename : creation date - size)
+                                                                [system/00000000]      neostore.transaction.db.0: 1970-01-01 00:00:00.000+0000 - 90.00MiB
+                                                                [system/00000000]  - total size of files: 90.00MiB
+                                                                [system/00000000] Checkpoint log files:
+                                                                [system/00000000]  - existing checkpoint log versions: 0-0
+                                                                [system/00000000]  - last checkpoint: CheckpointInfo[transactionLogPosition=LogPosition{logVersion=0, byteOffset=20644}, storeId=StoreId{creationTime=1718814391604, random=8669099996884765034, storageEngineName='record', formatName='aligned', majorVersion=1, minorVersion=1}, checkpointEntryPosition=LogPosition{logVersion=0, byteOffset=824}, channelPositionAfterCheckpoint=LogPosition{logVersion=0, byteOffset=1056}, checkpointFilePostReadPosition=LogPosition{logVersion=0, byteOffset=1056}, kernelVersion=KernelVersion{V5_20,version=17}, kernelVersionByte=17, transactionId=TransactionId[id=38, appendIndex=38, kernelVersion=KernelVersion{V5_20,version=17}, checksum=-1594031959, commitTimestamp=1718814483928, consensusIndex=-1], appendIndex=38, reason=Checkpoint triggered by "Database shutdown" @ txId: 38, consensusIndexInCheckpoint=true]
+                                                                [system/00000000] 
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000]                                   [ Id usage ]                                  
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000] ArrayPropertyStore[neostore.nodestore.db.labels]: used=1 high=0
+                                                                [system/00000000] NodeStore[neostore.nodestore.db]: used=6 high=5
+                                                                [system/00000000] StringPropertyStore[neostore.propertystore.db.index.keys]: used=44 high=43
+                                                                [system/00000000] PropertyIndexStore[neostore.propertystore.db.index]: used=31 high=30
+                                                                [system/00000000] StringPropertyStore[neostore.propertystore.db.strings]: used=5 high=4
+                                                                [system/00000000] ArrayPropertyStore[neostore.propertystore.db.arrays]: used=1 high=0
+                                                                [system/00000000] PropertyStore[neostore.propertystore.db]: used=59 high=58
+                                                                [system/00000000] RelationshipStore[neostore.relationshipstore.db]: used=2 high=1
+                                                                [system/00000000] StringPropertyStore[neostore.relationshiptypestore.db.names]: used=2 high=1
+                                                                [system/00000000] RelationshipTypeStore[neostore.relationshiptypestore.db]: used=1 high=0
+                                                                [system/00000000] StringPropertyStore[neostore.labeltokenstore.db.names]: used=5 high=4
+                                                                [system/00000000] LabelTokenStore[neostore.labeltokenstore.db]: used=4 high=3
+                                                                [system/00000000] SchemaStore[neostore.schemastore.db]: used=11 high=10
+                                                                [system/00000000] RelationshipGroupStore[neostore.relationshipgroupstore.db]: used=1 high=0
+                                                                [system/00000000] NeoStore[neostore]: used=-1 high=-1
+                                                                [system/00000000] 
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000]                                   [ Metadata ]                                  
+                                                                [system/00000000] --------------------------------------------------------------------------------
+                                                                [system/00000000] EXTERNAL_STORE_UUID (Database identifier exposed as external store identity. Generated on creation and never updated): ab0c8e1c-f5d6-490c-94af-2c32fb5e5591
+                                                                [system/00000000] DATABASE_ID (The last used DatabaseId for this database): null
+                                                                [system/00000000] LEGACY_STORE_VERSION (Legacy store format version. This field is used from 5.0 onwards only to distinguish non-migrated pre 5.0 metadata stores.): -3523014627327384477
+                                                                [system/00000000] STORE_ID (Store ID): StoreId{creationTime=1718814391604, random=8669099996884765034, storageEngineName='record', formatName='aligned', majorVersion=1, minorVersion=1}
+                                                                [system/00000000] 
+2024-07-11 16:40:49.250+0000 INFO  [o.n.k.i.a.i.IndexingService] [system/00000000] IndexingService.init: indexes not specifically mentioned above are ONLINE. Total 6 indexes. Processed in 97ms
+2024-07-11 16:40:49.255+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] Requirement `Database unavailable` makes database system unavailable.
+2024-07-11 16:40:49.256+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] DatabaseId{00000000[system]} is unavailable.
+2024-07-11 16:40:49.340+0000 INFO  [o.n.k.d.Database] [system/00000000] Starting transaction log [/afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/transactions/system/neostore.transaction.db.0] at version=0
+2024-07-11 16:40:49.346+0000 INFO  [o.n.k.d.Database] [system/00000000] Starting transaction log [/afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/transactions/system/checkpoint.0] at version=0
+2024-07-11 16:40:49.347+0000 INFO  [o.n.k.i.t.l.f.c.CheckpointLogFile] [system/00000000] Scanning log file with version 0 for checkpoint entries
+2024-07-11 16:40:49.353+0000 INFO  [o.n.k.i.a.i.IndexingService] [system/00000000] IndexingService.start: indexes not specifically mentioned above are ONLINE. Total 6 indexes. Processed in 0ms
+2024-07-11 16:40:49.360+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] Fulfilling of requirement 'Database unavailable' makes database system available.
+2024-07-11 16:40:49.360+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] DatabaseId{00000000[system]} is ready.
+2024-07-11 16:40:49.482+0000 INFO  [o.n.s.s.s.UserSecurityGraphComponent] Performing postInitialization step for component 'security-users' with version 4 and status CURRENT
+2024-07-11 16:40:49.482+0000 INFO  [o.n.s.s.s.UserSecurityGraphComponent] Updating the initial password in component 'security-users'
+2024-07-11 16:40:49.494+0000 INFO  [o.n.d.d.DatabaseLifecycles] Creating 'DatabaseId{09f5a2fd[neo4j]}'.
+2024-07-11 16:40:49.497+0000 INFO  [o.n.d.d.DatabaseLifecycles] Starting 'DatabaseId{09f5a2fd[neo4j]}'.
+2024-07-11 16:40:49.511+0000 INFO  [o.n.k.i.t.l.f.c.CheckpointLogFile] [neo4j/09f5a2fd] Scanning log file with version 0 for checkpoint entries
+2024-07-11 16:40:49.530+0000 INFO  [o.n.k.i.s.f.RecordFormatSelector] [neo4j/09f5a2fd] Selected RecordFormat:PageAlignedV5_0[aligned-1.1] record format from store /afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/databases/neo4j
+2024-07-11 16:40:49.530+0000 INFO  [o.n.k.i.s.f.RecordFormatSelector] [neo4j/09f5a2fd] Selected format from the store files: RecordFormat:PageAlignedV5_0[aligned-1.1]
+2024-07-11 16:40:49.874+0000 INFO  [o.n.i.d.DiagnosticsManager] [neo4j/09f5a2fd] 
+                                                                [neo4j/09f5a2fd] ********************************************************************************
+                                                                [neo4j/09f5a2fd]                               [ Database: neo4j ]                               
+                                                                [neo4j/09f5a2fd] ********************************************************************************
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd]                                   [ Version ]                                   
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd] DBMS: community record-aligned-1.1
+                                                                [neo4j/09f5a2fd] Kernel version: 5.20.0
+                                                                [neo4j/09f5a2fd] 
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd]                                 [ Store files ]                                 
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd] Disk space on partition (Total / Free / Free %): 2199023254528 / 2199023254528 / 100
+                                                                [neo4j/09f5a2fd] Storage files stored on file store: afs
+                                                                [neo4j/09f5a2fd] Storage files: (filename : modification date - size)
+                                                                [neo4j/09f5a2fd]   database_lock: 2024-06-19 16:26:57.000+0000 - 0B
+                                                                [neo4j/09f5a2fd]   neostore: 2024-06-19 16:26:56.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.counts.db: 2024-07-11 16:40:49.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.indexstats.db: 2024-07-11 16:40:49.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.labeltokenstore.db: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.labeltokenstore.db.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.labeltokenstore.db.names: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.labeltokenstore.db.names.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.nodestore.db: 2024-07-03 05:34:54.000+0000 - 24.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.nodestore.db.id: 2024-07-11 16:40:49.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.nodestore.db.labels: 2024-06-19 16:26:56.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.nodestore.db.labels.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db: 2024-07-03 05:34:53.000+0000 - 400.0KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.arrays: 2024-06-19 16:26:56.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.arrays.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.id: 2024-07-11 16:40:49.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.index: 2024-06-19 16:39:31.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.index.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.index.keys: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.index.keys.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.strings: 2024-07-03 05:34:53.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.propertystore.db.strings.id: 2024-07-11 16:40:49.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshipgroupstore.db: 2024-06-19 16:26:56.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshipgroupstore.db.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshipgroupstore.degrees.db: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshipstore.db: 2024-07-03 05:34:54.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshipstore.db.id: 2024-07-11 16:40:49.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshiptypestore.db: 2024-06-19 16:39:31.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshiptypestore.db.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshiptypestore.db.names: 2024-06-19 16:39:32.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.relationshiptypestore.db.names.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   neostore.schemastore.db: 2024-06-19 16:27:15.000+0000 - 8.000KiB
+                                                                [neo4j/09f5a2fd]   neostore.schemastore.db.id: 2024-07-11 16:40:49.000+0000 - 40.00KiB
+                                                                [neo4j/09f5a2fd]   schema:
+                                                                [neo4j/09f5a2fd]     index:
+                                                                [neo4j/09f5a2fd]       token-lookup-1.0:
+                                                                [neo4j/09f5a2fd]         1:
+                                                                [neo4j/09f5a2fd]           index-1: 2024-07-03 06:17:57.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]         - Total: 2024-06-19 16:27:15.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]         2:
+                                                                [neo4j/09f5a2fd]           index-2: 2024-07-03 06:17:57.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]         - Total: 2024-06-19 16:27:15.000+0000 - 48.00KiB
+                                                                [neo4j/09f5a2fd]       - Total: 2024-06-19 16:27:15.000+0000 - 96.00KiB
+                                                                [neo4j/09f5a2fd]     - Total: 2024-06-19 16:27:15.000+0000 - 96.00KiB
+                                                                [neo4j/09f5a2fd]   - Total: 2024-06-19 16:27:15.000+0000 - 96.00KiB
+                                                                [neo4j/09f5a2fd] Storage summary: 
+                                                                [neo4j/09f5a2fd]   Total size of store: 1.352MiB
+                                                                [neo4j/09f5a2fd]   Total size of mapped files: 656.0KiB
+                                                                [neo4j/09f5a2fd] 
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd]                               [ Transaction log ]                               
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd] Transaction log files stored on file store: afs
+                                                                [neo4j/09f5a2fd] Transaction log metadata:
+                                                                [neo4j/09f5a2fd]  - current kernel version used in transactions: V5_20
+                                                                [neo4j/09f5a2fd]  - last committed transaction id: 4564
+                                                                [neo4j/09f5a2fd] Transaction log files:
+                                                                [neo4j/09f5a2fd]  - existing transaction log versions: 0-0
+                                                                [neo4j/09f5a2fd]  - oldest transaction 2 found in log with version 0
+                                                                [neo4j/09f5a2fd]  - files: (filename : creation date - size)
+                                                                [neo4j/09f5a2fd]      neostore.transaction.db.0: 1970-01-01 00:00:00.000+0000 - 90.00MiB
+                                                                [neo4j/09f5a2fd]  - total size of files: 90.00MiB
+                                                                [neo4j/09f5a2fd] Checkpoint log files:
+                                                                [neo4j/09f5a2fd]  - existing checkpoint log versions: 0-0
+                                                                [neo4j/09f5a2fd]  - last checkpoint: CheckpointInfo[transactionLogPosition=LogPosition{logVersion=0, byteOffset=4121600}, storeId=StoreId{creationTime=1718814416970, random=6022804759319646959, storageEngineName='record', formatName='aligned', majorVersion=1, minorVersion=1}, checkpointEntryPosition=LogPosition{logVersion=0, byteOffset=1056}, channelPositionAfterCheckpoint=LogPosition{logVersion=0, byteOffset=1288}, checkpointFilePostReadPosition=LogPosition{logVersion=0, byteOffset=1288}, kernelVersion=KernelVersion{V5_20,version=17}, kernelVersionByte=17, transactionId=TransactionId[id=4564, appendIndex=4564, kernelVersion=KernelVersion{V5_20,version=17}, checksum=1718436058, commitTimestamp=1719984255597, consensusIndex=-1], appendIndex=4564, reason=Checkpoint triggered by "Database shutdown" @ txId: 4564, consensusIndexInCheckpoint=true]
+                                                                [neo4j/09f5a2fd] 
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd]                                   [ Id usage ]                                  
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd] ArrayPropertyStore[neostore.nodestore.db.labels]: used=1 high=0
+                                                                [neo4j/09f5a2fd] NodeStore[neostore.nodestore.db]: used=1101 high=1100
+                                                                [neo4j/09f5a2fd] StringPropertyStore[neostore.propertystore.db.index.keys]: used=37 high=36
+                                                                [neo4j/09f5a2fd] PropertyIndexStore[neostore.propertystore.db.index]: used=27 high=26
+                                                                [neo4j/09f5a2fd] StringPropertyStore[neostore.propertystore.db.strings]: used=8 high=7
+                                                                [neo4j/09f5a2fd] ArrayPropertyStore[neostore.propertystore.db.arrays]: used=1 high=0
+                                                                [neo4j/09f5a2fd] PropertyStore[neostore.propertystore.db]: used=9816 high=9815
+                                                                [neo4j/09f5a2fd] RelationshipStore[neostore.relationshipstore.db]: used=1100 high=1099
+                                                                [neo4j/09f5a2fd] StringPropertyStore[neostore.relationshiptypestore.db.names]: used=6 high=5
+                                                                [neo4j/09f5a2fd] RelationshipTypeStore[neostore.relationshiptypestore.db]: used=5 high=4
+                                                                [neo4j/09f5a2fd] StringPropertyStore[neostore.labeltokenstore.db.names]: used=6 high=5
+                                                                [neo4j/09f5a2fd] LabelTokenStore[neostore.labeltokenstore.db]: used=5 high=4
+                                                                [neo4j/09f5a2fd] SchemaStore[neostore.schemastore.db]: used=3 high=2
+                                                                [neo4j/09f5a2fd] RelationshipGroupStore[neostore.relationshipgroupstore.db]: used=1 high=0
+                                                                [neo4j/09f5a2fd] NeoStore[neostore]: used=-1 high=-1
+                                                                [neo4j/09f5a2fd] 
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd]                                   [ Metadata ]                                  
+                                                                [neo4j/09f5a2fd] --------------------------------------------------------------------------------
+                                                                [neo4j/09f5a2fd] EXTERNAL_STORE_UUID (Database identifier exposed as external store identity. Generated on creation and never updated): e868f6f9-37ea-4586-bced-09767f874223
+                                                                [neo4j/09f5a2fd] DATABASE_ID (The last used DatabaseId for this database): null
+                                                                [neo4j/09f5a2fd] LEGACY_STORE_VERSION (Legacy store format version. This field is used from 5.0 onwards only to distinguish non-migrated pre 5.0 metadata stores.): -3523014627327384477
+                                                                [neo4j/09f5a2fd] STORE_ID (Store ID): StoreId{creationTime=1718814416970, random=6022804759319646959, storageEngineName='record', formatName='aligned', majorVersion=1, minorVersion=1}
+                                                                [neo4j/09f5a2fd] 
+2024-07-11 16:40:49.900+0000 INFO  [o.n.k.i.a.i.IndexingService] [neo4j/09f5a2fd] IndexingService.init: indexes not specifically mentioned above are ONLINE. Total 2 indexes. Processed in 19ms
+2024-07-11 16:40:49.917+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/09f5a2fd] Requirement `Database unavailable` makes database neo4j unavailable.
+2024-07-11 16:40:49.917+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/09f5a2fd] DatabaseId{09f5a2fd[neo4j]} is unavailable.
+2024-07-11 16:40:49.922+0000 INFO  [o.n.k.d.Database] [neo4j/09f5a2fd] Starting transaction log [/afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/transactions/neo4j/neostore.transaction.db.0] at version=0
+2024-07-11 16:40:49.929+0000 INFO  [o.n.k.d.Database] [neo4j/09f5a2fd] Starting transaction log [/afs/cs.wisc.edu/u/z/z/zzheng/Research/catalog-query/build-catalog/neo4j-community-5.20.0/data/transactions/neo4j/checkpoint.0] at version=0
+2024-07-11 16:40:49.931+0000 INFO  [o.n.k.i.t.l.f.c.CheckpointLogFile] [neo4j/09f5a2fd] Scanning log file with version 0 for checkpoint entries
+2024-07-11 16:40:49.941+0000 INFO  [o.n.k.i.a.i.IndexingService] [neo4j/09f5a2fd] IndexingService.start: indexes not specifically mentioned above are ONLINE. Total 2 indexes. Processed in 0ms
+2024-07-11 16:40:49.943+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/09f5a2fd] Fulfilling of requirement 'Database unavailable' makes database neo4j available.
+2024-07-11 16:40:49.943+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/09f5a2fd] DatabaseId{09f5a2fd[neo4j]} is ready.
+2024-07-11 16:40:49.944+0000 INFO  [o.n.u.UserDataCollector] Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage_data/
+2024-07-11 16:40:50.008+0000 INFO  [o.n.b.p.c.c.n.SocketNettyConnector] Bolt enabled on localhost:7687.
+2024-07-11 16:40:50.010+0000 WARN  [i.n.b.ServerBootstrap] Unknown channel option 'SO_REUSEADDR' for channel '[id: 0x2935ac53]'
+2024-07-11 16:40:50.020+0000 INFO  [o.n.b.BoltServer] Bolt server started
+2024-07-11 16:40:50.020+0000 INFO  [o.n.s.A.ServerComponentsLifecycleAdapter] Starting web server
+2024-07-11 16:40:50.779+0000 INFO  [o.n.s.CommunityNeoWebServer] HTTP enabled on localhost:7474.
+2024-07-11 16:40:50.780+0000 INFO  [o.n.s.CommunityNeoWebServer] Remote interface available at http://localhost:7474/
+2024-07-11 16:40:50.780+0000 INFO  [o.n.s.A.ServerComponentsLifecycleAdapter] Web server started.
+2024-07-11 16:40:50.783+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] id: 4B38F1E6384AE5E1E2F6E9A2EB0FB497B653E8F46523C04A94F59B9C5039E172
+2024-07-11 16:40:50.783+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] name: system
+2024-07-11 16:40:50.784+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] creationDate: 2024-06-19T16:26:31.604Z
+2024-07-11 16:41:57.727+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 48 seconds. Reason: NodesAllCardinality changed from 1101.0 to 10.0, which is a divergence of 0.9909173478655767 which is greater than threshold 0.7425319240089862. Query id: 3.
+2024-07-11 16:42:20.144+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 10 seconds. Reason: IndexPropertyExistsSelectivity(IndexDescriptor(Range,Node(LabelId(1)),List(PropertyKeyId(13)),Set(),NONE,DoNotGetValue,None,false)) changed from 0.1 to 0.0, which is a divergence of 1.0 which is greater than threshold 0.7499810346201249. Query id: 82.
+2024-07-11 16:42:21.645+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 10 seconds. Reason: IndexPropertyExistsSelectivity(IndexDescriptor(Range,Node(LabelId(2)),List(PropertyKeyId(27)),Set(),NONE,DoNotGetValue,None,false)) changed from 0.1 to 0.0, which is a divergence of 1.0 which is greater than threshold 0.7499471702559104. Query id: 96.
+2024-07-11 16:42:21.823+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 10 seconds. Reason: NodesAllCardinality changed from 10.0 to 42.0, which is a divergence of 0.7619047619047619 which is greater than threshold 0.749966133923091. Query id: 97.
+2024-07-11 16:42:22.031+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 11 seconds. Reason: NodesAllCardinality changed from 10.0 to 42.0, which is a divergence of 0.7619047619047619 which is greater than threshold 0.7497040172111488. Query id: 99.
+2024-07-11 16:42:22.884+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 10 seconds. Reason: IndexPropertyExistsSelectivity(IndexDescriptor(Range,Node(LabelId(4)),List(PropertyKeyId(26)),Set(),NONE,DoNotGetValue,None,false)) changed from 0.1 to 0.0, which is a divergence of 1.0 which is greater than threshold 0.7499570389834358. Query id: 106.
+2024-07-11 16:42:23.061+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 10 seconds. Reason: CardinalityByLabelsAndRelationshipType(Some(LabelId(3)),Some(RelTypeId(4)),Some(LabelId(4))) changed from 3.0 to 32.0, which is a divergence of 0.90625 which is greater than threshold 0.7499680690450952. Query id: 107.
+2024-07-11 16:42:23.892+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 11 seconds. Reason: IndexPropertyExistsSelectivity(IndexDescriptor(Range,Node(LabelId(3)),List(PropertyKeyId(14)),Set(),NONE,DoNotGetValue,None,false)) changed from 0.1 to 0.0, which is a divergence of 1.0 which is greater than threshold 0.749659156557362. Query id: 114.
+2024-07-11 16:42:24.071+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 11 seconds. Reason: NodesAllCardinality changed from 10.0 to 49.0, which is a divergence of 0.7959183673469388 which is greater than threshold 0.7496895142573446. Query id: 115.
+2024-07-11 16:42:25.492+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 14 seconds. Reason: NodesAllCardinality changed from 10.0 to 55.0, which is a divergence of 0.8181818181818182 which is greater than threshold 0.7491309010935466. Query id: 127.
+2024-07-11 16:42:27.888+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 14 seconds. Reason: NodesAllCardinality changed from 10.0 to 64.0, which is a divergence of 0.84375 which is greater than threshold 0.7491627607994978. Query id: 150.
+2024-07-11 16:42:30.056+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 13 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 12.0 to 50.0, which is a divergence of 0.76 which is greater than threshold 0.7492639574728209. Query id: 164.
+2024-07-11 16:42:35.786+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 19 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 13.0 to 65.0, which is a divergence of 0.8 which is greater than threshold 0.7482185477764127. Query id: 218.
+2024-07-11 16:42:45.088+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 23 seconds. Reason: CardinalityByLabelsAndRelationshipType(None,Some(RelTypeId(2)),None) changed from 4.0 to 16.0, which is a divergence of 0.75 which is greater than threshold 0.7474567775724906. Query id: 299.
+2024-07-11 16:42:45.425+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 27 seconds. Reason: NodesAllCardinality changed from 27.0 to 130.0, which is a divergence of 0.7923076923076923 which is greater than threshold 0.7467111361457458. Query id: 302.
+2024-07-11 16:42:53.658+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 33 seconds. Reason: NodesAllCardinality changed from 35.0 to 163.0, which is a divergence of 0.7852760736196319 which is greater than threshold 0.7454844476969414. Query id: 376.
+2024-07-11 16:42:57.758+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 36 seconds. Reason: NodesAllCardinality changed from 41.0 to 181.0, which is a divergence of 0.7734806629834254 which is greater than threshold 0.7449933724474735. Query id: 416.
+2024-07-11 16:42:58.039+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 35 seconds. Reason: CardinalityByLabelsAndRelationshipType(Some(LabelId(1)),Some(RelTypeId(0)),None) changed from 6.0 to 26.0, which is a divergence of 0.7692307692307693 which is greater than threshold 0.7450141870142362. Query id: 419.
+2024-07-11 16:42:58.342+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 34 seconds. Reason: CardinalityByLabelsAndRelationshipType(Some(LabelId(2)),Some(RelTypeId(3)),Some(LabelId(3))) changed from 5.0 to 22.0, which is a divergence of 0.7727272727272727 which is greater than threshold 0.7453464226567322. Query id: 421.
+2024-07-11 16:43:03.435+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 40 seconds. Reason: CardinalityByLabelsAndRelationshipType(Some(LabelId(3)),Some(RelTypeId(4)),Some(LabelId(4))) changed from 32.0 to 148.0, which is a divergence of 0.7837837837837838 which is greater than threshold 0.7441828916164238. Query id: 467.
+2024-07-11 16:43:04.460+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 41 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 32.0 to 153.0, which is a divergence of 0.7908496732026143 which is greater than threshold 0.7439503165229504. Query id: 476.
+2024-07-11 16:43:21.504+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 53 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 46.0 to 208.0, which is a divergence of 0.7788461538461539 which is greater than threshold 0.7416637611544727. Query id: 646.
+2024-07-11 16:43:39.035+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 75 seconds. Reason: NodesAllCardinality changed from 48.0 to 340.0, which is a divergence of 0.8588235294117647 which is greater than threshold 0.7376144461472055. Query id: 776.
+2024-07-11 16:43:44.612+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 74 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 50.0 to 266.0, which is a divergence of 0.8120300751879699 which is greater than threshold 0.7377273390212954. Query id: 816.
+2024-07-11 16:43:45.074+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 69 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 65.0 to 268.0, which is a divergence of 0.7574626865671642 which is greater than threshold 0.7387116993086589. Query id: 820.
+2024-07-11 16:43:46.027+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 80 seconds. Reason: NodesAllCardinality changed from 54.0 to 365.0, which is a divergence of 0.852054794520548 which is greater than threshold 0.7365740159806834. Query id: 828.
+2024-07-11 16:43:46.183+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 80 seconds. Reason: NodesAllCardinality changed from 55.0 to 366.0, which is a divergence of 0.8497267759562842 which is greater than threshold 0.736574949293584. Query id: 829.
+2024-07-11 16:43:57.830+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 94 seconds. Reason: NodesAllCardinality changed from 47.0 to 415.0, which is a divergence of 0.8867469879518072 which is greater than threshold 0.7340348583897464. Query id: 938.
+2024-07-11 16:44:19.604+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 94 seconds. Reason: NodesAllCardinality changed from 130.0 to 509.0, which is a divergence of 0.7445972495088409 which is greater than threshold 0.7340066820735871. Query id: 1145.
+2024-07-11 16:44:19.916+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 94 seconds. Reason: NodesAllCardinality changed from 130.0 to 509.0, which is a divergence of 0.7445972495088409 which is greater than threshold 0.7340113161874817. Query id: 1148.
+2024-07-11 16:44:56.625+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 122 seconds. Reason: NodesAllCardinality changed from 163.0 to 651.0, which is a divergence of 0.7496159754224271 which is greater than threshold 0.7287628551858233. Query id: 1460.
+2024-07-11 16:45:11.601+0000 WARN  [o.n.b.p.c.c.c.AtomicSchedulingConnection] [bolt-8] The client is unauthorized due to authentication failure.
+2024-07-11 16:45:11.633+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 133 seconds. Reason: NodesAllCardinality changed from 181.0 to 708.0, which is a divergence of 0.7443502824858758 which is greater than threshold 0.7267789508889584. Query id: 1580.
+2024-07-11 16:45:11.882+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 133 seconds. Reason: NodesAllCardinality changed from 182.0 to 709.0, which is a divergence of 0.7433004231311706 which is greater than threshold 0.7267876740734381. Query id: 1583.
+2024-07-11 16:45:12.168+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 133 seconds. Reason: NodesAllCardinality changed from 183.0 to 710.0, which is a divergence of 0.7422535211267606 which is greater than threshold 0.7267913087954405. Query id: 1585.
+2024-07-11 16:45:15.250+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 131 seconds. Reason: CardinalityByLabelsAndRelationshipType(Some(LabelId(3)),Some(RelTypeId(4)),Some(LabelId(4))) changed from 148.0 to 563.0, which is a divergence of 0.7371225577264654 which is greater than threshold 0.7271571477142046. Query id: 1615.
+2024-07-11 16:45:19.911+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 135 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 153.0 to 580.0, which is a divergence of 0.7362068965517241 which is greater than threshold 0.7264917479881744. Query id: 1656.
+2024-07-11 16:46:06.688+0000 INFO  [o.n.c.i.c.CypherQueryCaches] [neo4j/09f5a2fd] Discarded stale query from the query cache after 165 seconds. Reason: NodesWithLabelCardinality(Some(LabelId(4))) changed from 208.0 to 751.0, which is a divergence of 0.7230359520639148 which is greater than threshold 0.7211336966032799. Query id: 2090.
+2024-07-11 17:06:59.999+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [neo4j/09f5a2fd] Checkpoint triggered by "Scheduled checkpoint for every 15 minutes threshold" @ txId: 6667 checkpoint started...
+2024-07-11 17:07:03.260+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [neo4j/09f5a2fd] Checkpoint triggered by "Scheduled checkpoint for every 15 minutes threshold" @ txId: 6667 checkpoint completed in 3s 257ms. Checkpoint flushed 123 pages (0% of total available pages), in 113 IOs. Checkpoint performed with IO limit: unlimited, paused in total 0 times( 0 millis).
+2024-07-11 17:07:03.267+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] [neo4j/09f5a2fd] No log version pruned. The strategy used was '2 days 2147483648 size'. 
+2024-07-11 17:24:43.168+0000 INFO  [o.n.g.f.DatabaseManagementServiceFactory] Shutdown started
+2024-07-11 17:24:43.197+0000 INFO  [o.n.b.BoltServer] Requested Bolt server shutdown
+2024-07-11 17:24:43.198+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping remaining idle connections for connector bolt-local
+2024-07-11 17:24:43.198+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped 0 idling connections for connector bolt-local
+2024-07-11 17:24:43.199+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping remaining idle connections for connector bolt
+2024-07-11 17:24:43.199+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped 0 idling connections for connector bolt
+2024-07-11 17:24:43.200+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopping 'DatabaseId{09f5a2fd[neo4j]}'.
+2024-07-11 17:24:43.207+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/09f5a2fd] Requirement `Database unavailable` makes database neo4j unavailable.
+2024-07-11 17:24:43.207+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [neo4j/09f5a2fd] DatabaseId{09f5a2fd[neo4j]} is unavailable.
+2024-07-11 17:24:43.211+0000 INFO  [o.n.k.d.Database] [neo4j/09f5a2fd] Waiting for closing transactions.
+2024-07-11 17:24:43.212+0000 INFO  [o.n.k.d.Database] [neo4j/09f5a2fd] All transactions are closed.
+2024-07-11 17:24:43.213+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [neo4j/09f5a2fd] Checkpoint triggered by "Database shutdown" @ txId: 6667 checkpoint started...
+2024-07-11 17:24:45.265+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [neo4j/09f5a2fd] Checkpoint triggered by "Database shutdown" @ txId: 6667 checkpoint completed in 2s 52ms. Checkpoint flushed 23 pages (0% of total available pages), in 22 IOs. Checkpoint performed with IO limit: unlimited, paused in total 0 times( 0 millis).
+2024-07-11 17:24:45.266+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] [neo4j/09f5a2fd] No log version pruned. The strategy used was '2 days 2147483648 size'. 
+2024-07-11 17:24:46.757+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopped 'DatabaseId{09f5a2fd[neo4j]}' successfully.
+2024-07-11 17:24:46.758+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopping 'DatabaseId{00000000[system]}'.
+2024-07-11 17:24:46.759+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] Requirement `Database unavailable` makes database system unavailable.
+2024-07-11 17:24:46.759+0000 INFO  [o.n.k.a.DatabaseAvailabilityGuard] [system/00000000] DatabaseId{00000000[system]} is unavailable.
+2024-07-11 17:24:46.761+0000 INFO  [o.n.k.d.Database] [system/00000000] Waiting for closing transactions.
+2024-07-11 17:24:46.761+0000 INFO  [o.n.k.d.Database] [system/00000000] All transactions are closed.
+2024-07-11 17:24:46.761+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [system/00000000] Checkpoint triggered by "Database shutdown" @ txId: 38 checkpoint started...
+2024-07-11 17:24:48.051+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] [system/00000000] Checkpoint triggered by "Database shutdown" @ txId: 38 checkpoint completed in 1s 289ms. Checkpoint flushed 31 pages (0% of total available pages), in 31 IOs. Checkpoint performed with IO limit: unlimited, paused in total 0 times( 0 millis).
+2024-07-11 17:24:48.052+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] [system/00000000] No log version pruned. The strategy used was '2 days 2147483648 size'. 
+2024-07-11 17:24:49.723+0000 INFO  [o.n.d.d.DatabaseLifecycles] Stopped 'DatabaseId{00000000[system]}' successfully.
+2024-07-11 17:24:49.732+0000 INFO  [o.n.b.BoltServer] Shutting down Bolt server
+2024-07-11 17:24:49.732+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping 0 connections for connector bolt-local
+2024-07-11 17:24:49.733+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped all remaining connections for connector bolt-local
+2024-07-11 17:24:49.733+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopping 0 connections for connector bolt
+2024-07-11 17:24:49.734+0000 INFO  [o.n.b.p.c.c.ConnectionRegistry] Stopped all remaining connections for connector bolt
+2024-07-11 17:24:54.826+0000 INFO  [o.n.b.BoltServer] Bolt server has been shut down

@@ -141,33 +141,33 @@ if __name__ == "__main__":
     }
     # SQL statements for creating tables
     sql_node_commands = [
-    "CREATE TABLE node (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE node_directory (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, dsize FLOAT);",
-    "CREATE TABLE node_file (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, extension TEXT, fsize FLOAT);",
-    "CREATE TABLE node_table (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, num_cols INT, num_rows INT);",
-    "CREATE TABLE node_column (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, col_type TEXT, max_col_length INT);",
-    "CREATE TABLE node_database (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, database_type TEXT);",
-    "CREATE TABLE node_rdbms (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, num_tables INT);",
-    "CREATE TABLE node_nosql (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE node_label (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE node_business_term (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE node_classification (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE node_owner (node_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);"
+    "CREATE TABLE node (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE node_directory (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, dsize INT);",
+    "CREATE TABLE node_file (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, extension TEXT, fsize INT);",
+    "CREATE TABLE node_table (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, num_cols INT, num_rows INT);",
+    "CREATE TABLE node_column (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, col_type TEXT, max_col_length INT);",
+    "CREATE TABLE node_database (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, database_type TEXT);",
+    "CREATE TABLE node_rdbms (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, num_tables INT);",
+    "CREATE TABLE node_nosql (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE node_label (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE node_business_term (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE node_classification (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE node_owner (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);"
     ]
     sql_edge_commands = [
-    "CREATE TABLE edge (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_has (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_has_dir_dir (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_has_dir_file (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_has_file_table (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_has_table_col (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_assoc (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_assoc_term_col (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_assoc_class_col (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_derive_table_table (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_joinable_table_table (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_unionable_table_table (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE edge_own (edge_id SERIAL PRIMARY KEY, type_id INT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);"
+    "CREATE TABLE edge (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_has (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_has_dir_dir (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_has_dir_file (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_has_file_table (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_has_table_col (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_assoc (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_assoc_term_col (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_assoc_class_col (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_derive_table_table (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_joinable_table_table (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_unionable_table_table (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
+    "CREATE TABLE edge_own (edge_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, source_node_id INT, target_node_id INT, creation_date TIMESTAMP, modified_date TIMESTAMP);"
     ]
     db_manager = PostgresManager(postgreq_params, neo4j_params, taxonomy_json_path = ["../schema/node_type_taxonomy.json","../schema/edge_type_taxonomy.json"])
     db_manager.create_tables(sql_node_commands + sql_edge_commands)
