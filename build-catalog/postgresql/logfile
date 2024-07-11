@@ -7502,3 +7502,24 @@
 2024-07-11 12:24:34.465 CDT [857532] LOG:  checkpoint starting: shutdown immediate
 2024-07-11 12:24:34.622 CDT [857532] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.048 s, total=0.164 s; sync files=4, longest=0.034 s, average=0.012 s; distance=15 kB, estimate=898 kB; lsn=0/2883ED0, redo lsn=0/2883ED0
 2024-07-11 12:24:34.663 CDT [857531] LOG:  database system is shut down
+2024-07-11 12:32:00.664 CDT [913674] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-11 12:32:00.667 CDT [913674] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-11 12:32:00.671 CDT [913674] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-07-11 12:32:00.693 CDT [913688] LOG:  database system was shut down at 2024-07-11 12:24:34 CDT
+2024-07-11 12:32:00.735 CDT [913674] LOG:  database system is ready to accept connections
+2024-07-11 12:32:16.858 CDT [913778] ERROR:  column "dsize" does not exist at character 8
+2024-07-11 12:32:16.858 CDT [913778] HINT:  Perhaps you meant to reference the column "node_file.fsize".
+2024-07-11 12:32:16.858 CDT [913778] STATEMENT:  select dsize from node_file;
+2024-07-11 12:34:13.392 CDT [915490] ERROR:  relation "node" already exists
+2024-07-11 12:34:13.392 CDT [915490] STATEMENT:  CREATE TABLE node (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);
+2024-07-11 12:37:00.793 CDT [913685] LOG:  checkpoint starting: time
+2024-07-11 12:37:27.988 CDT [913685] LOG:  checkpoint complete: wrote 242 buffers (1.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=24.029 s, sync=2.057 s, total=27.195 s; sync files=316, longest=0.598 s, average=0.007 s; distance=2642 kB, estimate=2642 kB; lsn=0/2B2D2A0, redo lsn=0/2B18948
+2024-07-11 12:42:01.070 CDT [913685] LOG:  checkpoint starting: time
+2024-07-11 12:42:11.674 CDT [913685] LOG:  checkpoint complete: wrote 98 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=9.702 s, sync=0.732 s, total=10.604 s; sync files=25, longest=0.471 s, average=0.030 s; distance=892 kB, estimate=2467 kB; lsn=0/2C00568, redo lsn=0/2BF7A58
+2024-07-11 12:45:28.033 CDT [913674] LOG:  received fast shutdown request
+2024-07-11 12:45:28.035 CDT [913674] LOG:  aborting any active transactions
+2024-07-11 12:45:28.037 CDT [913674] LOG:  background worker "logical replication launcher" (PID 913692) exited with exit code 1
+2024-07-11 12:45:28.037 CDT [913685] LOG:  shutting down
+2024-07-11 12:45:28.039 CDT [913685] LOG:  checkpoint starting: shutdown immediate
+2024-07-11 12:45:28.244 CDT [913685] LOG:  checkpoint complete: wrote 59 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.100 s, total=0.207 s; sync files=23, longest=0.027 s, average=0.005 s; distance=341 kB, estimate=2254 kB; lsn=0/2C4D0F8, redo lsn=0/2C4D0F8
+2024-07-11 12:45:28.312 CDT [913674] LOG:  database system is shut down

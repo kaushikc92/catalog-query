@@ -142,8 +142,8 @@ if __name__ == "__main__":
     # SQL statements for creating tables
     sql_node_commands = [
     "CREATE TABLE node (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP);",
-    "CREATE TABLE node_directory (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, dsize INT);",
-    "CREATE TABLE node_file (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, extension TEXT, fsize INT);",
+    "CREATE TABLE node_directory (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, dsize FLOAT);",
+    "CREATE TABLE node_file (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, extension TEXT, fsize FLOAT);",
     "CREATE TABLE node_table (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, num_cols INT, num_rows INT);",
     "CREATE TABLE node_column (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, col_type TEXT, max_col_length INT);",
     "CREATE TABLE node_database (node_id SERIAL PRIMARY KEY, type_id INT, type_name TEXT, short_name TEXT, long_name TEXT, description TEXT, creation_date TIMESTAMP, modified_date TIMESTAMP, database_type TEXT);",
