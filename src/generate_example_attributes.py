@@ -2,7 +2,7 @@ import json, re, csv
 from elasticsearch import Elasticsearch
 
 EXAMPLES_PATH = '../data/examples.csv'
-EXAMPLE_ATTRIBUTES_PATH = '../data/example_attributes.csv'
+EXAMPLE_ATTRIBUTES_PATH = '../data/example_attributes.json'
 SQL_SCHEMA_PATH = '../config/schema/sql_schema.json'
 K = 5
 INDEX = 'column_catalog'
