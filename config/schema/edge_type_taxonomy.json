@@ -1,0 +1,20 @@
+{
+  "edge": [
+    "edge_has",
+    "edge_assoc",
+    "edge_derive_table_table",
+    "edge_joinable_table_table",
+    "edge_unionable_table_table",
+    "edge_own"
+  ],
+  "edge_has": [
+    "edge_has_dir_dir",
+    "edge_has_dir_file",
+    "edge_has_file_table",
+    "edge_has_table_col"
+  ],
+  "edge_assoc": [
+    "edge_assoc_term_col",
+    "edge_assoc_class_col"
+  ]
+}

@@ -1,0 +1,701 @@
+NL_query,Gold_SQL_query
+Display description and row count for relational databases.,"select short_name, description, num_tables from node_rdbms"
+Print all records for the dim sales territory table.,select * from node_table where short_name = 'dim_sales_territory'
+Show the number of files and directories contained by each directory that has more than 25 sub items.,"select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 25"
+Print the creation timestamp and description for every database.,"select creation_date, description from node_database"
+Which are the tables in the lake owned by 'zzheng'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'zzheng'
+"For each classification that has 'water' as a prefix, how many columns are associated with it?","select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'water%'"
+List all files whose parent directory is 'part1',select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part1'
+Show the names of all tables that are unionable with other tables.,select distinct t1.short_name from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.target_node_id
+How many subfolders does each folder have?,"select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+Count the number of business terms belonging to each account.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+List all terms associated with columns.,select long_name from node_business_term
+Find all tables derived from files with prefix 'dot_vzv'.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'dot_vzv%'
+List all files immediately under the directory 'part1',select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part1'
+Print classification labels that contain the word 'market'.,select short_name from node_classification where short_name like '%market%'
+What is average size of a directory owned by each user?,"select t1.short_name, avg(t3.dsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Show all metadata for relations in the lake.,select * from edge
+How many assets does the lake contain?,select count(*) from node
+How many databases are present in the lake?,select count(*) from node_database
+Find all tables referring to individuals.,select short_name from node_table where short_name like '%person%'
+Give me all the json files in part4.,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part4' and t3.extension = 'json'
+How many tables are derived from the table 'nycc'?,select count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'nycc'
+List all the business term assets in the lake.,select short_name from node_business_term
+Find all columns that were created in the past one year and contains the term 'id' in it's name.,"select short_name, creation_date from node_column where short_name like '%id%' and creation_date >= now() - interval '365 days'"
+Which are the relational databases in the lake owned by 'cslab'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'cslab'
+Order all nosql databases in the lake by their creation date.,"select short_name, creation_date from node_nosql order by creation_date asc"
+How many tables have 'ship' in their names?,select count(*) from node_table where short_name like '%ship%'
+Count the number of columns for all tables that were created in the past 10 days and have more than 20 columns,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name having count(*) > 20"
+Print all files in the persons folder.,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'person'
+"Print the row count, column count and modification timestamp for the 25 most recently modified tables.","select short_name, num_rows, num_cols, modified_date from node_table order by modified_date desc limit 25"
+"For each table, count the number of columns associated with the classification 'customer'.","select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'customer' group by t1.node_id, t1.short_name"
+Display the size and descriptions for all folders.,"select dsize, description from node_directory"
+Print the names of relational databases that have more than 20 tables and were created within the last 2 years.,select short_name from node_rdbms where num_tables > 20 and creation_date >= now() - interval '2 years'
+Which tables were obtained from files with the prefix 'watershed_water_quality'?,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'watershed_water_quality%'
+Show the number of files belonging to each owner account.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Name the last 5 directories that were modified.,"select short_name, modified_date from node_directory order by modified_date desc limit 5"
+Display all the metadata for all databases in the lake.,select * from node_database
+List all string columns created in the past 3 days.,select short_name from node_column where col_type = 'string' and creation_date >= now() - interval '3 days'
+How many tables and files are there in the lake?,"select type_name, count(*) from node where type_name = 'table' or type_name = 'file' group by type_id, type_name "
+Find all records for columns named 'borough'.,select * from node_column where short_name = 'borough'
+Find all tables in the lake derived from excel files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = 'xlsx'
+Display all the metadata for each column in the lake.,select * from node_column
+Sort all classification labels by creation timestamp.,"select short_name, creation_date from node_classification order by creation_date asc"
+Show the number of columns for all tables that have been modified in the past month.,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+List all assets owned by the user with user id '7'.,select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 7
+Print all records for relations outlining a column within a table.,select * from edge_has_table_col
+Name any 5 directories that were modified in the past 10 days.,"select short_name, modified_date from node_directory where modified_date >= now() - interval '10 days' limit 5"
+Print all records for password salt columns.,select * from node_column where short_name = 'passwd_salt'
+"List the name, description and creation date of the employee database.","select short_name, description, creation_date from node_database where short_name = 'employee_db'"
+Show the last modified timestamp and creation date for the column named 'a_type_id'.,"select modified_date, creation_date from node_column where short_name = 'a_type_id'"
+Show all the metadata for file in directory relations.,select * from edge_has_dir_file
+List the top 10 user accounts with the most assets.,"select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 10"
+Find records for all columns that have address in their name or description.,select * from node_column where short_name like '%address%' or description like '%address%'
+When was each nosql database created?,"select short_name, creation_date from node_nosql"
+Display all the business terms in the lake.,select short_name from node_business_term
+"For each table, show the number of tables that have been derived from it in the past one week.","select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name"
+Show the names and number of columns for all tables with 10 columns or more.,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) >= 10"
+Show the number of columns and description for the 10 biggest tables by number of rows.,"select short_name, num_cols, description, num_rows from node_table order by num_rows desc limit 10"
+Count the number of columns of each type in the 'person' table.,"select col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'person' group by t3.col_type"
+Show all the business terms in the lake.,select short_name from node_business_term
+Show short name and long name for the table from the file name 'product_inventory.csv',"select t3.short_name, t3.long_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'product_inventory.csv'"
+List all column ids and the number of associated business terms for all columns associated with at least 1 business term.,"select target_node_id, count(*) from edge_assoc_term_col group by target_node_id having count(*) > 0"
+How many rows and columns does each table have?,"select short_name, num_rows, num_cols from node_table"
+Show all files belonging to 'zzheng'.,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'zzheng'
+Show the number of databases owned by each owner account.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_database as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Show the column counts for all business terms that have 'id' in their names.,"select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%id%' group by t1.node_id, t1.short_name"
+Print the type and description for all columns in the table named 'weights_measurements_and_other_tests'.,"select t3.col_type, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'weights_measurements_and_other_tests'"
+How many files are there in the folder named 'adventureworks'?,select count(*) from edge_has_dir_file as t1 join node_directory as t2 on t1.source_node_id = t2.node_id where t2.short_name = 'adventureworks'
+Find all columns with word 'school' in it's name within a table whose name starts with the word 'traffic'.,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'traffic%' and t3.short_name like '%school%'
+Print the creation date and description for the classification labeled 'province'.,"select creation_date, description from node_classification where short_name = 'state'"
+Count the number of nosql databases in the lake.,select count(*) from node_nosql
+Give me the name and description of all databases in the lake.,"select short_name, description from node_database"
+List directories that have the word 'person' in their name or description.,"select short_name, description from node_directory where short_name like '%person%' or description like '%person%'"
+Show all columns of type bool.,select short_name from node_column where col_type = 'bool'
+Show all records for columns that have the term 'prod' in them.,select * from node_table where short_name like '%prod%'
+How many subfolders does each folder have?,"select t1.node_id, t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+Count the number of columns of each type in the promotions table.,"select col_type, count(*) from node_column where short_name = 'dim_promotion' group by col_type"
+Show all metadata records for labels.,select * from node_label
+Count the number of tables belonging to each asset owner.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+What are 10 biggest tables by number of rows?,select short_name from node_table order by num_rows desc limit 10
+How many tables belong to each owner account?,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Show records for a sample of 5 folders in the lake.,select * from node_directory limit 5
+Show the ids and columns of all columns associated with business terms.,"select distinct t1.node_id, t1.short_name from node_column as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.target_node_id"
+"For each file, show me the file name, description and owner id.","select t1.short_name, t1.description, t2.source_node_id from node_file as t1 join edge_own as t2 on t1.node_id = t2.target_node_id"
+List all the files owned by 'asmith'.,select t1.short_name from node_file as t1 join edge_own as t2 on t1.node_id = t2.target_node_id join node_owner as t3 on t2.source_node_id = t3.node_id where t3.short_name = 'asmith'
+List creation timestamps for directories with size greater than 100Kb.,select creation_date from node_directory where dsize > 100
+Show all columns associated with business terms created in the last 10 days.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '10 days'
+Show all the people who created business terms in the last 10 days.,select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days'
+Show all tables that have 10 columns or less.,"select short_name, num_cols from node_table where num_cols <= 10"
+Show all owner account that own 3 relational databases or more.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) >= 3"
+List directories that have the word 'weather' in their name or description.,"select short_name, description from node_directory where short_name like '%weather%' or description like '%weather%'"
+How many nodes are there in the schema graph for the lake?,select count(*) from node
+What is the average size of a subfolder in each folder?,"select t1.node_id, t1.short_name, avg(t3.dsize)  from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Count the number of columns of each type present in the lake.,"select col_type, count(*) from node_column group by col_type"
+Show the number of tables derived from each table in the lake.,"select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+Display all the joinable relation records found in the last 24 hours.,select * from edge_joinable_table_table where creation_date >= now() - interval '24 hours'
+Print the type and description for all columns in the table named 'weights_measurements_and_other_tests'.,"select t3.col_type, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'weights_measurements_and_other_tests'"
+Show the number of assets owned by all accounts that have a description.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name"
+Print creation timestamps and descriptions for columns.,"select creation_date, description from node_column"
+List the creation date of every single nosql database.,"select short_name, creation_date from node_nosql"
+List all details for all tables.,select * from node_table
+"For each business term, count the number of columns it has been assigned to in the past 300 days.","select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '300 days' group by t1.node_id, t1.short_name"
+Print all records for the dbo internet sales table.,select * from node_table where short_name = 'fact_internet_sales'
+"Display the type id, creation date and last modified date for every asset in the lake.","select short_name, type_id, creation_date, modified_date from node"
+Show all the tables that were derived from excel files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = 'xlsx'
+Show all directories created in the last 24 hours.,"select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'"
+List the tables with number of tables derived from each table name in the lake.,"select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.short_name"
+Name the 5 earliest created folders in the data lake.,"select short_name, creation_date from node_directory order by creation_date asc limit 5"
+List all derived tables.,select t1.short_name from node_table as t1 join edge_derive_table_table on t1.node_id = edge_derive_table_table.target_node_id join node_table as t2 on edge_derive_table_table.source_node_id = t2.node_id
+Print all metadata records for the table named 'fact_reseller_sales'.,select * from node_table where short_name = 'fact_reseller_sales'
+What are the columns associated with at least one classification label?,select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id
+Sort all relational databases with the time created in the past week from oldest to newest.,"select short_name, creation_date from node_rdbms where creation_date >= now() - interval '7 days' order by creation_date asc"
+Show all the folders belonging to 'mjordan'.,select t1.short_name from node_directory as t1 join edge_own as t2 on t1.node_id = t2.target_node_id join node_owner as t3 on t2.source_node_id = t3.node_id where t3.short_name = 'mjordan'
+Show the names and creation date of the 5 oldest derived tables.,"select t1.short_name, t1.creation_date from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.target_node_id order by t2.creation_date asc limit 5"
+List ids for all folders that contain less than 100 files.,"select source_node_id, count(*) from edge_has_dir_file group by source_node_id having count(*) < 100"
+Print the description and creation dates for all labels.,"select short_name, description, creation_date from node_label"
+Count the number of folder belonging to each owner account.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Select id and names of columns are associated with classifications.,"select distinct t1.node_id, t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id"
+Print the type and description for all columns in the table named 'work_order_management_module'.,"select t3.col_type, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'work_order_management_module'"
+How many rows and columns does the edh table have?,"select num_rows, num_cols from node_table where short_name = 'employee_department_history'"
+Count the number of columns within each table associated with the classification 'zipcode'.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'zipcode' group by t1.node_id, t1.short_name"
+Display creation timestamp and description for the classification labeled 'state'.,"select creation_date, description from node_classification where short_name = 'state'"
+What is the average size of a subfolder in each folder?,"select t1.node_id, t1.short_name, avg(t3.dsize)  from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Print the creation date and last modified date for the product description id column.,"select creation_date, modified_date from node_column where short_name = 'p_desc_id'"
+Show the number of assets owned by all accounts that have been modified in the past 1 day.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name"
+"For each asset owner that owns more than 10 assets, show the total number of assets owned.","select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 10"
+"Display the name, long name, description and last modification date for the column named 'doc_owr'?","select short_name, long_name, description, modified_date from node_column where short_name = 'doc_owr'"
+Give me all cslab assets.,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'cslab'
+Print the date for the classification labeled 'province'.,"select creation_date, modified_date from node_classification where short_name = 'state'"
+Show the creation dates for all folder.,"select short_name, creation_date from node_directory"
+Print the names and descriptions for all files that begin with the prefix 'dim'.,"select short_name, description from node_file where short_name like 'dim%'"
+List all the unionable table pairs.,"select t1.short_name, t3.short_name from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.target_node_id join node_table as t3 on t2.source_node_id = t3.node_id"
+"Print the description, creation date and maximum length of the document summary column in the document table.","select t3.description, t3.creation_date, t3.max_col_length from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'document' and t3.short_name = 'doc_summary'"
+Display the tables derived from excel files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = '.xlsx'
+How many labels are owned by each user? Output count only.,"select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_label as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Show the descriptions for all tables in the data lake.,"select short_name, description from node_table"
+How many tables have 'traffic' in their names?,select count(*) from node_table where short_name like '%traffic%'
+Sort all rdbms by their last modified timestamp.,"select short_name, modified_date from node_rdbms order by modified_date desc"
+List the source assets for the 20 oldest relations in the lake.,select t1.short_name from node as t1 join edge as t2 on t1.node_id = t2.source_node_id order by t1.creation_date asc limit 20
+Print the name and number of columns for every table that has more than 10 columns.,"select short_name, num_cols from node_table where num_cols > 10"
+Show the number of business terms owned by each owner account.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Order all csv files by their creation date from the oldest to the newest.,"select short_name, creation_date from node_file where extension = 'csv' order by creation_date asc"
+Show the names of all the columns in the data lake along with the table that they belong to.,"select t3.short_name, t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id"
+Count the number of assets owned by asset owners among assets owned in the past 30 days.,"select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+Show the column types for all columns in the lake.,select col_type from node_column
+Find all tables in the lake that have 5 columns or more.,select short_name from node_table where num_cols >= 5
+Show all columns of type boolean.,select short_name from node_column where col_type = 'bool'
+"For each directory, list the directory name, owner id and last modified timestamp.","select t1.short_name, t2.source_node_id, t1.modified_date from node_directory as t1 join edge_own as t2 on t1.node_id = t2.target_node_id"
+Find all tables derived from files with prefix 'dot_vzv'.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'dot_vzv%'
+Order all business terms by creation date,"select short_name, creation_date from node_business_term order by creation_date asc"
+Sort all relational databases from oldest to newest.,"select short_name, creation_date from node_rdbms order by creation_date asc"
+"For each asset type, count the number of assets owned by each asset owner. Also output name of the type.","select t1.short_name, t3.type_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name, t3.type_id, t3.type_name"
+Show all folders in the lake with size greater than 1GB.,select short_name from node_directory where dsize > 1000000
+How many rows and columns does the credit card table have?,"select num_rows, num_cols from node_table where short_name = 'person_credit_card'"
+List all the SQL databases in the data lake.,select short_name from node_rdbms
+Find the number of columns inside each table that have a classification label that contains the term 'phone' in it.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'phone' group by t1.node_id, t1.short_name"
+Sort columns by modification timestamp.,"select short_name, modified_date from node_column order by modified_date desc"
+Find all owner accounts with the word 'research' in it's name or description.,select short_name from node_owner where short_name like '%research%' or description like '%research%'
+Show all metadata for any 5 tables in the lake.,select * from node_table limit 5
+Show all metadata records for asset owners.,select * from node_owner
+Which are the tables in the lake that are joinable with other tables.,select distinct t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.target_node_id
+List all unique file names in the data lake.,select distinct short_name from node_file
+How many boolean columns were added in the last 10 days?,select count(*) from node_column where col_type = 'bool' and creation_date >= now() - interval '10 days'
+Show the number of columns for all tables that have been modified in the past month.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.modified_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+"List the name, description and number of files for all directories that have more than 100 files.","select t1.short_name, description, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id having count(*) > 100"
+List the number of rows and columns in each table in the lake.,"select num_rows, num_cols from node_table"
+Show all the nosql databases in the lake ordered chronologically by their creation date.,"select short_name, creation_date from node_nosql order by creation_date asc"
+Print all metadata for the job candidate id column.,select * from node_column where short_name = 'job_cand_id'
+Print the names of all files in shard number 5.,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part5'
+Print all records for columns with the string 'doc' in them.,select * from node_column where short_name like '%doc%'
+List all column names that have labels associated with them.,select t1.short_name from node_column as t1 join edge_assoc as t2 on t1.node_id = t2.target_node_id
+Order all relational database owners by the number of relational databases they own.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*)"
+"For each column id, show the number of classifications associated with it.","select target_node_id, count(*) from edge_assoc_class_col group by target_node_id"
+How many association relationships are recorded in the data lake?,select count(*) from edge_assoc
+How many relational databases does the data lake contain?,select count(*) from node_rdbms
+Show the type and length of all columns in the data lake.,"select col_type, max_col_length from node_column"
+Count the number of assets owned by each account having more than 30 assets.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 30"
+Show all the metadata for table from file relations.,select * from edge_has_file_table
+Show all ids for directories that have more than 10 files directly inside them.,"select source_node_id, count(*) from edge_has_dir_file group by source_node_id having count(*) > 10"
+Select the creation date and modified date columns for all assets in the lake.,"select short_name, creation_date, modified_date from node"
+Which are the tables that have a column named 'zip'?,select count(*) from node_column where short_name = 'zip'
+List all tables owned by 'zzheng' along with it's creation date.,"select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'zzheng'"
+List the top 10 people who own the most relational databases.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*) limit 10"
+What is the creation date of every nosql database in the lake?,"select short_name, creation_date from node_nosql"
+Show the ids for all folders that contain more than 10 files and were created in the past one week.,"select source_node_id, count(*) from edge_has_dir_file where creation_date >= now() - interval '7 days' group by source_node_id having count(*) > 10"
+"List the short name, long name and description for all tables.","select short_name, long_name, description from node_table"
+Give me the creation dates for all folders.,select creation_date from node_directory
+How many labels are owned by each asset owner that owns more than 10 labels,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_label as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 25"
+What is the average size of a file owned by each user who owns 25 files or more?,"select t1.node_id, t1.short_name, count(*), avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) >= 25"
+List all tables owned by 'biz_api' that were created in the past one year.,"select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'biz_api' and t1.creation_date >= now() - interval '365 days'"
+How many columns do each of the 10 oldest tables in the lake have?,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name order by t1.creation_date asc limit 10"
+"Display the column type, column length and description for each column with length greater than 100 characters.","select col_type, max_col_length, description from node_column where max_col_length > 100"
+Print all metadata records for the table named 'fact_reseller_sales'.,select * from node_table where short_name = 'fact_reseller_sales'
+Show me all the relational databases present in the lake.,select short_name from node_rdbms
+"Display the id, names and creation dates for all business terms.","select node_id, short_name, creation_date from node_business_term"
+What is the total size of all files owned by an asset owner for all asset owners who own more than 5 files.,"select t1.node_id, t1.short_name, count(*), sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 5"
+Show the number of assets owned by all users who have the term 'uwmadison' in their username.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%uwmadison%' group by t1.node_id, t1.short_name"
+Show the number of assets owned by each user that owns more than 50 assets.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 50"
+Select creation date and description for all account owners.,"select short_name, creation_date, description from node_owner"
+Show all metadata for BOM table.,select * from node_table where short_name = 'bill_of_materials'
+List ids for directories that contain more than 20 immediate subdirectories and number of subdirectories.,"select source_node_id, count(*) from edge_has_dir_dir group by source_node_id having count(*) > 20"
+"For each type_id, how many assets are present in the lake?","select type_id, count(*) from node group by type_id"
+Display all metadata records for asset owners.,select * from node_owner
+"Show the detailed name, size and descriptions for all files in the lake.","select long_name, fsize, description from node_file"
+Count the number of columns of each type in the 'shift' table .,"select col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'shift' group by t3.col_type"
+Print the cumulative size of files owned by each user.,"select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+List the top 10 people who own the most SQL databases.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*) limit 10"
+Find the total size of files owned by each asset owner that owns 5 files or more.,"select t1.node_id, t1.short_name, count(*), avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) >= 5"
+Identify all classifications with the term 'market' in it.,select short_name from node_classification where short_name like '%market%'
+Print the source node names for the 20 oldest edges in the lake.,select t1.short_name from node as t1 join edge as t2 on t1.node_id = t2.source_node_id order by t1.creation_date asc limit 20
+How many files does the lake contain?,select count(*) from node_file
+Give me names for any 10 file assets in the data lake.,select short_name from node_file limit 10
+How many directories are owned by each owner account?,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+What are the sub folders of the folder 'part6'?,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part6'
+Which are the tables contain a column that includes the word 'borough' in it's name?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t3.short_name like '%borough%'
+Find all tables with 'work' in it's title and a column that contains 'hours' in it's name.,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%work%' and t3.short_name like '%hours%'
+List all joinable table pairs.,"select t1.short_name, t3.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.target_node_id join node_table as t3 on t2.source_node_id = t3.node_id"
+List all columns of type integer.,select short_name from node_column where col_type = 'int'
+Show all 'covid' related tables in the lake.,select * from node_table where short_name like '%covid%'
+Show me all the metadata for business terms.,select * from node_business_term
+Order all databases in the lake by their creation date.,"select short_name, creation_date from node_database order by creation_date asc"
+Show all columns with the term 'prod' in their name or description.,select short_name from node_column where short_name like '%prod%' or description like '%prod%'
+What are all the assets owned by 'Adam Smith'?,select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id join node_owner as t3 on t2.source_node_id = t3.node_id where t3.long_name = 'Adam Smith'
+Print names of all folders.,select short_name from node_directory
+"Order folders by modification timestamp and display names, ids and descriptions.","select short_name, node_id, description from node_directory order by modified_date desc"
+"For each table, show the number of tables that have been derived from it in the past one week.","select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name"
+Show the type and length for all columns in the lake within tables that have the word 'vehicle' in their names.,"select t3.short_name, t3.col_type, t3.max_col_length from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%vehicle%'"
+Print the number of rows and number of columns in the delivery method table.,"select num_rows, num_cols from node_table where short_name = 'ship_method'"
+Show the creation date and description for the model illustration table.,"select creation_date, description from node_table where short_name = 'product_model_illustration'"
+Count total files and folders directly under each folder.,"select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.target_node_id join node as t3 on t2.source_node_id = t3.node_id group by t1.short_name"
+Print all records the 'dim_sales_territory' table.,select * from node_table where short_name = 'dim_sales_territory'
+Show all columns with the term 'covid' in their name or description.,select short_name from node_column where short_name like '%covid%' or description like '%covid%'
+How many columns has each business term been assigned to in the past 20 days?,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '20 days' group by t1.node_id, t1.short_name"
+Which are the relational databases in the lake owned by 'cslab'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'cslab'
+Show a sample of 5 records of classifications.,select * from node_classification limit 5
+"For each directory node id, count the number of directory node edges.","select source_node_id, count(*) from edge_has_dir_dir group by source_node_id "
+Count the columns associated with each classification asset in the lake that has 'water' as a prefix.,"select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'water%'"
+"Display the short name, long name and description for the modification column in the bill of materials table.","select t3.short_name, t3.long_name, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'bill_of_materials' and t3.short_name = 'mod_date'"
+List the top 10 user accounts with the most assets.,"select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc"
+Display the description and creation date for the address type id column.,"select description, creation_date from node_column where short_name = 'a_type_id'"
+Show all descriptions for asset owners with their names.,"select short_name, description from node_owner"
+Display the maximum column length for the culture id column.,select max_col_length from node_column where short_name = 'cult_id'
+Show all the metadata for all the relations in the lake.,select * from edge
+Which columns have the word 'water' in their name or description?,select * from node_column where short_name like '%water%' or description like '%water%'
+List the creation dates for all classification labels.,"select short_name, creation_date from node_classification"
+List the number of columns for tables that contain at least 50 columns.,select num_cols from node_table where num_cols >= 50
+Find all tables with a column named zipcode,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t3.short_name = 'zip_code'
+List all tables that have more than 100 rows in them.,select short_name from node_table where num_rows > 100
+Show all metadata records for all classification label column association relations.,select * from edge_assoc_class_col
+Which are the directories in the lake owned by 'zzheng'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'zzheng'
+Print the description of the document summary column in the document table.,select t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'document' and t3.short_name = 'doc_summary'
+Sort all relational databases created in the past week from oldest to newest.,"select short_name, creation_date from node_rdbms where creation_date >= now() - interval '7 days' order by creation_date asc"
+What are all the assets that belong to the user with asset id 3?,select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 3
+"Print the name, description, number of rows and number of columns for all tables.","select short_name, description, num_rows, num_cols from node_table"
+Display the column type for the culture id column.,select col_type from node_column where short_name = 'cult_id'
+Sort all nosql database owners by the number of nosql databases they own.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_nosql as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*)"
+Count the number of string columns in the lake.,select count(*) from node_column where col_type = 'string'
+What are the files and folders directly under HR folder?,select t3.short_name from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'human_resources'
+Which columns have the term 'employee' in their name or description?,select * from node_column where short_name like '%employee%' or description like '%employee%'
+Which files contain a table with the term 'covid' in their name?,select t1.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t3.short_name like '%covid%'
+How many columns are associated with each classification that contains 'water' as a prefix?,"select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'water%'"
+Print the tables owned by the Business API group that were created in the past one year.,"select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe' and t1.creation_date >= now() - interval '365 days'"
+Show the database type and last modified date for all databases.,"select database_type, modified_date from node_database"
+Count the number of tables derived from each table in the lake.,"select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+"Print short name, long name and description for files in the HR directory.","select t3.short_name, t3.long_name, t3.description from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.short_name = 'human_resources'"
+Show the long name and description for all transaction id columns in the lake.,"select long_name, description from node_column where short_name = 't_id'"
+Show records for all department id columns.,select * from node_column where short_name = 'dept_id'
+Print all records for columns with the string 'doc' in them.,select * from node_column where short_name like '%doc%'
+How many unique file names are there in the lake?,select count(distinct short_name) from node_file
+Print the total size of files owned for each owner account.,"select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+"List the name, description and creation date for all assets in the lake ordered from newest to oldest.","select short_name, description, creation_date from node order by creation_date desc"
+How many columns are associated with each classification label that has 'nyc' as a prefix.,"select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'nyc%'"
+Show the names and descriptions for the last 10 directories that were modified.,"select short_name, description, modified_date from node_directory order by modified_date desc limit 10"
+Print all metadata for the column named 'mod_date'.,select * from node_column where short_name = 'mod_date'
+List the owner id for every table and the table name.,"select t1.short_name, t2.source_node_id from node_table as t1 join edge_own as t2 on t1.node_id = t2.target_node_id"
+"For each owner account that owns more than 25 business terms, show the number of business terms owned.","select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 25"
+Find tables obtained from the file 'nycc.csv'.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'nycc.csv'
+"For each table id, show the number of tables derived from it.","select source_node_id, count(*) from edge_derive_table_table group by source_node_id"
+Which are the tables in the lake owned by 'jdoe'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe'
+List all classification labels that contain the word 'market'.,select short_name from node_classification where short_name like '%market%'
+"Print the name, creation date and description for all csv files whose name contains the prefix 'dim'.","select short_name, creation_date, description from node_file where short_name like 'dim%' and extension = '.csv'"
+"For each table, how many tables are derived from it? Print the name as well as description of the source table.","select t1.short_name, t1.description, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name, t1.description"
+Display the description and number of tables for all relational databases.,"select short_name, description, num_tables from node_rdbms"
+How many files does each owner account possess?,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Count the total number of relational databases in the lake.,select count(*) from node_rdbms
+Order all labels by creation date.,select short_name from node_label order by creation_date asc
+Order all columns in the lake by their last modified timestamp.,"select short_name, modified_date from node_column order by modified_date desc"
+Print all metadata for joinable table relationships.,select * from edge_joinable_table_table
+Which are the tables in the lake owned by 'jdoe'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe'
+"For each asset type, count the number of assets owned by each asset owner.","select t1.short_name, t3.type_id, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name, t3.type_id"
+Give the long name and description for the DDG table.,"select long_name, description from node_table where short_name = 'dim_department_group'"
+Find all files which contain a table whose name starts with the the phrase 'vendor'.,select t1.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t3.short_name like 'vendor%'
+Show the creation date for the 15 biggest tables by the number of columns.,select creation_date from node_table order by num_cols desc limit 15
+"For each folder, count the number of assets immediately inside it.","select t1.short_name, count(*) from node_directory as t1 join edge_has as t2 on t1.node_id = t2.target_node_id join node as t3 on t2.source_node_id = t3.node_id group by t1.short_name"
+"For each table in the lake, show the number of columns and the creation date.","select short_name, num_cols, creation_date from node_table"
+Show the mean size of a subdirectory within each directory.,"select t1.node_id, t1.short_name, avg(t3.dsize)  from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+What are the sub folders of the folder 'part6'?,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part6'
+Give the long name and description for the DDG table.,"select long_name, description from node_table where short_name = 'dim_department_group'"
+Find all tables in the lake derived from json files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = 'json'
+Give me the creation dates for all business terms.,"select short_name, creation_date from node_business_term"
+List all files in the HR folder.,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'human_resources'
+Print the type and description for all columns in the table named 'work_order_management_module'.,"select t3.col_type, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'work_order_management_module'"
+Count the number of tables derived from each source table id.,"select source_node_id, count(*) from edge_derive_table_table group by source_node_id"
+Show the number of business terms owned by each asset owner.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Show the name and descriptions for all columns associated with the classification 'timestamp'.,"select t3.short_name, t3.description from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'timestamp'"
+"For each table in the data lake, count the number of columns that contain a description.","select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name"
+Show all tables that contain less than 10 columns.,select short_name from node_table where num_cols < 10
+Give me 10 asset names from the data lake.,select short_name from node limit 10
+Show me the description for every nosql database in the lake.,select description from node_nosql
+How many directories does the lake contain?,select count(*) from node_directory
+Count the number of classifications associated with each column id.,"select target_node_id, count(*) from edge_assoc_class_col group by target_node_id"
+How many asset owner accounts does the lake have?,select count(*) from node_owner
+Which tables have more than 20 rows in them?,select short_name from node_table where num_rows > 100
+List all joinable table pairs.,"select t1.short_name, t3.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.target_node_id join node_table as t3 on t2.source_node_id = t3.node_id"
+"For each table in the lake with 10 or mor columns, show the number of columns and the creation date.","select num_cols, creation_date from node_table where num_cols >= 10"
+Show all the metadata for column from table relations.,select * from edge_has_table_col
+"Among all the columns in the lake, count the occurences of each column type.","select col_type, count(*) from node_column group by col_type"
+List all records for the sales quota table.,select * from node_table where short_name = 'fact_sales_quota'
+Show the number of columns that each classification is associated with.,"select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+"For each table, show the number of tables derived from it.","select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+List the creation date and description for all columns in the lake.,"select creation_date, description from node_column"
+Show the last modified timestamp and creation date for the column named 'a_type_id'.,"select modified_date, creation_date from node_column where short_name = 'a_type_id'"
+Count the number of string columns in the lake.,select count(*) from node_column where col_type = 'string'
+How many tables can be joined with each table in the lake?,"select t1.node_id, t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Show all records for the classification labeled 'state'.,select * from node_classification where short_name = 'state'
+List all tables that were pulled from files whose name begins with 'student_covid_vaccinations'.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'student_covid_vaccinations%'
+Show all metadata for label association relationships.,select * from edge_assoc
+Which are the tables that have a column labeled 'borough'?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t3.short_name = 'borough'
+Show all csv files that have 'nyc' in their names.,select short_name from node_file where extension = '.csv' and short_name like '%nyc%'
+What is the aveerage file size for each different extension.,"select extension, avg(fsize) from node_file group by extension"
+Print names and descriptions for all columns with the term 'prod' in it.,"select short_name, description from node_column where short_name like '%prod%'"
+Which are the tables that are unionable with the 'taxi_zones' table?,select t1.short_name from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.target_node_id join node_table as t3 on t2.source_node_id = t3.node_id where t3.short_name = 'taxi_zones'
+Count the number of nodes of each type.,"select type_id, count(*) from node group by type_id"
+What are the different types of files in the lake?,select distinct extension from node_file
+How many columns are associated with each label?,"select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id"
+Show all metadata for any 10 tables in the lake.,select * from node_table limit 10
+Name the 5 earliest created folders in the data lake with size greater than 100Kb.,select short_name from node_directory where dsize > 100 order by creation_date asc limit 5
+Which owner accounts own more than 5 relational databases?,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 5"
+Print the names of all columns that are tagged with one or more business terms.,select distinct t1.short_name from node_column as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.target_node_id
+Show all ids for directories that have more than 10 files directly inside them.,"select source_node_id, count(*) from edge_has_dir_file group by source_node_id having count(*) > 10"
+Show the ids and columns of all columns associated with business terms.,"select distinct t1.node_id, t1.short_name from node_column as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.target_node_id"
+Name the 5 earliest created folders in the data lake that have a size greater than 1Mb.,"select short_name, creation_date from node_directory where dsize > 1024 order by creation_date asc limit 5"
+Find all tables whose name contains 'employee' as a prefix and has a column which contains 'sex' as a prefix.,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'employee%' and t3.short_name like 'sex%'
+Count the number of tables belonging to each asset owner.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Count the number of columns of each type present in tables in that contain the word 'water' in their names.,"select t3.col_type, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%water%' group by t3.col_type"
+List all records for the csv file named 'prospective_buyer'.,select * from node_file where short_name = 'prospective_buyer' and extension = 'csv'
+"Print the creation date, description and last modification date for the sales database.","select creation_date, description, modified_date from node_database where short_name = 'sales_db'"
+Find all folders in the lake with size greater than 1GB.,select short_name from node_directory where dsize > 1000000
+Show the number of assets owned by each owner account created in the past year with the owners' name.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now()- interval '365 days' group by t1.node_id, t1.short_name"
+Which tables contain the word 'work' in their names and have one or more columns that contains the word 'hours' in their names?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%work%' and t3.short_name like '%hours%'
+List the top 10 people who own the most databases.,"select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_database as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*) limit 10"
+How many assets are owned by each user account created in the past week?,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name"
+Show the descriptions for the 10 newest assets in the lake.,"select short_name, description, creation_date from node order by creation_date desc limit 10"
+Print descriptions for 25 most recently added assets.,select description from node order by creation_date desc limit 25
+Show the number of database instance present for each database asset type id.,"select type_id, count(*) from node_database group by type_id"
+List all records for the 'cv' column.,select * from node_column where short_name = 'cv'
+Give the count of assets for each asset type with the type_id.,"select type_id, count(*) from node group by type_id"
+How many columns are associated with each business terms in the data lake?,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id"
+Count the number of columns tagged with a classification that has 'subcat' as a prefix.,"select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'subcat%' group by t1.node_id, t1.short_name"
+Count the number of assets owned by each account older than a week.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '7 days' group by t1.node_id, t1.short_name"
+Find all tables derived from files with prefix 'dot_vzv'.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'dot_vzv%'
+Count the number of columns in all tables that contain the term 'nyc' in it's name.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%nyc%' group by t1.node_id, t1.short_name"
+Find records for all columns named address.,select * from node_column where short_name = 'address'
+Count the number of columns associated with each classification that contains the word 'category' in it's name.,"select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%category%' group by t1.node_id, t1.short_name"
+Show all tables belonging to 'john'.,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'john'
+List all the files in the lake.,select short_name from node_file
+Find all columns associated with the classification 'enterprise'.,select t3.short_name from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'enterprise'
+Order all csv files by their creation date from the oldest to the newest.,select short_name from node_file where extension = '.csv' order by creation_date asc
+"For each folder name, count the number of files immediately inside it. ","select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.short_name"
+Display the description and creation date for the address type id column.,"select description, creation_date from node_column where short_name = 'a_type_id'"
+Find all files which contain a table whose name starts with the the phrase 'verified_locations'.,select t1.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t3.short_name like 'verified_locations%'
+Which folders have more than 100 files?,"select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id having count(*) > 100"
+Show the names of all the derived tables in the lake.,select distinct t1.short_name from node as t1 join edge_derive_table_table as t2 on t1.node_id = t2.target_node_id
+Which are the assets in the lake owned by Jane Doe?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id where t1.long_name = 'Jane Doe'
+Display all records for the bill of materials table.,select * from node_table where short_name = 'bill_of_materials'
+Count the columns associated with each classification asset in the lake that has 'product' as a prefix.,"select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'product%'"
+How many label association relations are present in the lake.,select count(*) from edge_assoc
+Calculate the sum of all file sizes belonging to each owner account.,"select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Print the average size of a file owned by each user if they own more than 5 files.,"select t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 5"
+Which label has associated columns? How many are there?,"select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id"
+Show the description and number of tables for all rdbms in the lake.,"select description, num_tables from node_rdbms"
+Find all tables referring to individuals.,select short_name from node_table where short_name like '%person%'
+Show a sample of 5 records of classifications.,select * from node_classification limit 5
+Show all directories created in the last 24 hours.,"select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'"
+How many columns does each table have?,"select short_name, num_cols from node_table"
+"Display the column type, column length and description for each column.","select short_name, col_type, max_col_length, description from node_column"
+Show the 20 newest folders by modified date.,select short_name from node_directory order by modified_date desc limit 20
+Count the number of databases owned by each asset owner.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_database as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Find all columns whose name or description contains the term 'id'.,"select short_name, description from node_column where short_name like '%id%' or description like '%id%'"
+What are 10 biggest tables by number of rows? How many shows they have?,"select short_name, num_rows from node_table order by num_rows limit 10"
+Select id and names of columns are associated with classifications.,"select distinct t1.node_id, t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id"
+How many files were added to each directory in the past 1 year?,"select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' group by t1.short_name, t2.source_node_id"
+Show the tables that were derived from json files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = 'json'
+Show all owner account that own 3 relational databases or more.,"select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) >= 3"
+Calculate the average size of a subfolder within each folder.,"select t1.node_id, t1.short_name, avg(t3.dsize)  from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Find all tables with a column named employee id,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t3.short_name = 'emp_id'
+Show all relational databases that contain more than 10 tables.,select short_name from node_rdbms where num_tables > 10
+Sort all nosql databases by their creation date.,"select short_name, creation_date from node_nosql order by creation_date asc"
+Who are the top 10 people who own the most assets?,"select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc"
+Find the mean size of files created in the last 30 days for each user?,"select t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+How many columns associated with the classification phrase 'customer' does each table contain?,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'customer' group by t1.node_id, t1.short_name"
+Print all records created in the past 3 days for relations outlining a column within a table.,select * from edge_has_table_col where creation_date >= now() - interval '3 days'
+Find all tables with the word 'voting' or 'voter' in it's name.,select short_name from node_table where short_name like '%voting%' or short_name like '%voter%'
+Display the number of columns and descripton for all tables in the lake.,"select num_cols, description from node_table"
+Show the id and number of assets owned by each owner id.,"select source_node_id, count(*) from edge_own group by source_node_id "
+Name the 5 earliest created folders in the data lake that have a size greater than 1Mb.,select short_name from node_directory where dsize > 1024 order by creation_date asc limit 5
+List all the different types of columns present in the lake.,select distinct col_type from node_column
+"Print the id, description and size for all directories.","select short_name, node_id, description, dsize from node_directory"
+Find all columns with ids associated with the classification 'enterprise'.,"select t3.node_id, t3.short_name from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'enterprise'"
+Sort all nosql database owners by the number of nosql databases they own.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_nosql as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*)"
+List all classification along with it's description.,"select short_name, description from node_classification"
+Show the descriptions for labels created in the past 20 days.,"select short_name, description from node_label where creation_date >= now() - interval '20 days'"
+"Select id, number of rows, number of columns and description from the metadata for tables in the lake.","select node_id, num_rows, num_cols, description from node_table"
+Give the description for the HR folder.,select description from node_directory where short_name = 'human_resources'
+Which tables in the data lake have more than 25 columns?,"select short_name, num_cols from node_table where num_cols > 25"
+Show the creation time for all tables in the lake.,"select short_name, creation_date from node_table"
+Display all relational databases that contain more than 20 tables.,select short_name from node_rdbms where num_tables > 20
+How many tables have the word 'weight' in it's name?,select count(*) from node_table where short_name like '%weight%'
+Order all columns in the lake by their length.,select short_name from node_column order by max_col_length desc
+List the number of assets owned by all users with 5 assets or more.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) >= 5"
+Which files have been modified since Jan 1 2022?,select short_name from node_file where modified_date >= '2022-01-01'
+Display the cumulative size of all files created in the past month for each owner.,"select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+"Show the short name, long name and description for the job candidate table.","select short_name, long_name, description from node_table where short_name = 'job_candidate'"
+"For each owner account that owns more than 25 business terms, show the number of business terms owned.","select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 25"
+Show all folders which have total file size greater than 1000Kb with the size.,"select t1.short_name, sum(t3.fsize) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having sum(t3.fsize) > 1000"
+Count the number of columns for all tables that were created in the past 10 days and have more than 20 columns,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name having count(*) > 20"
+Count the number of assets owned by each owner id.,"select source_node_id, count(*) from edge_own group by source_node_id "
+List all columns linked with business terms that were added in the past 20 days.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '20 days'
+"For each folder, count the number of files immediately inside it. Then output the max file size among all files inside it.","select t1.short_name, count(*), max(t3.fsize) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.short_name, t1.node_id"
+Show the top 10 directories that contain the most subdirectories.,"select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 10"
+Order all csv files by their creation date.,select short_name from node_file where extension = 'csv' order by creation_date asc
+Show all file names and sizes for files with size greater than 500K.,"select short_name, fsize from node_file where fsize > 500"
+Show the full name and description for all business terms.,"select long_name, description from node_business_term"
+Print the type and description for all columns in the table named 'work_order_management_module'.,"select t3.col_type, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'work_order_management_module'"
+List all assets immediately under the folder 'part4'.,select t3.short_name from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part4'
+"For each owner, find the average size of files which don't containing a description.","select t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.description = '' group by t1.node_id, t1.short_name"
+Show all tables created in the last 240 hours.,select short_name from node_table where creation_date >= now() - interval '240 hours'
+Find all tables in the lake derived from excel files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = '.xlsx'
+Count the number of relational databases owned by each asset owner.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Show the names and descriptions for labels created in the past 20 days.,"select short_name, description from node_label where creation_date >= now() - interval '20 days'"
+Show the name and creation date for the 5 biggest tables by the number of columns that contain the term 'enterprise' in their names.,"select short_name, creation_date from node_table where short_name like '%enterprise%' order by num_cols desc limit 5"
+Find all tables in the lake derived files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id
+"Print the creation date, description and last modification date for the database named 'sales_db'.","select creation_date, description, modified_date from node_database where short_name = 'sales_db'"
+Count the number of tables derived from each table in the lake.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Show metadata records for all folders in the lake.,select * from node_directory
+Order all business terms by creation date,select short_name from node_business_term order by creation_date asc
+List the description of the 'date' classification label.,select description from node_classification where short_name = 'date'
+Sort all the non-relational databases in the lake by their last modified timestamp.,"select short_name, modified_date from node_nosql order by modified_date desc"
+Which are the columns that are associated with the classification 'enterprise'?,"select t3.node_id, t3.short_name from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'enterprise'"
+How many assets are owned by each account older than 2 years?,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '2 years' group by t1.node_id, t1.short_name"
+Find all tables with a column named 'zip_code',select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t3.short_name = 'zip_code'
+Sort all assets by asset id.,"select short_name, node_id from node order by node_id asc"
+List every column in the database along with the table that it belongs to. The table name should be explicit.,"select t3.short_name, t1.long_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id"
+What are all the assets that belong to the user with asset id 1?,select t1.short_name from node as t1 join edge_own as t2 on t1.node_id = t2.target_node_id where t2.source_node_id = 1
+How many tables have the word 'student' in it's name?,select count(*) from node_table where short_name like '%student%'
+Print the name of every user that owns more than 20 assets created in the past 30 days.,"select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name having count(*) > 20"
+List all files in the production folder.,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'production'
+Show all the nosql databases in the lake ordered from the oldest to the newest.,select short_name from node_nosql order by creation_date asc
+Which tables contain the word 'weight' in their names a column that contains the word 'building' in it's name?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%weight%' and t3.short_name like '%building%'
+List the number of assets owned by each user.,"select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Find all columns with word 'school' in it's name within a table whose name starts with the word 'traffic'.,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'traffic%' and t3.short_name like '%school%'
+Show all the nosql databases in the lake ordered from the newest to the oldest.,select short_name from node_nosql order by creation_date desc
+"Print the name, creation date and description for all csv files whose name contains the prefix 'dim'.","select short_name, creation_date, description from node_file where short_name like 'dim%' and extension = 'csv'"
+Show me all metadata for a sample of 5 business terms.,select * from node_business_term limit 5
+Show all the database records for the lake.,select * from node_database
+Order all csv files by their creation date from the newest to the oldest.,"select short_name, creation_date from node_file where extension = 'csv' order by creation_date desc"
+Find all classifications belonging to 'testuser' that were created in the past 30 days.,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' and t1.short_name = 'testuser'
+Show the creation dates for all folder.,"select short_name, creation_date from node_directory"
+What are the 3 biggest directories in the lake?,select short_name from node_directory order by dsize desc limit 3
+"For each business term, count the number of columns it has been assigned to in the past 1 year.","select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name"
+Print out the description for each relational database in the lake.,"select short_name, description from node_rdbms"
+Give me the names of files in the HR folder.,select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'human_resources'
+Print the names of tables that have fewer than 10 columns.,select short_name from node_table where num_cols < 10
+List all asset owners who own more than 20 assets created in the past 30 days.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name having count(*) > 20"
+List all files immediately under the directory 'part1',select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part1'
+Which are the tables in the lake that are joinable with other tables?,select distinct t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.target_node_id
+Count the number of business terms belonging to each asset owner.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Count the number unionable tables for each table id in the lake.,"select t1.node_id, count(*) from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+"Show the short name, long name and description for every rdbms in the lake.","select short_name, long_name, description from node_rdbms"
+What are the top 20 classifications which are associated with the most columns?,"select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 20"
+Show me the creation dates for all business terms.,"select short_name, creation_date from node_business_term"
+List all relational databases that contain more than 10 tables and were created in the past year.,select short_name from node_rdbms where num_tables > 10 and creation_date >= now() - interval '365 days'
+"Print the creation date, last modification date, column type and description for the credit card id column.","select creation_date, modified_date, col_type, description from node_column where short_name = 'ccid'"
+"For each owner, display the sum of all file sizes created in the past month.","select t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+How many business terms are owned by each user?,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_business_term as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Print all directory names with size greater than 1MB.,select short_name from node_directory where dsize > 1000
+List the number of tables derived from each table in the lake.,"select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id group by t1.short_name"
+"For each table in the lake with 10 or mor columns, show the number of columns and the creation date.","select short_name, num_cols, creation_date from node_table where num_cols >= 10"
+"How many assets does each user account own? If two account have the same name, count the values as one account. Return the names and counts. ","select t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name"
+Sort databases by their last modified date.,select short_name from node_database order by modified_date desc
+"Show the description, number of rows and number of columns for every single table.","select short_name, description, num_rows, num_cols from node_table"
+How many assets does the user 'jdoe' own?,select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name = 'jdoe'
+Find all classifications belonging to 'testuser' that were created in the past 30 days.,"select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days'"
+Show the creation date and description for all owner accounts.,"select creation_date, description from node_owner"
+"For each owner, find the average size of files containing a description.","select t1.short_name, avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.description <> '' group by t1.node_id, t1.short_name"
+"For each asset type, how many databases are present in the lake?","select type_name, count(*) from node_database group by type_id, type_name"
+How many tables were derived from each table in the lake in the past 24 hours?,"select t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '24 hours' group by t1.node_id, t1.short_name"
+How many assets does the account 'uwmadison' own that were created in the past one week?,select count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name = 'uwmadison' and t2.creation_date >= now() - interval '7 days'
+Count the number of tables derived from each table in the past year.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '365 days' group by t1.node_id, t1.short_name"
+Print all records for the resume column.,select * from node_column where short_name = 'cv'
+Show table records for the top 3 tables by number of columns.,select * from node_table order by num_cols limit 3
+Count the number of classification tags for each column.,"select t1.node_id, t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+Which asset owner account ids own more than 5 assets?,select source_node_id from edge_own group by source_node_id having count(*) > 5
+List the files and folder immediately under the folder 'part4'.,select t3.short_name from node_directory as t1 join edge_has as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part4'
+How many owner accounts does the lake contain?,select count(*) from node_owner
+Count the columns linked with the classification label 'address' in each table.,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'address' group by t1.node_id, t1.short_name"
+Show me the number of assets of each type owned by each owner account.,"select t1.node_id, t1.short_name, t3.type_id, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name, t3.type_id"
+How many files were added to the directory 'part4' in the last one year?,select count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' and t1.short_name = 'part4'
+Which are the tables contain a column that includes the word 'employee' in it's name?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t3.short_name like '%employee%'
+Show the creation date and description for all labels and order the records by creation date.,"select creation_date, description from node_label order by creation_date asc"
+Find all tables whose name contains 'weight' as a prefix and has a column which contains 'building' as a prefix.,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'weight%' and t3.short_name like 'building%'
+Count the number of assets owned by each account older than a week.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.creation_date <= now() - interval '7 days' group by t1.node_id, t1.short_name"
+List the number of assets owned by all users with 5 assets or more then also outout the owners' name.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) >= 5"
+Show all tables belonging to 'zzheng'.,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'zzheng'
+Print the total size of files owned for each owner account.,"select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+What are the 5 biggest folders in the lake?,select short_name from node_directory order by dsize limit 5
+What are the columns associated with at least one classification term?,select distinct t1.short_name from node_column as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.target_node_id
+How many columns do each of the 30 oldest tables in the lake have?,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name order by t1.creation_date asc limit 30"
+Show me the number of columns in each table whose name contains the prefix 'dim'.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'dim%' group by t1.node_id, t1.short_name"
+Show me the number of columns in each table whose name contains the prefix 'vehicle'.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'vehicle%' group by t1.node_id, t1.short_name"
+Show all the folders in the lake sorted by size.,select short_name from node_directory order by dsize desc
+List the files with sizes in the lake sorted in descending order.,"select short_name, fsize from node_file order by fsize desc"
+Which are the tables belonging to the account 'lakeadmin'?,select t1.short_name from node_table as t1 join edge_own as t2 on t1.node_id = t2.target_node_id join node_owner as t3 on t2.source_node_id = t3.node_id where t3.short_name = 'lakeadmin'
+List all files immediately under the directory 'part1',select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part1'
+Count the number of joinable tables for each table id in the lake.,"select t1.node_id, count(*) from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Show joinable tables in the lake.,select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id
+Show the column name and description for all columns that have a description.,"select short_name, description from node_column where description <> ''"
+Show all the records for the 10 oldest assets in the lake.,select * from node order by creation_date asc limit 10
+Show the names of all tables that are unionable with other tables.,select distinct t1.short_name from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.target_node_id
+Show the number of columns associated with each business term.,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id"
+Print all records the 'dim_sales_territory' table.,select * from node_table where short_name = 'dim_sales_territory'
+Find the average size of a file for each different extension.,"select extension, avg(fsize) from node_file group by extension"
+Find all records for columns named 'category'.,select * from node_column where short_name = 'category'
+Find all tables in the lake derived from txt files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = '.txt'
+List all files whose parent directory is 'part1',select t3.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'part1'
+List all columns linked with business terms that were added in the past 20 days.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '20 days'
+How many tables are derived from the table 'nycc'?,select count(*) from node_table as t1 join edge_derive_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'nycc'
+Display the name and description for all databases whose description contains the string 'vector'.,"select short_name, description from node_database where description like '%vector%'"
+Order all classification labels by creation date.,select short_name from node_classification order by creation_date asc
+Find all classification labels created in the past 2 years.,"select short_name, creation_date from node_classification where creation_date >= now() - interval '2 years'"
+Show all directories that contain the term 'weather' in it's name or description.,select short_name from node_directory where short_name like '%weather%' or description like '%weather%'
+Show the count of assets owned by all account that own no more than 10 assets.,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) <= 10"
+Show all descriptions for asset owners.,"select short_name, description from node_owner"
+What are the total number of assets possessed by each account?,"select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Show the number of tables in each relational database.,select num_tables from node_rdbms
+Count total relations edges in the lake?,select count(*) from edge
+Count the number of columns in all tables that contain the term 'nyc' in it's name.,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%nyc%' group by t1.node_id, t1.short_name"
+What are the joinable table pairs found in the last 24 hours?,select t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t2.creation_date >= now() - interval '24hours'
+How many files were added to the directory 'part4' in the last one year?,select count(*) from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id where t2.creation_date <= now() - interval '1 year' and t1.short_name = 'part4'
+List the columns that are tagged with business terms created in the past 4 days,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '4 days'
+How many assets does each user possess?,"select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+How many columns are associated with each label that has 'nyc' as a prefix?,"select t1.node_id, t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id where t1.short_name like 'nyc%' group by t1.node_id, t1.short_name"
+Print the descriptions for all owner accounts.,select description from node_owner
+"Show the number of rows, number of columns and the last modified date for the 10 most recently modified tables.","select num_rows, num_cols, modified_date from node_table order by modified_date desc limit 10"
+Show the column counts for all business terms that have 'id' in their names.,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like '%id%'"
+How many tables can be joined with each table in the lake?,"select t1.node_id, t1.short_name from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Display all file names and sizes for files with size greater than 100K.,"select short_name, fsize from node_file where fsize > 100"
+List the creation date of every single nosql database with 'vehicle' in it's description.,"select short_name, creation_date, description from node_nosql where description like '%vehicle%'"
+"Sort all folders by their last modified timestamp and show their names, ids and description.","select short_name, node_id, description, modified_date from node_directory order by modified_date desc"
+Give me the id and name for all columns with at least one label.,"select distinct t1.node_id, t1.short_name from node_column as t1 join edge_assoc as t2 on t1.node_id = t2.target_node_id"
+Find all columns associated with the business term 'ModDate'.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'mod_date'
+Sort all business terms created in the past 5 days by it's creation timestamp.,"select short_name, creation_date from node_label where creation_date >= now() - interval '5 days' order by creation_date asc"
+How many classifications are owned by each user?,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_classification as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+List every column in the database along with the table that it belongs to.,"select t3.short_name, t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id"
+Count the number of columns for each table that has less than 15 columns.,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) < 15"
+Which files contain a table with the term 'covid' in their name?,select t1.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t3.short_name like '%covid%'
+Sort all assets by type id and last modified date.,"select short_name, type_id, modified_date from node order by type_id asc, modified_date desc"
+Show the creation date and description for all business terms in the data lake.,"select creation_date, description from node_business_term"
+Identify all classifications with the term 'market' in it.,select short_name from node_classification where short_name like '%market%'
+How many assets does each owner account own?,"select t1.node_id, t1.short_name, count(*) from node as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+"Show the name, long name and description for all folders that contain at least one file directly inside them.","select t1.short_name, t1.long_name, t1.description from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id"
+"Print the name, long name and description for the product model id column.","select short_name, long_name, description from node_column where short_name = 'p_model_id'"
+Find all columns associated with the business term 'PODDate'.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'pod_date'
+Show the size of each file in the lake sorted in descending order.,"select short_name, fsize from node_file order by fsize desc"
+How many tables have 'dim' in their names?,select count(*) from node_table where short_name like '%dim%'
+Show all folders which have total file size greater than 100Kb.,"select t1.short_name from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having sum(t3.fsize) > 100"
+Sort all labels chronologically by creation date.,"select short_name, creation_date from node_label order by creation_date asc"
+Show the type and count of instances for each node type that contains more than 25 instances.,"select type_name, count(*) from node group by type_name having count(*) > 25"
+Print the id for all folders which have a file name 'address.csv'.,select t1.source_node_id from edge_has_dir_file as t1 join node_file as t2 on t1.target_node_id = t2.node_id where t2.short_name = 'address_csv'
+How many columns are associated with each business term that contains the word 'id' in it's name?,"select t1.node_id, t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like '%id%'"
+How many boolean columns were added in the last 10 days?,select count(*) from node_column where col_type = 'bool' and creation_date >= now() - interval '10 days'
+How many directory in directory relations are there in the lake?,select count(*) from edge_has_dir_dir
+"Count the columns linked with the classification label 'address' in each table then output id, name, and count for each table.","select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join edge_assoc_class_col as t3 on t2.target_node_id = t3.target_node_id join node_classification as t4 on t3.source_node_id = t4.node_id where t4.short_name = 'address' group by t1.node_id, t1.short_name"
+Show the number of rows and number of columns for the 10 biggest tables by number of rows.,"select num_rows, num_cols from node_table order by num_rows limit 10"
+How many assets of each type are present in the lake?,"select type_id, count(*) from node group by type_id"
+Give all column names association with the classification 'date'.,select t3.short_name from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'date'
+"Print the name, long name and description for the directory named 'dbo'.","select short_name, long_name, description from node_directory where short_name = 'dbo'"
+Print the creation and last modification timestamp for the human resources directory.,"select creation_date, modified_date from node_directory where short_name = 'human_resources'"
+List the top 10 people who own the most SQL databases.,"select t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name order by count(*) limit 10"
+Give me the id and name for columns which have business terms associated with them.,"select distinct t1.node_id, t1.short_name from node_column as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.target_node_id"
+Show the labels with descriptions for all labels in the database.,"select short_name, description from node_label"
+"Print description, row count and column count for tables.","select description, num_rows, num_cols from node_table"
+Order all columns in the lake by their creation date.,"select short_name, creation_date from node_column order by creation_date asc"
+"For each owner account, calculate the average size of a file added in the past month.","select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '30 days' group by t1.node_id, t1.short_name"
+"Show the id, description and size for all folders.","select node_id, description, dsize from node_directory"
+List all tables that were pulled from files whose name begins with 'student_covid_vaccinations'.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name like 'student_covid_vaccinations%'
+Which owner accounts own more than 5 relational databases?,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_rdbms as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 5"
+How many sub directories are under each directory identified by it's id.,"select source_node_id, count(*) from edge_has_dir_dir group by source_node_id "
+Print names for all directories that were created in the past day.,"select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'"
+Count the number of columns that each business term has been assigned to in the past 10 days.,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name"
+Find all tables in the lake derived from excel files.,select t3.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.extension = 'xlsx'
+How many folders does the lake contain?,select count(*) from node_directory
+What is the average size of a folder created in the last 10 days for each asset owner.,"select t1.short_name, avg(t3.dsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id where t3.creation_date >= now() - interval '10 days' group by t1.node_id, t1.short_name"
+List all databases in the catalog with their types.,"select short_name, database_type from node_database"
+Show me the number of assets of each type owned by each owner account.,"select t1.short_name, t3.type_id, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name, t3.type_id"
+Which are the columns related to business terms created in the past year.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '365 days'
+How many columns of each type are present in the 'dim_sales_reason' table?,"select col_type, count(*) from node_column where short_name = 'dim_sales_reason' group by col_type"
+Count the number of columns for each table that has more than 15 columns.,"select t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 15"
+"Give the name, long name and description of the spanish country names column in the geography table.","select t1.short_name, t1.long_name, t1.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'dim_geography' and t3.short_name = 'spanish_country'"
+Find all classifications with the term 'market' in it.,select short_name from node_classification where short_name like '%market%'
+Which files have been modified since Jan 1 2022?,select short_name from node_file where modified_date >= '2022-01-01'
+"Display table name, number of rows and number of columns for all tables whose name begins with 'fact'.","select short_name, num_rows, num_cols from node_table where short_name like 'fact%'"
+How many columns with descriptions are present in each of the tables?,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name"
+Show the number of assets owned by all users who have the term 'uwmadison' in their username.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%uwmadison%' group by t1.node_id, t1.short_name"
+Give all column names association with the classification 'date'.,select t3.short_name from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'date'
+"For each type_id, how many edges are present in the lake?","select type_id, count(*) from edge group by type_id"
+"Print short name, long name and description for the business entity identifier column.","select short_name, long_name, description from node_column where short_name = 'buss_entty_id'"
+How many assets are present in the lake for each label asset type id?,"select type_id, count(*) from node_label group by type_id"
+How many different types of files are there in the lake?,select count(distinct extension) from node_file
+Print all details for every edate column in the lake.,select * from node_column where short_name = 'e_date'
+Print the number of rows and number of columns in the table named 'ship_method',"select num_rows, num_cols from node_table where short_name = 'ship_method'"
+How many assets does each user account own?,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name"
+"Display the name, long name, description and last modification date for the column named 'doc_owr'?","select short_name, long_name, description, modified_date from node_column where short_name = 'doc_owr'"
+"Display table name, number of rows and number of columns for all tables whose name begins with 'fact'.","select short_name, num_rows, num_cols from node_table where short_name like 'fact%'"
+Show the number of columns associated with each business term.,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id"
+Print creation and modification timestamps for the 10 tables with the most rows.,"select short_name, creation_date, modified_date, num_rows from node_table order by num_rows desc"
+Show the average size of a file owned by each user for all users who own more than 10 files.,"select t1.node_id, t1.short_name, count(*), avg(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having count(*) > 10"
+Find all files which contain a table whose name starts with the the phrase 'verified_locations'.,select t1.short_name from node_file as t1 join edge_has_file_table as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t3.short_name like 'verified_locations%'
+What are the top 10 classifications which are associated with the most columns?,"select t1.short_name, count(*) from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 10"
+Show metadata records for any 3 relational databases.,select * from node_rdbms limit 3
+Count relational databases.,select count(*) from node_rdbms
+"For each file, show me the file name, description and owner id.","select t1.short_name, t1.description, t2.source_node_id from node_file as t1 join edge_own as t2 on t1.node_id = t2.target_node_id"
+What are the creation times for all folders in the data lake?,"select short_name, creation_date from node_directory"
+"Select asset type id, short name and description for all asset owners.","select type_id, short_name, description from node_owner"
+Print the column name and description for all columns that contain a description.,"select short_name, description from node_column where description <> ''"
+Print the description and number of tables for all relational databases in the lake.,"select short_name, description, num_tables from node_rdbms"
+Show the number of instances for each relation type id.,"select type_id, count(*) from edge group by type_id"
+What are the different column types?,select distinct col_type from node_column
+Show the count of assets owned by all account that own no more than 10 assets.,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) <= 10 "
+Order all nosql databases in the lake by their last modified timestamp.,"select short_name, modified_date from node_nosql order by modified_date desc"
+Which tables have more than 100 rows in them?,select short_name from node_table where num_rows > 100
+Find all classification labels created in the past 2 years.,"select short_name, creation_date from node_classification where creation_date >= now() - interval '2 years'"
+"For each asset owner that owns more than 10 assets, show the total number of assets owned.","select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having count(*) > 10"
+List all the business terms and classifications in the lake. Output their full names.,select long_name from node_label
+Count all possible unionable tables for each table.,"select t1.node_id, t1.short_name from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id group by t1.node_id"
+Print column count and description for the 25 biggest tables in the lake by row count.,"select num_cols, description from node_table order by num_rows desc limit 25"
+Show the number of rows in each table.,select num_rows from node_table
+Print the description and creation date of the document summary column in the document table.,"select t3.description, t3.creation_date from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'document' and t3.short_name = 'doc_summary'"
+Show the extension and description for all files in the lake.,"select short_name, extension, description from node_file"
+What are the columns associated with at least one business term?,select distinct t1.short_name from node_column as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.target_node_id
+List all tables owned by 'jdoe' along with it's creation date.,"select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe'"
+Which tables contain the word 'weight' in their names a column that contains the word 'building' in it's name?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%weight%' and t3.short_name like '%building%'
+Find all asset owners whose full name is John Doan.,select short_name from node_owner where long_name = 'John Doan'
+"For each account that has a description, give me the number of assets owned.","select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id where t1.description <> '' group by t1.node_id, t1.short_name"
+Which are the databases in the lake owned by 'zzheng'?,select t3.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_database as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'zzheng'
+How many columns are associated with each business term that contains the word 'id' in it's name?,"select t1.short_name, count(*) from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id where t1.short_name like '%id%' group by t1.node_id, t1.short_name"
+List all tables owned by 'jdoe' along with it's creation date.,"select t3.short_name, t3.creation_date from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_table as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'jdoe'"
+Sort all files by size and display extensions and descriptions.,"select short_name, extension, description, fsize from node_file order by fsize desc"
+Count the number of assets of each asset type present in the lake.,"select type_name, count(*) from node group by type_name"
+List all folders which have a subfolder size greater than 5kb,"select t1.node_id, t1.short_name, avg(t3.dsize) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id join node_directory as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name having avg(t3.dsize) > 5"
+"Give the name, long name and description for all columns named 'mod_date'.","select short_name, long_name, description from node_column where short_name = 'mod_date'"
+Count the number of columns for all tables created in the last one week.,"select t1.node_id, t1.short_name, count(*) from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id where t1.creation_date >= now() - interval '7 days' group by t1.node_id, t1.short_name"
+"For each table, print the number of columns.","select short_name, num_cols from node_table"
+"Print the number of rows, number of columns and the description for all tables in the lake.","select short_name, num_rows, num_cols, description from node_table"
+"Print the name, size and creation date for the 5 most recently created folders in the data lake with size greater than 100Kb.","select short_name, dsize, creation_date from node_directory where dsize > 100 order by creation_date desc limit 5"
+How many assets are present in the lake for each label asset type id?,"select type_id, count(*) from node_label group by type_id"
+Print all records for a sample of 5 rdbms.,select * from node_rdbms limit 5
+Show the name and description for all business terms.,"select short_name, description from node_business_term"
+Sort all databases in the lake by their creation date.,"select short_name, creation_date from node_database order by creation_date asc"
+Show all tables that have 10 or more rows OR 10 or more columns.,select short_name from node_table where num_rows >= 10 or num_cols >= 10
+Show the top 10 directories that contain the most subdirectories.,"select t1.short_name, count(*) from node_directory as t1 join edge_has_dir_dir as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc"
+List names and descriptions of all databases in the lake.,"select short_name, description from node_database"
+Calculate the sum of all file sizes belonging to each owner account.,"select t1.node_id, t1.short_name, sum(t3.fsize) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+List the modified time of the 'date' classification label.,select modified_date from node_classification where short_name = 'date'
+How many columns are associated with each label that has 'nyc' as a prefix?,"select t1.short_name, count(*) from node_label as t1 join edge_assoc as t2 on t1.node_id = t2.source_node_id group by t1.node_id, t1.short_name having t1.short_name like 'nyc%'"
+Which tables contain the word 'weight' in their names a column that contains the word 'building' in it's name?,select t1.short_name from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name like '%weight%' and t3.short_name like '%building%'
+List ids for directories that contain more than 20 immediate subdirectories.,select source_node_id from edge_has_dir_dir group by source_node_id having count(*) > 20
+How many files does each owner account possess?,"select t1.node_id, t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+Sort the nosql databases in the lake by their last modified date.,select short_name from node_nosql order by modified_date desc
+Which columns have at least one business term associated with them?,select distinct t1.short_name from node_column as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.target_node_id
+Print all records for the dbo internet sales table.,select * from node_table where short_name = 'fact_internet_sales'
+"Show the short name, long name and description for the modification column in the bill of materials table.","select t3.short_name, t3.long_name, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'bill_of_materials' and t3.short_name = 'mod_date'"
+List all string columns created in the past 3 days.,"select short_name, creation_date from node_column where col_type = 'string' and creation_date >= now() - interval '3 days'"
+Show the creation date and description for the column named 'ccid'.,"select creation_date, description from node_column where short_name = 'ccid'"
+Find all tables with the term 'eph' or 'employee_pay_history' in it's name.,select short_name from node_table where short_name like '%eph%' or short_name like '%employee_pay_history%'
+List creation timestamps for directories with size greater than 100Kb.,"select short_name, creation_date from node_directory where dsize > 100"
+Print names for all directories that were created in the past day.,"select short_name, creation_date from node_directory where creation_date >= now() - interval '24 hours'"
+Show the number of related assets for each asset.,"select t1.short_name, count(*) from node as t1 join edge as t2 on t1.node_id = t2.source_node_id group by t1.short_name"
+"Display the name, long name, description and last modification date for the document owner column?","select short_name, long_name, description, modified_date from node_column where short_name = 'doc_owr'"
+Show the column names and descriptions for all columns in the 'prospective_buyer' report table.,"select t3.short_name, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'prospective_buyer'"
+Find all columns associated with the classification 'enterprise'.,"select t3.node_id, t3.short_name from node_classification as t1 join edge_assoc_class_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'enterprise'"
+Show long name and description for the start date column in the bill of materials table.,"select t3.long_name, t3.description from node_table as t1 join edge_has_table_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.short_name = 'bill_of_materials' and t3.short_name = 's_date'"
+Find the mean size of a file for each folder?,"select t1.node_id, t1.short_name, avg(t3.fsize)  from node_directory as t1 join edge_has_dir_file as t2 on t1.node_id = t2.source_node_id join node_file as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name"
+List all people who own one or more databases in the lake.,select distinct t1.short_name from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node_database as t3 on t2.target_node_id = t3.node_id
+How many assets of each type id does each user account own?,"select t1.node_id, t1.short_name, t3.type_id, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id join node as t3 on t2.target_node_id = t3.node_id group by t1.node_id, t1.short_name, t3.type_id"
+List creation timestamps for all folders.,"select short_name, creation_date from node_directory"
+Who are the top 10 people who own the most assets? How many assets each own?,"select t1.short_name, count(*) from node_owner as t1 join edge_own as t2 on t1.node_id = t2.source_node_id group by t1.short_name, t2.source_node_id order by count(*) desc limit 10"
+What are the tables can be unioned with each table in the lake?,select t1.short_name from node_table as t1 join edge_unionable_table_table as t2 on t1.node_id = t2.source_node_id
+When was the last time that each directory was modified?,"select short_name, modified_date from node_directory"
+"List the extension, creation date and last modified date for all files in the lake.","select short_name, creation_date, modified_date from node_file"
+Count the number of joinable relationships found for each table in the past 13 days.,"select t1.short_name, count(*) from node_table as t1 join edge_joinable_table_table as t2 on t1.node_id = t2.source_node_id where t2.creation_date >= now() - interval '13 days' group by t1.node_id, t1.short_name"

@@ -1,0 +1,9 @@
+neo4j
+pandas
+pyarrow
+psycopg[binary]
+sqlglot
+py_stringmatching
+elasticsearch
+python-dotenv
+scikit-learn
