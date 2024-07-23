@@ -2,6 +2,7 @@
   "edge": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -13,6 +14,7 @@
   "edge_assoc": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -24,6 +26,7 @@
   "edge_assoc_class_col": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -35,6 +38,7 @@
   "edge_assoc_term_col": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -46,6 +50,7 @@
   "edge_derive_table_table": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -57,6 +62,7 @@
   "edge_has": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -68,6 +74,7 @@
   "edge_has_dir_dir": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -79,6 +86,7 @@
   "edge_has_dir_file": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -90,6 +98,7 @@
   "edge_has_file_table": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -101,6 +110,7 @@
   "edge_has_table_col": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -112,6 +122,7 @@
   "edge_joinable_table_table": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -123,6 +134,7 @@
   "edge_own": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -134,6 +146,7 @@
   "edge_unionable_table_table": [
     "edge_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -145,6 +158,7 @@
   "node": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -154,6 +168,7 @@
   "node_business_term": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -163,6 +178,7 @@
   "node_classification": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -172,6 +188,7 @@
   "node_column": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -183,6 +200,7 @@
   "node_database": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -193,6 +211,7 @@
   "node_directory": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -203,6 +222,7 @@
   "node_file": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -214,6 +234,7 @@
   "node_label": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -223,6 +244,7 @@
   "node_nosql": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -232,6 +254,7 @@
   "node_owner": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -241,6 +264,7 @@
   "node_rdbms": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
@@ -251,6 +275,7 @@
   "node_table": [
     "node_id",
     "type_id",
+    "type_name",
     "short_name",
     "long_name",
     "description",
