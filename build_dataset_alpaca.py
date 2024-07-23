@@ -10,8 +10,7 @@ QUERY_PATH = 'queries/queries.json'
 schema = json.load(open(SCHEMA_PATH, 'r'))
 instruction = 'Translate english queries to SQL using the given schema.'
 query_dataset = load_dataset("json", data_files=QUERY_PATH, split='train')
-query_dataset = query_dataset.train_test_split(train_size=N_TRAIN, test_size=N_TEST)
-
+query_dataset = query_dataset.train_test_split(train_size=N_TRAIN, test_size=N_TEST, seed=10086)
 instructions = [instruction for _ in range(N_TRAIN)]
 inputs, outputs = [], []
 for query in query_dataset['train']:

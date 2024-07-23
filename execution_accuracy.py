@@ -4,6 +4,7 @@ from psycopg.rows import dict_row
 import json
 from post_processor import SQLValidator
 import pandas as pd
+from datetime import datetime
 
 def start_postgresql(data_dir):
     try:
@@ -135,6 +136,8 @@ if __name__ == "__main__":
     print(f'Precision: {p}/{r} = {p/r}')
     print(f'Empty Predicted Result in Precision: {empty_output}/{p} = {empty_output/p}')
     print(f'Recall: {p}/{n} = {p/n}')
-    json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
-    pd.DataFrame(results).to_csv('results_final.csv', index=False)
+    if invalid_gold:
+        json.dump(invalid_gold, open('invalid_gold.json', 'w'), indent=2)
+    filename = 'run-s0-{}-v1.csv'.format(datetime.now().strftime("%b%d-%Y"))
+    pd.DataFrame(results).to_csv(filename, index=False)
     # stop_postgresql(data_dir)
