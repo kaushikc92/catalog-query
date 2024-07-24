@@ -1,7 +1,6 @@
 from neo4j import GraphDatabase
 import os
 import time
-#from uuid import uuid4
 import subprocess
 import pyarrow.csv as pa_csv
 import pyarrow.json as pa_json
@@ -9,12 +8,14 @@ import random
 import json
 from utils.camelcase_tokenizer import CamelCaseTokenizer
 import pwd
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
 class Neo4jManager:
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
-        self.node_type_schema = json.load(open("../config/schema/node_type_records.json"))
-        self.edge_type_schema = json.load(open("../config/schema/edge_type_records.json"))
+        self.node_type_records = json.load(open(os.getenv('NODE_TYPE_RECORDS_PATH')))
+        self.edge_type_records = json.load(open(os.getenv('EDGE_TYPE_RECORDS_PATH'))
         self.tokenizer = CamelCaseTokenizer()
         self.node_id = 0
         self.edge_id = 0
@@ -70,7 +71,7 @@ class Neo4jManager:
     
     def _create_nodes(self, tx, path, node_type, parameters):
         # node_id = str(uuid4())
-        type_id = self.node_type_schema["node_" + node_type]['type_id']
+        type_id = self.node_type_records["node_" + node_type]['type_id']
         type_name = node_type 
         description = ""
         if node_type == "directory":
@@ -312,7 +313,7 @@ class Neo4jManager:
         # Assigning unique UUID and type_id for files
         #edge_id = str(uuid4())
         edge_id = self.edge_id
-        type_id = self.edge_type_schema["edge_" + edge_type]['type_id']  # Example type_id for files
+        type_id = self.edge_type_records["edge_" + edge_type]['type_id']  # Example type_id for files
         type_name = edge_type
         short_name = ""
         long_name = ""
@@ -636,11 +637,12 @@ class Neo4jManager:
     def _delete_all(tx):
         tx.run("MATCH (n) DETACH DELETE n")
                 
-uri = "neo4j://localhost:7687"
-user = "neo4j"
-password = "12345678"
+uri = f"neo4j://localhost:{os.getenv('NEO4J_BOLT_PORT')}"
+user = os.getenv('NEO4J_USER')
+password = os.getenv('NEO4J_PASSWORD')
 
 graph = Neo4jManager(uri, user, password)
 graph.traverse_directory("../data/lakes/adventureworks/csv/")
+graph.traverse_directory(os.getenv('LAKE_PATH')
 # graph.delete_all_nodes()
 graph.close()

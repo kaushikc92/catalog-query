@@ -1,6 +1,8 @@
 import psycopg
 from neo4j import GraphDatabase
 import json
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
 class PostgresManager:
     def __init__(self, postgreq_params, neo4j_params, taxonomy_json_path = None):
@@ -130,16 +132,17 @@ class PostgresManager:
 # Usage example
 if __name__ == "__main__":
     neo4j_params = {
-        "uri": "neo4j://localhost:7687",
-        "user": "neo4j",
-        "password": "12345678"
+        "uri": f"neo4j://localhost:{os.getenv('NEO4J_BOLT_PORT')}",
+        "user": os.getenv('NEO4J_USER', 'neo4j'),
+        "password": os.getenv('NEO4J_PASSWORD', '12345678')
     }
-    postgreq_params = {
-        "host": "localhost",
-        "dbname": "postgres",
-        "user": "postgres",
-        "password": "postgres",
-        "port": 5432
+
+    postgres_params = {
+        "host": os.getenv('POSTGRES_HOST', 'localhost'),
+        "dbname": os.getenv('POSTGRES_DB', 'postgres'),
+        "user": os.getenv('POSTGRES_USER', 'postgres'),
+        "password": os.getenv('POSTGRES_PASSWORD', 'postgres'),
+        "port": int(os.getenv('POSTGRES_PORT', 5432))
     }
     # SQL statements for creating tables
     sql_node_commands = [

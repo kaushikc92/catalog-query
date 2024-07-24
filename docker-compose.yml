@@ -3,10 +3,10 @@ services:
     image: neo4j:latest
     container_name: neo4j
     environment:
-      - NEO4J_AUTH=neo4j/12345678
+      - NEO4J_AUTH=${NEO4J_AUTH}
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - "${NEO4J_HTTP_PORT}:${NEO4J_HTTP_PORT}"
+      - "${NEO4J_BOLT_PORT}:${NEO4J_BOLT_PORT}"
     volumes:
       - neo4j_data:/data
 
@@ -14,10 +14,11 @@ services:
     image: postgres:latest
     container_name: postgres
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -29,8 +30,8 @@ services:
       - xpack.security.enabled=false
       - xpack.security.enrollment.enabled=false
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "${ELASTICSEARCH_HTTP_PORT}:${ELASTICSEARCH_HTTP_PORT}"
+      - "${ELASTICSEARCH_TRANSPORT_PORT}:${ELASTICSEARCH_TRANSPORT_PORT}"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
 

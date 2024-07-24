@@ -1,12 +1,12 @@
 import json, re, csv
 from elasticsearch import Elasticsearch
 
-EXAMPLES_PATH = '../data/examples.csv'
-EXAMPLE_ATTRIBUTES_PATH = '../data/example_attributes.json'
-SQL_SCHEMA_PATH = '../config/schema/sql_schema.json'
+EXAMPLES_PATH = os.getenv('EXAMPLES_PATH')
+EXAMPLE_ATTRIBUTES_PATH = os.getenv('EXAMPLE_ATTRIBUTES_PATH')
+SQL_SCHEMA_PATH = os.getenv('SQL_SCHEMA_PATH')
 K = 5
-INDEX = 'column_catalog'
-ES_HOST='http://localhost:9200'
+INDEX = os.getenv('ELASTICSEARCH_INDEX')
+ES_HOST = f"http://localhost:{os.getenv('ELASTICSEARCH_HTTP_PORT', 9200)}"
 
 client = Elasticsearch([ES_HOST])
 schema = json.load(open(SQL_SCHEMA_PATH, 'r'))
