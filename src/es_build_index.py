@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 from utils.camelcase_tokenizer import CamelCaseTokenizer
-import json
+import json, os
 from dotenv import load_dotenv
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
@@ -20,16 +20,11 @@ SETTINGS = {
                     "min_gram": 3,
                     "max_gram": 5
                 },
-                #"my_synonym_filter": {
-                #    "type": "synonym",
-                #    "synonyms_path": "synonyms.txt"
-                #}
             },
             "analyzer": {
                 "my_custom_analyzer": {
                     "type": "custom",
                     "tokenizer": "whitespace",
-                    #"filter": ["lowercase", "my_synonym_filter", "my_ngram_filter"]
                     "filter": ["lowercase", "my_ngram_filter"]
                 }
             }
@@ -67,7 +62,7 @@ for i, table in enumerate(schema):
         body["column_name_" + str(j)] = concatenated_string
 
     client.index(
-        index = "column_catalog",
+        index = INDEX,
         id = table,
         document=body
     )
