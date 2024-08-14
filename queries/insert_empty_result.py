@@ -15,10 +15,11 @@ FAKER_GENERATOR= Faker()
 NODE_TYPE_RECORDS_JSON_PATH = "../schema/node_type_records.json"
 EDGE_TYPE_RECORDS_JSON_PATH = "../schema/edge_type_records.json"
 TAXONOMY_JOIN_PATH = ['../schema/node_type_taxonomy.json','../schema/edge_type_taxonomy.json']
+QUERY_PATH = 'queries.csv'
 
 def check_time_stamp(expression):
     # Regular expression to match the pattern now() [+-] INTERVAL 'n' [HOURS|DAYS]
-    pattern = r"(NOW\(\)\s*([+-])\s*INTERVAL\s*')(\d+)\s?(HOURS.*|DAYS.*|MONTHS.*|YEARS.*)"
+    pattern = r"(NOW\(\)\s*([+-])\s*INTERVAL\s*')(\d+)\s?(HOUR.*|DAY.*|MONTH.*|YEAR.*)"
     match = re.match(pattern, expression, re.IGNORECASE)
     if not match:
         return False
@@ -419,10 +420,9 @@ def check_empty_queries(df, postgreq_params):
     print("Can not run queries:", can_not_run)
     return empty_query, can_not_run, empty_query_dict, can_not_run_dict
 
-# QUERY_PATH = 'queries.json'
 # query_dataset = load_dataset("json", data_files=QUERY_PATH, split='train')
 # df = pd.DataFrame(query_dataset)
-df = pd.read_csv('queries.csv')
+df = pd.read_csv(QUERY_PATH)
 df = df.rename(columns={'example_id': 'eid', 'gold_query': 'goldSqlQuery'})
 
 # Connection setup
