@@ -1,4 +1,4 @@
-example_id,nl_query,gold_query
+exampleId,naturalLanguageQuery,goldSqlQuery
 e1,Show all columns associated with business terms created in the last 10 days.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '10 days'
 e2,List the columns that are tagged with business terms created in the past 4 days,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '4 days'
 e3,Find columns associated with business terms created in the last 15 days.,select t3.short_name from node_business_term as t1 join edge_assoc_term_col as t2 on t1.node_id = t2.source_node_id join node_column as t3 on t2.target_node_id = t3.node_id where t1.creation_date >= now() - interval '15 days'
