@@ -139,8 +139,7 @@ final_matches = find_similar_synonyms(model, nl_queries, synonym_file_with_embed
 
 # Add the final results back to each query
 for query in data:
-    nl_query = query["naturalLanguageQuery"]
     query['synonyms_from_exact_match'] = find_exact_match_synonym(query['naturalLanguageQuery'], synonym_file)
-    query["synonyms_from_embeddings"] = final_matches.get(nl_query, [])
+    query["synonyms_from_embeddings"] = final_matches.get(query["naturalLanguageQuery"], [])
 
 json.dump(data, open(QUERY_FILE, 'w'), indent=2)
