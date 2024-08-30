@@ -70,10 +70,20 @@ def find_similar_synonyms(model, english_queries, synonyms_dict_with_embedding, 
             # Compute cosine similarity between the batched query embeddings and each value embedding
             similarities = sentence_transformers.util.cos_sim(embedding_phrases, embedding_value)
             
+            max_similarity = float('-inf')
+            new_query = None
             # Iterate over each query's similarities and collect the top matches
             for query, similarity in zip(query_phrase_mapping, similarities):
-                all_synonym_matches[query].append((key, value, similarity.item()))
+                if query != new_query:
+                    if new_query is not None:
+                        all_synonym_matches[new_query].append((key, value, max_similarity))
+                    new_query = query
+                    max_similarity = float('-inf')
+                if similarity.item() > max_similarity:
+                    max_similarity = similarity.item()
+            all_synonym_matches[new_query].append((key, value, max_similarity))
 
+            
     # For each query, sort the synonym matches by similarity and retain the topk results
     final_matches = {}
     for query, matches in all_synonym_matches.items():
