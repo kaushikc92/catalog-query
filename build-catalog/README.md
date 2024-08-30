@@ -52,3 +52,14 @@ Remember to start the neo4j and postgresql server first.
 ```
 python3 relationaldb_crawler.py
 ```
+
+# How to install elastic search
+```
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.15.0-linux-x86_64.tar.gz
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.15.0-linux-x86_64.tar.gz.sha512
+shasum -a 512 -c elasticsearch-8.15.0-linux-x86_64.tar.gz.sha512 
+tar -xzf elasticsearch-8.15.0-linux-x86_64.tar.gz
+rm -f elasticsearch-8.15.0-linux-x86_64.tar.gz
+rm -f elasticsearch-8.15.0-linux-x86_64.tar.gz.sha512
+cd elasticsearch-8.15.0/ 
+```
